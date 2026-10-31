@@ -5,34 +5,34 @@
   "aviso": "Voz generada con IA a partir de la voz del autor",
   "escenas": [
     {
-      "frase": "En un tramo de doscientos metros de la Panamericana Norte, en Comas, fallecieron diecisiete personas entre dos mil veintiuno y dos mil veinticuatro. Quise saber si era un caso aislado.",
-      "subtitulo": "En un tramo de 200 metros de la Panamericana Norte, en Comas, fallecieron 17 personas entre 2021 y 2024. Quise saber si era un caso aislado.",
-      "cifra": "17",
-      "etiqueta": "fallecidos en 200 metros, Panamericana Norte (Comas)",
-      "imagen": "Vuelo 3D del dashboard hasta Comas",
-      "dato": "docs/datos.json: lugar más letal, 17 fallecidos en 15 siniestros, 2021-2024"
-    },
-    {
-      "frase": "Así que ubiqué en el mapa los nueve mil ciento cinco siniestros con fallecidos registrados en el Perú desde dos mil veintiuno.",
-      "subtitulo": "Así que ubiqué en el mapa los 9,105 siniestros con fallecidos registrados en el Perú desde 2021.",
-      "cifra": "9,105",
-      "etiqueta": "siniestros fatales con ubicación, enero 2021 a agosto 2025",
+      "frase": "Sales de casa, te despides y das por hecho que vas a volver. Desde dos mil veintiuno, más de diez mil personas en el Perú no volvieron por un siniestro de tránsito.",
+      "subtitulo": "Sales de casa, te despides y das por hecho que vas a volver. Desde 2021, más de 10,000 personas en el Perú no volvieron por un siniestro de tránsito.",
+      "cifra": "10,858",
+      "etiqueta": "fallecidos en siniestros de tránsito registrados, 2021 a agosto de 2025",
       "imagen": "Mapa del Perú con un punto por siniestro",
-      "dato": "datos/procesados/siniestros.csv: 9,105 filas"
+      "dato": "datos/procesados/siniestros.csv: suma de fallecidos 10,858"
     },
     {
-      "frase": "Encontré doscientos ochenta y seis puntos negros. Son lugares con tres o más siniestros fatales a menos de doscientos metros, y ahí se registró uno de cada nueve fallecidos.",
-      "subtitulo": "Encontré 286 puntos negros. Son lugares con 3 o más siniestros fatales a menos de 200 metros, y ahí se registró 1 de cada 9 fallecidos.",
+      "frase": "Y muchos fallecen en los mismos lugares. En un tramo de doscientos metros de la Panamericana Norte, en Comas, murieron diecisiete personas.",
+      "subtitulo": "Y muchos fallecen en los mismos lugares. En un tramo de 200 metros de la Panamericana Norte, en Comas, murieron 17 personas.",
+      "cifra": "17",
+      "etiqueta": "fallecidos en 200 metros, Panamericana Norte (Comas), 2021-2024",
+      "imagen": "Vuelo 3D del dashboard hasta Comas",
+      "dato": "docs/datos.json: 17 fallecidos en 15 siniestros"
+    },
+    {
+      "frase": "Ubiqué en el mapa cada siniestro y encontré doscientos ochenta y seis puntos negros, lugares donde se repiten. Ahí se registró uno de cada nueve fallecidos.",
+      "subtitulo": "Ubiqué en el mapa cada siniestro y encontré 286 puntos negros, lugares donde se repiten. Ahí se registró 1 de cada 9 fallecidos.",
       "cifra": "286",
-      "etiqueta": "puntos negros en el Perú",
+      "etiqueta": "puntos negros, 3 o más siniestros fatales a menos de 200 metros",
       "imagen": "Mapa del Perú con las 286 columnas",
       "dato": "docs/datos.json: 286 lugares; 1,202 de 10,858 fallecidos (11%)"
     },
     {
-      "frase": "Y no es casualidad. Si esos mismos siniestros se repartieran por las mismas carreteras, habría treinta y un lugares con cinco o más. En la realidad hay cincuenta y cinco.",
-      "subtitulo": "Y no es casualidad. Si esos mismos siniestros se repartieran por las mismas carreteras, habría 31 lugares con 5 o más. En la realidad hay 55.",
+      "frase": "Y no es solo por el tráfico. Frente a otros tramos de las mismas carreteras, hay casi el doble de lugares donde se repiten.",
+      "subtitulo": "Y no es solo por el tráfico. Frente a otros tramos de las mismas carreteras, hay casi el doble de lugares donde se repiten.",
       "cifra": "55 frente a 31",
-      "etiqueta": "lugares con 5 o más siniestros fatales, realidad frente a azar",
+      "etiqueta": "lugares con 5 o más siniestros fatales, realidad frente a otros tramos de la misma vía",
       "imagen": "Panel 'No es azar' del dashboard",
       "dato": "docs/datos.json azar: real 55; promedio de 20 repeticiones 31.35; máximo 40"
     },
@@ -45,12 +45,12 @@
       "dato": "docs/datos.json prediccion: 149 puntos negros, 38.3%; lugares con 1 siniestro, 5.2%"
     },
     {
-      "frase": "La mitad son atropellos. Y desde el satélite muchos se parecen, una carretera rápida que cruza un barrio, con paraderos y comercio al costado.",
-      "subtitulo": "La mitad son atropellos. Y desde el satélite muchos se parecen, una carretera rápida que cruza un barrio, con paraderos y comercio al costado.",
+      "frase": "¿Por qué ahí? La mitad son atropellos, y casi la mitad tenía un paradero cerca. Desde el satélite muchos se parecen, una carretera rápida que cruza un barrio, con comercio al costado.",
+      "subtitulo": "¿Por qué ahí? La mitad son atropellos, y casi la mitad tenía un paradero cerca. Desde el satélite muchos se parecen, una carretera rápida que cruza un barrio, con comercio al costado.",
       "cifra": "50%",
-      "etiqueta": "son atropellos (28% en el resto de siniestros)",
+      "etiqueta": "son atropellos (28% en el resto). 44% con paradero a menos de 200 m (26% en la misma vía)",
       "imagen": "Par satelital de Lurín: punto negro frente a la misma vía a 1.5 km",
-      "dato": "perfil: atropellos 50% frente a 28%; auditoria.csv: comercio 13 de 28 frente a 1, paradero 14 frente a 7",
+      "dato": "perfil: atropellos 50% frente a 28%; entorno: paradero 44% frente a 26%; auditoria.csv: comercio 13 de 28 frente a 1",
       "credito": "Imagen: Esri World Imagery"
     },
     {
