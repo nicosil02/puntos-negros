@@ -368,7 +368,7 @@
 
     <div class="texto panel" id="metodo">
       <div><h2>Cómo se calculó</h2><ul>
-        <li>Cada siniestro con fallecidos registrado por el ONSV entre enero de 2021 y agosto de 2025, con su ubicación exacta.</li>
+        <li>Cada siniestro con fallecidos registrado por el ONSV entre enero de 2021 y diciembre de 2025, con su ubicación exacta.</li>
         <li>Punto negro es un grupo de 3 o más siniestros a menos de 200 metros uno de otro (DBSCAN).</li>
         <li>Prueba del azar. Cada siniestro se movió a un lugar al azar de la misma vía, en el mismo tramo y la misma provincia. Así el tráfico es parecido. Se repitió 20 veces.</li>
         <li>Paraderos, mercados y colegios vienen de OpenStreetMap. La población es la de WorldPop 2020 en celdas de 1 km.</li>
@@ -384,7 +384,7 @@
       </ul></div>
       <div><h2>Limitaciones</h2><ul>
         <li>Solo siniestros con fallecidos. Los que dejan heridos no tienen ubicación pública.</li>
-        <li>El registro de 2024 y 2025 es más incompleto (2025 llega hasta agosto).</li>
+        <li>La base con ubicación cubre 70% de los fallecidos que reporta el ONSV para 2021-2025 (10,858 de 15,568). La cobertura baja con los años, de 93% en 2021 a 63% en 2024 y 27% en 2025. Los puntos negros recientes están subestimados.</li>
         <li>No hay conteos públicos de autos ni peatones por calle. La prueba del azar sobre la misma vía es la mejor aproximación.</li>
         <li>OpenStreetMap no tiene todos los paraderos, sobre todo los informales.</li>
         <li>La auditoría satelital tiene 28 pares y un solo codificador. Es exploratoria.</li>

@@ -1,16 +1,16 @@
 {
   "titulo": "Puntos negros",
   "subtitulo": "Dónde se repiten los siniestros fatales en las vías del Perú",
-  "fuente": "ONSV (MTC), siniestros fatales 2021 a agosto de 2025; OpenStreetMap; Esri World Imagery",
+  "fuente": "ONSV (MTC), siniestros fatales 2021-2025; OpenStreetMap; Esri World Imagery",
   "aviso": "Voz generada con IA a partir de la voz del autor",
   "escenas": [
     {
-      "frase": "En el Perú, muchas familias se despiden con temor cuando alguien sale de casa. Una de las razones es la inseguridad vial. Desde dos mil veintiuno, más de diez mil personas fallecieron en siniestros de tránsito.",
-      "subtitulo": "En el Perú, muchas familias se despiden con temor cuando alguien sale de casa. Una de las razones es la inseguridad vial. Desde 2021, más de 10,000 personas fallecieron en siniestros de tránsito.",
-      "cifra": "10,858",
-      "etiqueta": "fallecidos en siniestros de tránsito registrados, 2021 a agosto de 2025",
+      "frase": "Cada año, cerca de tres mil personas fallecen en las vías del Perú. Por eso muchas familias se despiden con temor cuando alguien sale de casa.",
+      "subtitulo": "Cada año, cerca de 3,000 personas fallecen en las vías del Perú. Por eso muchas familias se despiden con temor cuando alguien sale de casa.",
+      "cifra": "2,890",
+      "etiqueta": "fallecidos en siniestros de tránsito en 2025 (ONSV)",
       "imagen": "Mapa del Perú con un punto por siniestro",
-      "dato": "datos/procesados/siniestros.csv: suma de fallecidos 10,858"
+      "dato": "ONSV vía PerúCheck/Caretas, 8 abr 2026: 3,002 en 2024 y 2,890 en 2025 (https://caretas.pe/?p=801787)"
     },
     {
       "frase": "Y muchos siniestros se repiten en el mismo lugar. En un tramo de doscientos metros de la Panamericana Norte, en Comas, fallecieron diecisiete personas.",
@@ -54,8 +54,8 @@
       "credito": "Imagen: Esri World Imagery"
     },
     {
-      "frase": "Explora los de tu región en el dashboard. El enlace está en la publicación.",
-      "subtitulo": "Explora los de tu región en el dashboard. El enlace está en la publicación.",
+      "frase": "¿Hay uno en tu camino de todos los días? Búscalo en el dashboard. El enlace está en la publicación.",
+      "subtitulo": "¿Hay uno en tu camino de todos los días? Búscalo en el dashboard. El enlace está en la publicación.",
       "cifra": "Puntos negros",
       "etiqueta": "Dashboard interactivo, enlace en la publicación",
       "imagen": "Recorrido del dashboard: filtros, mapa y ficha",
