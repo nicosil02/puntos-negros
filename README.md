@@ -41,7 +41,7 @@ python scripts/limpiar.py
 python scripts/analizar.py   # escribe docs/datos.json
 ```
 
-El dashboard es `docs/index.html` (D3 y Leaflet) y lee `docs/datos.json`.
+El dashboard es `docs/index.html` (D3, MapLibre y deck.gl) y lee `docs/datos.json`.
 
 ## Limitaciones
 
