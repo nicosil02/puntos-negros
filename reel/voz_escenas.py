@@ -61,7 +61,7 @@ if __name__ == "__main__":
             puntajes = [nota(w) for _, w in buenas]
             k = int(np.argmax(puntajes))
             print(f"escena {n}, «{frase[:30]}»: {len(buenas)} de {a.tomas} tomas con WER bajo; puntajes {[round(p, 2) for p in puntajes]}; elijo {k}", flush=True)
-            wers.append(buenas[k][0]); trozos += [buenas[k][1], np.zeros(int(0.25 * sr), np.float32)]
+            wers.append(buenas[k][0]); trozos += [librosa.effects.trim(buenas[k][1], top_db=35)[0], np.zeros(int(0.3 * sr), np.float32)]  # sin silencios propios de la toma
         wer[n - 1], partes[n - 1] = max(wers), np.concatenate(trozos[:-1])
 
     # se vuelve a armar con las mismas pausas que reel.narrar

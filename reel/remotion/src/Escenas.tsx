@@ -220,7 +220,7 @@ export const Cierre: React.FC<P> = ({ dur }) => {
           <br />
           tu ruta diaria?
         </div>
-        <div style={{ marginTop: 50, fontSize: 52, fontWeight: 700, color: C.acento, opacity: b }}>Búscalo en el dashboard</div>
+        <div style={{ marginTop: 50, fontSize: 52, fontWeight: 700, color: C.acento, opacity: b }}>Revisa el dashboard</div>
         <div style={{ marginTop: 14, fontSize: 40, color: C.suave, opacity: b }}>Enlace en la publicación</div>
       </AbsoluteFill>
     </AbsoluteFill>
