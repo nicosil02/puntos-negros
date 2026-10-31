@@ -113,7 +113,7 @@ export const Peru: React.FC<P> = ({ dur }) => {
   );
 };
 
-// 4. No es casualidad: lugares con 5 o más siniestros, en la realidad y al azar
+// 4. No es solo el tráfico: lugares con 5 o más siniestros, en la realidad y al azar
 export const Azar: React.FC<P> = ({ dur }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -136,7 +136,7 @@ export const Azar: React.FC<P> = ({ dur }) => {
       <div style={{ position: "absolute", left: M, right: M, top: 880, fontFamily }}>
         <div style={{ fontSize: 44, fontWeight: 700, color: C.tinta, opacity: resorte(f, fps, 6) }}>Lugares con 5 o más siniestros fatales</div>
         {barra(55, C.acento, "en la realidad", Math.round(dur * 0.2))}
-        {barra(31, "#9aa1ab", "si se repartieran al azar en la misma vía", Math.round(dur * 0.42))}
+        {barra(31, "#9aa1ab", "si ocurrieran en cualquier punto de la misma carretera", Math.round(dur * 0.42))}
       </div>
     </AbsoluteFill>
   );
