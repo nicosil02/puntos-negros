@@ -52,8 +52,8 @@ def cubrir(img, ancho=W, alto=H):
 
 class Clip:
     """Tramo [a, b] de un video, estirado o comprimido a la duración de la escena."""
-    def __init__(self, archivo, a, b):
-        self.archivo, self.a, self.b = archivo, a, b
+    def __init__(self, archivo, a, b, encima=None):
+        self.archivo, self.a, self.b, self.encima = archivo, a, b, encima
 
     def abrir(self, n):
         self.n, self.ult = n, None
@@ -66,7 +66,10 @@ class Clip:
         b = self.p.stdout.read(W * H * 3)
         if len(b) == W * H * 3:
             self.ult = Image.frombuffer("RGB", (W, H), b)
-        return self.ult.copy()
+        img = self.ult.copy()
+        if self.encima:
+            img = img.convert("RGBA"); img.alpha_composite(self.encima(k / max(1, self.n - 1), k / FPS))
+        return img
 
 
 class Fijo:
@@ -88,29 +91,85 @@ def entrar(t, t0, dur=0.45):
 
 
 def titulares():
+    """Cada titular entra grande desde la derecha; los anteriores se apilan atrás, más chicos y oscuros."""
     fuentes = json.loads((R / "titulares" / "fuentes.json").read_text(encoding="utf-8"))
     tarjetas = []
     for s in fuentes:
         img = Image.open(R / "titulares" / s["img"]).convert("RGB")
-        ancho = W - 2 * M - 56
+        ancho = W - 2 * M - 64
         img = img.resize((ancho, round(img.height * ancho / img.width)), Image.LANCZOS)
-        c = Image.new("RGB", (W - 2 * M, img.height + 84), "white")
+        c = Image.new("RGBA", (W - 2 * M, img.height + 110), "white")
         d = ImageDraw.Draw(c)
-        d.text((28, 18), f"{s['medio']} · {s['fecha']}".upper(), font=fuente(26, 700), fill=(150, 40, 0))
-        c.paste(img, (28, 58))
+        d.text((32, 26), f"{s['medio']} · {s['fecha']}".upper(), font=fuente(32, 700), fill=(170, 45, 0))
+        c.paste(img, (32, 80))
         tarjetas.append(c)
+    paso = 2.7
 
     def dibujar(p, t):
-        img = Image.new("RGB", (W, H), FONDO)
-        y = 230
+        img = Image.new("RGBA", (W, H), FONDO + (255,))
         for i, c in enumerate(tarjetas):
-            a = entrar(t, 0.2 + i * 0.9)
-            if a > 0:
-                capa = c.copy(); capa.putalpha(int(255 * a))
-                img.paste(capa, (M, int(y + 50 * (1 - a))), capa)
-            y += c.height + 16
+            a = entrar(t, 0.15 + i * paso, 0.55)
+            if a <= 0:
+                continue
+            atras = sum(entrar(t, 0.15 + j * paso, 0.55) for j in range(i + 1, len(tarjetas)))   # cuántos entraron después
+            e = (1 - 0.08 * atras) * (1.06 - 0.06 * a)
+            tc = c.resize((round(c.width * e), round(c.height * e)), Image.BILINEAR)
+            if atras > 0:
+                negro = Image.new("RGBA", tc.size, FONDO + (int(255 * min(0.75, 0.3 * atras)),))
+                tc.alpha_composite(negro)
+            x = int((W - tc.width) / 2 + (1 - a) * W * 0.9)
+            y = int(560 - 120 * atras - tc.height / 2 + 60)
+            img.alpha_composite(tc, (x, max(220, y)))
         return img
     return Fijo(dibujar)
+
+
+def ministerio():
+    """83 tramos que el MTC señaló en 2022; se pintan los 61 que volvieron a tener siniestros fatales."""
+    lado, gap, cols = 72, 14, 10
+    x0 = (W - cols * (lado + gap) + gap) // 2
+
+    def dibujar(p, t):
+        img = Image.new("RGBA", (W, H), FONDO + (255,))
+        d = ImageDraw.Draw(img)
+        a = entrar(p, 0.0, 0.08)
+        d.text((M, 300), "EN 2022 EL MINISTERIO DE TRANSPORTES SEÑALÓ", font=fuente(32, 600), fill=SUAVE + (int(255 * a),))
+        d.text((M, 350), "83 tramos peligrosos", font=fuente(80, 800), fill=TINTA + (int(255 * a),))
+        aparecen, pintan = p / 0.3, (p - 0.42) / 0.25
+        for k in range(83):
+            if k / 83 > aparecen:
+                break
+            x, y = x0 + (k % cols) * (lade := lado + gap), 520 + (k // cols) * lade
+            naranja = k < 61 and k / 61 < pintan
+            d.rounded_rectangle((x, y, x + lado, y + lado), radius=12, fill=ACENTO if naranja else (58, 62, 70))
+        n61 = min(61, max(0, int(61 * pintan)))
+        b = entrar(p, 0.78, 0.06)
+        if n61 and b < 1:
+            al = int(255 * (1 - b))
+            d.text((M, 1450), str(n61), font=fuente(170, 800), fill=ACENTO + (al,), anchor="ls")
+            d.text((M + 30 + d.textlength(str(n61), font=fuente(170, 800)), 1370), "volvieron a tener", font=fuente(42, 500), fill=TINTA + (al,))
+            d.text((M + 30 + d.textlength(str(n61), font=fuente(170, 800)), 1420), "siniestros fatales", font=fuente(42, 700), fill=TINTA + (al,))
+        if b > 0:
+            al = int(255 * b)
+            d.text((M, 1450), "203", font=fuente(170, 800), fill=ACENTO + (al,), anchor="ls")
+            d.text((M + 30 + d.textlength("203", font=fuente(170, 800)), 1370), "fallecidos", font=fuente(42, 700), fill=TINTA + (al,))
+            d.text((M + 30 + d.textlength("203", font=fuente(170, 800)), 1420), "desde entonces", font=fuente(42, 500), fill=TINTA + (al,))
+        return img
+    return Fijo(dibujar)
+
+
+def pregunta(p, t):
+    """Cierre sobre el dashboard oscurecido."""
+    capa = Image.new("RGBA", (W, H), FONDO + (int(200 * entrar(t, 0, 0.4)),))
+    d = ImageDraw.Draw(capa)
+    a = entrar(t, 0.2, 0.5)
+    y = 640 + 40 * (1 - a)
+    for i, l in enumerate(["¿Hay uno en", "tu ruta diaria?"]):
+        d.text((W / 2, y + i * 120), l, font=fuente(104, 800), fill=TINTA + (int(255 * a),), anchor="mm")
+    b = entrar(t, 0.9, 0.5)
+    d.text((W / 2, y + 290), "Búscalo en el dashboard", font=fuente(56, 700), fill=ACENTO + (int(255 * b),), anchor="mm")
+    d.text((W / 2, y + 370), "Enlace en la publicación", font=fuente(40, 500), fill=SUAVE + (int(255 * b),), anchor="mm")
+    return capa
 
 
 def panel(archivo):
@@ -156,14 +215,14 @@ def satelite(pares):
 CLIPS = R / "clips"
 FONDOS = [
     titulares(),
-    Clip(CLIPS / "todo.webm", 17.2, 28.2),          # Lima y vuelo a Comas
-    Clip(CLIPS / "todo.webm", 5.7, 17.2),           # el Perú, siniestros y columnas
-    Clip(CLIPS / "todo.webm", 28.2, 34.2),          # solo lugares con 5 o más
-    panel(R / "panel_onsv.png"),
+    Clip(CLIPS / "comas.mp4", 0, 12.5),             # Lima y vuelo a Comas (grabado cuadro por cuadro)
+    Clip(CLIPS / "peru.mp4", 0, 11.0),              # el Perú, siniestros por año y columnas
+    Clip(CLIPS / "filtro.mp4", 0, 8.5),             # solo lugares con 5 o más
+    ministerio(),
     satelite([59, 191, 170]),
-    Clip(CLIPS / "dashboard.webm", 3.0, 20.5),
+    Clip(CLIPS / "dashboard.webm", 3.0, 9.0, encima=pregunta),
 ]
-CON_CIFRA = [True, True, True, True, False, True, True]
+CON_CIFRA = [True, True, True, True, False, True, False]
 
 
 # Capas fijas -------------------------------------------------------------------
