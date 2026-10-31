@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Puntos negros. Dónde se repiten las muertes en las pistas del Perú, 2021-2025</title>
+<meta name="description" content="En el Perú hay 286 lugares donde la gente muere una y otra vez en la pista. Con el mismo tráfico, el azar daría casi la mitad de lugares tan letales.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<style>
+  :root {
+    --fondo: #f5f5f3; --papel: #ffffff; --linea: #e3e3df;
+    --tinta: #1f2328; --tinta-2: #4b5157; --tinta-3: #7d838a;
+    --acento: #c2410c; --barra: #b4b8bd;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fondo); color: var(--tinta);
+         font: 15px/1.5 "IBM Plex Sans", system-ui, sans-serif; font-variant-numeric: tabular-nums; }
+  header { background: var(--papel); border-bottom: 1px solid var(--linea); padding: 22px 28px 20px; }
+  header h1 { margin: 0; font-size: 30px; line-height: 1.15; letter-spacing: -0.01em; }
+  header p { margin: 6px 0 0; font-size: 18px; color: var(--tinta-2); max-width: 920px; }
+  header p b { color: var(--tinta); }
+  .app { display: grid; grid-template-columns: 250px 1fr; align-items: start; }
+  aside { position: sticky; top: 0; padding: 22px 22px 30px; border-right: 1px solid var(--linea); min-height: calc(100vh - 1px); }
+  .ctrl { margin-bottom: 22px; }
+  .ctrl > label, .ctrl > span { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+  select { width: 100%; font: inherit; padding: 7px 9px; border: 1px solid #c9ccd0; border-radius: 6px; background: var(--papel); color: var(--tinta); }
+  .botones { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .botones button { font: inherit; font-size: 14px; padding: 6px 8px; border: 1px solid #c9ccd0; border-radius: 6px; background: var(--papel); color: var(--tinta); cursor: pointer; }
+  .botones button:hover { border-color: var(--tinta-2); }
+  .botones button.on { background: var(--tinta); border-color: var(--tinta); color: #fff; }
+  aside .nota { font-size: 12.5px; color: var(--tinta-3); line-height: 1.5; }
+  aside a { color: var(--tinta-2); }
+  main { padding: 22px 28px 40px; min-width: 0; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--papel); border: 1px solid var(--linea); border-radius: 8px; }
+  .kpi { padding: 16px 18px; border-left: 1px solid var(--linea); }
+  .kpi:first-child { border-left: 0; }
+  .kpi .v { font-size: 36px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+  .kpi .l { font-size: 13.5px; color: var(--tinta-2); margin-top: 4px; line-height: 1.4; }
+  .acento { color: var(--acento); }
+  .fila { display: grid; gap: 16px; margin-top: 16px; }
+  .f-mapa { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); }
+  .f-2 { grid-template-columns: 1fr 1fr; }
+  .panel { background: var(--papel); border: 1px solid var(--linea); border-radius: 8px; padding: 16px 18px; min-width: 0; }
+  .panel h2 { margin: 0; font-size: 17px; line-height: 1.3; }
+  .panel .sub { margin: 3px 0 10px; font-size: 13px; color: var(--tinta-3); }
+  #mapa { height: 560px; border-radius: 6px; background: #eef0f2; }
+  .leaflet-container { font: inherit; }
+  svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .ley { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--tinta-2); margin-top: 8px; }
+  .ley i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; vertical-align: -1px; margin-right: 6px; }
+  .ley i.c { border-radius: 2px; }
+  .ficha .vacio { color: var(--tinta-3); font-size: 14px; }
+  .ficha .lugar { font-size: 20px; font-weight: 700; line-height: 1.25; margin: 4px 0 2px; }
+  .ficha .donde { font-size: 13.5px; color: var(--tinta-3); }
+  .ficha .cifras { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0; }
+  .ficha .cifras b { display: block; font-size: 26px; line-height: 1.1; }
+  .ficha .cifras span { font-size: 12.5px; color: var(--tinta-2); }
+  .ficha .anios { display: flex; gap: 4px; margin: 6px 0 14px; }
+  .ficha .anios div { flex: 1; text-align: center; font-size: 12px; padding: 5px 0; border-radius: 4px; background: #ececea; color: var(--tinta-3); }
+  .ficha .anios div.si { background: var(--acento); color: #fff; font-weight: 600; }
+  .ficha a.sv { display: block; text-align: center; font-weight: 600; padding: 9px; border-radius: 6px; background: var(--tinta); color: #fff; text-decoration: none; }
+  .ficha a.sv:hover { background: #000; }
+  .ficha p { font-size: 13.5px; color: var(--tinta-2); margin: 10px 0 0; }
+  .titulo-sec { font-size: 18px; margin: 28px 0 10px; }
+  .hall { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .hall .n { font-size: 34px; font-weight: 800; line-height: 1.1; }
+  .hall p { margin: 6px 0 0; font-size: 15px; color: var(--tinta-2); line-height: 1.45; }
+  .texto { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 16px; font-size: 14.5px; color: var(--tinta-2); line-height: 1.5; }
+  .texto h2 { font-size: 16px; color: var(--tinta); margin: 0 0 8px; }
+  .texto ul { margin: 0; padding-left: 18px; } .texto li { margin-bottom: 8px; }
+  .texto a { color: var(--tinta); }
+  .tip { position: fixed; z-index: 1000; pointer-events: none; display: none; max-width: 280px; background: var(--papel);
+         border: 1px solid #c9ccd0; border-radius: 8px; padding: 10px 12px; font-size: 13.5px; line-height: 1.4; box-shadow: 0 6px 18px rgba(31,35,40,.14); }
+  .tip b { font-size: 15px; }
+  @media (max-width: 1100px) {
+    .app { grid-template-columns: 1fr; } aside { position: static; min-height: 0; border-right: 0; border-bottom: 1px solid var(--linea); }
+    .kpis { grid-template-columns: 1fr 1fr; } .kpi:nth-child(3) { border-left: 0; }
+    .f-mapa, .f-2, .texto, .hall { grid-template-columns: 1fr; }
+    #mapa { height: 440px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Puntos negros</h1>
+  <p>En el Perú hay <b>286 lugares donde la gente muere una y otra vez en la pista</b>. No es solo tráfico. Con los mismos
+    siniestros repartidos al azar sobre las mismas vías, habría casi la mitad de lugares así de letales. La mayoría está donde
+    la Panamericana atraviesa la ciudad, y ahí <b>mueren sobre todo peatones</b>.</p>
+</header>
+
+<div class="app">
+  <aside>
+    <div class="ctrl"><label for="f-dep">Departamento</label><select id="f-dep"></select></div>
+    <div class="ctrl"><span>Año</span><div class="botones" id="f-anio"></div></div>
+    <div class="ctrl"><label for="f-clase">Tipo de siniestro</label>
+      <select id="f-clase">
+        <option value="">Todos</option>
+        <option value="Atropello">Atropellos</option>
+        <option value="Choque">Choques</option>
+        <option value="Despiste">Despistes y volcaduras</option>
+        <option value="Otro">Otros</option>
+      </select></div>
+    <p class="nota">Un punto negro es un lugar con 3 o más siniestros fatales a menos de 200 metros entre 2021 y 2025.</p>
+    <p class="nota">Datos del ONSV (MTC), OpenStreetMap y WorldPop.<br>
+      <a href="#metodo">Cómo se calculó</a><br><a href="https://github.com/nicosil02/puntos-negros">Código y datos</a></p>
+  </aside>
+
+  <main>
+    <div class="kpis">
+      <div class="kpi"><div class="v" id="k1"></div><div class="l" id="k1l"></div></div>
+      <div class="kpi"><div class="v acento" id="k2"></div><div class="l" id="k2l"></div></div>
+      <div class="kpi"><div class="v" id="k3"></div><div class="l" id="k3l"></div></div>
+      <div class="kpi"><div class="v acento" id="k4"></div><div class="l" id="k4l"></div></div>
+    </div>
+
+    <div class="fila f-mapa">
+      <section class="panel">
+        <h2>Dónde se repiten las muertes</h2>
+        <p class="sub">Cada punto gris es un siniestro fatal. Los círculos naranjas son puntos negros, más grandes cuantas más muertes. Haz clic en uno para verlo.</p>
+        <div id="mapa" role="img" aria-label="Mapa de siniestros fatales y puntos negros del Perú"></div>
+        <div class="ley"><span><i style="background:#8a9096"></i>Siniestro fatal</span>
+          <span><i style="background:var(--acento)"></i>Punto negro</span></div>
+      </section>
+      <section class="panel ficha" id="ficha"></section>
+    </div>
+
+    <div class="fila f-2">
+      <section class="panel">
+        <h2>Los lugares más letales</h2>
+        <p class="sub" id="s-rank"></p>
+        <svg id="rank" viewBox="0 0 560 330" role="img" aria-label="Puntos negros con más muertes"></svg>
+      </section>
+      <section class="panel">
+        <h2>¿Mala suerte o el lugar?</h2>
+        <p class="sub">Lugares con 5 o más siniestros fatales. Lo real frente a repartir los mismos siniestros al azar sobre la misma vía (20 veces).</p>
+        <svg id="azar" viewBox="0 0 560 330" role="img" aria-label="Puntos negros reales frente al azar"></svg>
+      </section>
+    </div>
+
+    <div class="fila f-2">
+      <section class="panel">
+        <h2>Qué tienen en común</h2>
+        <p class="sub" id="s-perfil"></p>
+        <svg id="perfil" viewBox="0 0 560 300" role="img" aria-label="Perfil de los siniestros en puntos negros frente al resto"></svg>
+        <div class="ley"><span><i class="c" style="background:var(--acento)"></i>En puntos negros</span>
+          <span><i class="c" style="background:var(--barra)"></i>Resto de siniestros</span></div>
+      </section>
+      <section class="panel">
+        <h2>Qué hay alrededor</h2>
+        <p class="sub">% de siniestros con un paradero, mercado o colegio a menos de 200 metros. Los puntos negros frente a otro lugar al azar de la misma vía.</p>
+        <svg id="entorno" viewBox="0 0 560 300" role="img" aria-label="Paraderos, mercados y colegios cerca de los puntos negros"></svg>
+        <div class="ley"><span><i class="c" style="background:var(--acento)"></i>En puntos negros</span>
+          <span><i class="c" style="background:var(--barra)"></i>Otro lugar de la misma vía</span></div>
+      </section>
+    </div>
+
+    <div class="fila f-2">
+      <section class="panel">
+        <h2>A qué hora</h2>
+        <p class="sub" id="s-hora"></p>
+        <svg id="hora" viewBox="0 0 560 260" role="img" aria-label="Siniestros fatales por hora del día"></svg>
+        <div class="ley"><span><i class="c" style="background:var(--acento)"></i>En puntos negros</span>
+          <span><i class="c" style="background:var(--barra)"></i>Resto de siniestros</span></div>
+      </section>
+      <section class="panel">
+        <h2>Año tras año, el mismo lugar</h2>
+        <p class="sub" id="s-rep"></p>
+        <svg id="rep" viewBox="0 0 560 260" role="img" aria-label="Puntos negros según cuántos años distintos tuvieron muertes"></svg>
+      </section>
+    </div>
+
+    <h2 class="titulo-sec">Hallazgos</h2>
+    <div class="hall">
+      <div class="panel"><div class="n acento">1 de cada 9</div><p>muertes en las pistas entre 2021 y 2025 ocurrió en uno de los 286 puntos negros, lugares de 200 metros donde murió gente 3 veces o más.</p></div>
+      <div class="panel"><div class="n">55 frente a 31</div><p>lugares con 5 o más siniestros fatales. 55 es lo real. 31 es lo que daría el azar con los mismos siniestros sobre las mismas vías. El lugar importa, no solo el tráfico.</p></div>
+      <div class="panel"><div class="n acento">44% frente a 26%</div><p>de los siniestros en puntos negros ocurrió a menos de 200 metros de un paradero. En otros lugares de la misma vía, 26%. Donde la gente sube y baja del bus, cruza la pista.</p></div>
+    </div>
+
+    <div class="texto panel" id="metodo">
+      <div><h2>Cómo se calculó</h2><ul>
+        <li>Cada siniestro con muertos registrado por el ONSV entre enero de 2021 y agosto de 2025, con su ubicación exacta.</li>
+        <li>Punto negro es un grupo de 3 o más siniestros a menos de 200 metros uno de otro (DBSCAN).</li>
+        <li>Prueba del azar. Cada siniestro se movió a un lugar al azar de la misma vía, en el mismo tramo y la misma provincia. Así el tráfico es parecido. Se repitió 20 veces.</li>
+        <li>Paraderos, mercados y colegios vienen de OpenStreetMap. La población es la de WorldPop 2020 en celdas de 1 km.</li>
+        <li>Noche es antes de la salida o después de la puesta del sol en ese día y lugar.</li>
+      </ul></div>
+      <div><h2>Fuentes</h2><ul>
+        <li><a href="https://www.onsv.gob.pe/datosabiertos">ONSV (MTC)</a>, siniestros de tránsito fatales 2021-2025.</li>
+        <li><a href="https://download.geofabrik.de/south-america/peru.html">OpenStreetMap</a> (Geofabrik), vías, paraderos, mercados y colegios.</li>
+        <li><a href="https://hub.worldpop.org/geodata/summary?id=31824">WorldPop</a>, población 2020 en celdas de 1 km.</li>
+        <li>Mapa base y vista satelital de <a href="https://www.esri.com/">Esri</a>.</li>
+        <li>Detalle de archivos y código en el <a href="https://github.com/nicosil02/puntos-negros">repositorio</a>.</li>
+      </ul></div>
+      <div><h2>Limitaciones</h2><ul>
+        <li>Solo siniestros con muertos. Los que dejan heridos no tienen ubicación pública.</li>
+        <li>El registro de 2024 y 2025 es más incompleto (2025 llega hasta agosto).</li>
+        <li>No hay conteos públicos de autos ni peatones por calle. La prueba del azar sobre la misma vía es la mejor aproximación.</li>
+        <li>OpenStreetMap no tiene todos los paraderos, sobre todo los informales.</li>
+        <li>Muestra asociación, no causalidad.</li>
+      </ul></div>
+    </div>
+  </main>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const fmt = d3.format(",.0f"), pc = v => Math.round(100 * v) + "%";
+const C = { acento: "#c2410c", barra: "#b4b8bd", tinta: "#1f2328", tinta2: "#4b5157", tinta3: "#7d838a", gris: "#8a9096" };
+const ANIOS = [2021, 2022, 2023, 2024, 2025];
+const tip = $("tip");
+const verTip = (e, h) => { tip.innerHTML = h; tip.style.display = "block";
+  const w = tip.offsetWidth, x = e.clientX + 14 + w > innerWidth ? e.clientX - w - 14 : e.clientX + 14;
+  tip.style.left = x + "px"; tip.style.top = Math.min(e.clientY + 14, innerHeight - tip.offsetHeight - 8) + "px"; };
+const ocultarTip = () => tip.style.display = "none";
+const titulo = s => s.toLowerCase().replace(/(^|[\s(])\S/g, c => c.toUpperCase());
+const estado = { dep: "", anio: 0, clase: "" };
+let D, S, LUG, mapa, capaS, capaL, elegido = null;
+
+d3.json("datos.json").then(d => {
+  D = d;
+  S = d.siniestros.map(r => Object.fromEntries(d.campos.map((k, i) => [k, r[i]])));
+  LUG = new Map(d.lugares.map(l => [l.pn, l]));
+  const deps = [...new Set(S.map(s => s.dep))].sort();
+  $("f-dep").innerHTML = `<option value="">Todo el Perú</option>` + deps.map(x => `<option value="${x}">${titulo(x)}</option>`).join("");
+  $("f-anio").innerHTML = `<button data-a="0" class="on">Todos</button>` + ANIOS.map(a => `<button data-a="${a}">${a}</button>`).join("");
+  $("f-dep").onchange = e => { estado.dep = e.target.value; elegido = null; dibujar(true); };
+  $("f-clase").onchange = e => { estado.clase = e.target.value; dibujar(); };
+  $("f-anio").onclick = e => { const b = e.target.closest("button"); if (!b) return;
+    estado.anio = +b.dataset.a; $("f-anio").querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b)); dibujar(); };
+  iniciarMapa(); dibujarAzar(); dibujarEntorno();
+  const top = [...d.lugares].sort((a, b) => b.muertos - a.muertos)[0];
+  elegido = top; dibujar(true);  // abre con la ficha del lugar más letal
+});
+
+function filtrar() {
+  return S.filter(s => (!estado.dep || s.dep === estado.dep) && (!estado.anio || s.anio === estado.anio) && (!estado.clase || s.clase === estado.clase));
+}
+const zona = () => estado.dep ? titulo(estado.dep) : "el Perú";
+const filtroTxt = () => [estado.anio || "2021-2025", estado.clase ? { Atropello: "atropellos", Choque: "choques", Despiste: "despistes", Otro: "otros" }[estado.clase] : ""].filter(Boolean).join(", ");
+
+function dibujar(encuadrar) {
+  const f = filtrar(), enPN = f.filter(s => s.pn >= 0);
+  const muertos = d3.sum(f, s => s.muertos), mPN = d3.sum(enPN, s => s.muertos);
+  const lugares = d3.rollups(enPN, v => ({ n: v.length, m: d3.sum(v, s => s.muertos), anios: new Set(v.map(s => s.anio)).size }), s => s.pn)
+    .map(([pn, v]) => ({ ...LUG.get(pn), ...v, pn }));
+  const peatones = d3.sum(enPN.filter(s => s.clase === "Atropello"), s => s.muertos);
+  $("k1").textContent = fmt(muertos); $("k1l").textContent = `muertes en siniestros registrados en ${zona()} (${filtroTxt()})`;
+  $("k2").textContent = fmt(lugares.length); $("k2l").textContent = `puntos negros con muertes en esa selección`;
+  $("k3").textContent = muertos ? pc(mPN / muertos) : "s/d"; $("k3l").textContent = `de las muertes ocurrió en un punto negro`;
+  $("k4").textContent = mPN ? pc(peatones / mPN) : "s/d"; $("k4l").textContent = `de las muertes en puntos negros fueron peatones atropellados`;
+  pintarMapa(f, lugares, encuadrar);
+  ranking(lugares); perfil(f); hora(f); repeticion(lugares);
+  ficha(elegido && lugares.find(l => l.pn === elegido.pn) || null);
+}
+
+function iniciarMapa() {
+  mapa = L.map("mapa", { preferCanvas: true, zoomSnap: 0.5, minZoom: 5 }).setView([-9.3, -75], 5);
+  L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+    { attribution: "Esri, HERE, Garmin, &copy; OpenStreetMap", maxZoom: 16 }).addTo(mapa);
+  L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    { attribution: "Esri, Maxar", minZoom: 16, maxZoom: 19 }).addTo(mapa);  // de cerca, vista satelital para ver el lugar
+  capaS = L.layerGroup().addTo(mapa); capaL = L.layerGroup().addTo(mapa);
+}
+
+function pintarMapa(f, lugares, encuadrar) {
+  capaS.clearLayers(); capaL.clearLayers();
+  f.forEach(s => L.circleMarker([s.lat, s.lon], { radius: 2.2, stroke: false, fillColor: C.gris, fillOpacity: .55, interactive: false }).addTo(capaS));
+  const r = d3.scaleSqrt().domain([0, d3.max(D.lugares, l => l.muertos)]).range([4, 16]);
+  lugares.sort((a, b) => a.m - b.m).forEach(l => L.circleMarker([l.lat, l.lon], { radius: r(l.m), color: "#fff", weight: 1.5, fillColor: C.acento, fillOpacity: .85 })
+    .on("click", () => elegir(l)).bindTooltip(`<b>${l.m} muertes</b> en ${l.n} siniestros<br>${nombreVia(l)}, ${titulo(l.dist)}`, { direction: "top" }).addTo(capaL));
+  if (encuadrar) {
+    const pts = (estado.dep ? f : []).map(s => [s.lat, s.lon]);
+    pts.length ? mapa.fitBounds(pts, { padding: [20, 20], maxZoom: 13 }) : mapa.setView([-9.3, -75], 5);
+  }
+}
+
+const nombreVia = l => l.nombre || (l.via && l.via !== "NO CORRESPONDE" ? l.via : "Vía sin nombre");
+
+function elegir(l) {
+  elegido = l; mapa.flyTo([l.lat, l.lon], 17, { duration: 1.2 }); ficha(l);
+}
+
+function ficha(l) {
+  const el = $("ficha");
+  if (!l) {
+    const top = [...D.lugares].sort((a, b) => b.muertos - a.muertos)[0];
+    el.innerHTML = `<h2>Elige un punto negro</h2><p class="vacio">Haz clic en un círculo naranja del mapa o en una barra de "Los lugares más letales". Verás qué pasó ahí y podrás mirar el lugar en Street View.</p>
+      <p class="vacio">El más letal del país es la ${nombreVia(top)} en ${titulo(top.dist)}, con ${top.muertos} muertes en ${top.n} siniestros.</p>`;
+    return;
+  }
+  const todos = S.filter(s => s.pn === l.pn), anios = new Set(todos.map(s => s.anio));
+  const atro = todos.filter(s => s.clase === "Atropello").length, noche = todos.filter(s => s.noche === 1).length;
+  el.innerHTML = `<div class="donde">Punto negro en ${titulo(l.dist)}, ${titulo(l.prov)} (${titulo(l.dep)})</div>
+    <div class="lugar">${nombreVia(l)}</div>
+    <div class="cifras"><div><b class="acento">${l.muertos}</b><span>muertes</span></div><div><b>${l.n}</b><span>siniestros</span></div><div><b>${l.heridos}</b><span>heridos</span></div></div>
+    <div class="donde">Años con muertes</div>
+    <div class="anios">${ANIOS.map(a => `<div class="${anios.has(a) ? "si" : ""}">${a}</div>`).join("")}</div>
+    <a class="sv" target="_blank" rel="noopener" href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${l.lat.toFixed(6)},${l.lon.toFixed(6)}">Ver el lugar en Street View</a>
+    <p>${atro} de los ${l.n} siniestros fueron atropellos y ${noche} ocurrieron de noche. Todo en un radio de 200 metros.</p>`;
+}
+
+function barrasH(svg, datos, { valor, etiqueta, color, texto, clic, W = 560, izq = 190 }) {
+  const H = +svg.attr("viewBox").split(" ")[3], m = { t: 6, r: 50, b: 6, l: izq };
+  const y = d3.scaleBand().domain(datos.map((d, i) => i)).range([m.t, H - m.b]).padding(.28);
+  const x = d3.scaleLinear().domain([0, d3.max(datos, valor) || 1]).range([m.l, W - m.r]);
+  const g = svg.selectAll("g.f").data(datos, (d, i) => i).join(e => { const g = e.append("g").attr("class", "f");
+    g.append("rect").attr("x", m.l).attr("rx", 3); g.append("text").attr("class", "e"); g.append("text").attr("class", "n"); return g; });
+  g.style("cursor", clic ? "pointer" : null).on("click", clic ? (e, d) => clic(d) : null)
+    .on("mousemove", (e, d) => verTip(e, texto(d))).on("mouseleave", ocultarTip);
+  g.select("rect").attr("y", (d, i) => y(i)).attr("height", y.bandwidth()).attr("fill", color)
+    .transition().duration(500).attr("width", d => x(valor(d)) - m.l);
+  g.select("text.e").attr("x", m.l - 8).attr("y", (d, i) => y(i) + y.bandwidth() / 2).attr("dy", ".35em").attr("text-anchor", "end")
+    .attr("font-size", 12.5).attr("fill", C.tinta2).text(etiqueta);
+  g.select("text.n").attr("y", (d, i) => y(i) + y.bandwidth() / 2).attr("dy", ".35em").attr("font-size", 12.5).attr("font-weight", 600).attr("fill", C.tinta)
+    .text(d => fmt(valor(d))).attr("x", function () { return this.getAttribute("x") || m.l; }).transition().duration(500).attr("x", d => x(valor(d)) + 6);
+}
+
+function ranking(lugares) {
+  const top = [...lugares].sort((a, b) => b.m - a.m || b.n - a.n).slice(0, 10);
+  $("s-rank").textContent = `Muertes en cada punto negro, ${zona()} (${filtroTxt()}). Haz clic para ir al lugar.`;
+  const svg = d3.select("#rank"); svg.selectAll("g.f").remove();
+  barrasH(svg, top, { valor: d => d.m, etiqueta: d => { const t = `${titulo(d.dist)} · ${nombreVia(d).replace(/^(Carretera|Avenida) /, "")}`; return t.length > 38 ? t.slice(0, 37) + "…" : t; },
+    color: d => elegido && d.pn === elegido.pn ? C.tinta : C.acento, clic: elegir, izq: 270,
+    texto: d => `<b>${titulo(d.dist)}</b><br>${nombreVia(d)}<br>${d.m} muertes en ${d.n} siniestros, ${d.anios === 1 ? "en 1 año" : `en ${d.anios} años distintos`}` });
+}
+
+function dibujarAzar() {
+  const a = D.azar, svg = d3.select("#azar"), W = 560, H = 330, m = { t: 30, r: 10, b: 50, l: 10 };
+  const filas = [{ k: "pn", t: "3 o más siniestros" }, { k: "pn5", t: "5 o más" }, { k: "pn8", t: "8 o más" }];
+  const sel = filas[1];
+  const datos = [{ t: "Real", v: a.real[sel.k], c: C.acento }, { t: "Al azar, misma vía", v: a.media[sel.k], c: C.barra, max: a.max[sel.k] }];
+  const x = d3.scaleBand().domain(datos.map(d => d.t)).range([m.l + 60, W - m.r - 60]).padding(.35);
+  const y = d3.scaleLinear().domain([0, d3.max(datos, d => d.max || d.v) * 1.15]).range([H - m.b, m.t]);
+  svg.selectAll("rect").data(datos).join("rect").attr("x", d => x(d.t)).attr("width", x.bandwidth()).attr("rx", 3).attr("fill", d => d.c)
+    .attr("y", d => y(d.v)).attr("height", d => y(0) - y(d.v))
+    .on("mousemove", (e, d) => verTip(e, d.max ? `<b>${Math.round(d.v)}</b> en promedio en 20 repeticiones<br>Nunca más de ${d.max}` : `<b>${d.v}</b> lugares reales`)).on("mouseleave", ocultarTip);
+  svg.selectAll("text.v").data(datos).join("text").attr("class", "v").attr("x", d => x(d.t) + x.bandwidth() / 2).attr("y", d => y(d.v) - 8)
+    .attr("text-anchor", "middle").attr("font-size", 22).attr("font-weight", 700).attr("fill", C.tinta).text(d => Math.round(d.v));
+  svg.selectAll("text.e").data(datos).join("text").attr("class", "e").attr("x", d => x(d.t) + x.bandwidth() / 2).attr("y", H - m.b + 20)
+    .attr("text-anchor", "middle").attr("font-size", 13).attr("fill", C.tinta2).text(d => d.t);
+  const mx = datos[1];
+  svg.selectAll("line.mx").data([mx]).join("line").attr("class", "mx").attr("x1", x(mx.t) - 6).attr("x2", x(mx.t) + x.bandwidth() + 6)
+    .attr("y1", y(mx.max)).attr("y2", y(mx.max)).attr("stroke", C.tinta2).attr("stroke-dasharray", "4 3");
+  svg.selectAll("text.mx").data([mx]).join("text").attr("class", "mx").attr("x", x(mx.t) + x.bandwidth() + 10).attr("y", y(mx.max)).attr("dy", ".35em")
+    .attr("font-size", 12).attr("fill", C.tinta3).text(`máximo ${mx.max}`);
+  svg.selectAll("text.nota").data([0]).join("text").attr("class", "nota").attr("x", W / 2).attr("y", H - 6).attr("text-anchor", "middle")
+    .attr("font-size", 12).attr("fill", C.tinta3).text(`Con 3 o más: ${a.real.pn} reales frente a ${Math.round(a.media.pn)} al azar. Con 8 o más: ${a.real.pn8} frente a ${a.media.pn8.toFixed(1)}.`);
+}
+
+function pares(svg, filas, { izq = 200, sufijo = "%" } = {}) {
+  const W = 560, H = +svg.attr("viewBox").split(" ")[3], m = { t: 4, r: 44, b: 4, l: izq };
+  const y0 = d3.scaleBand().domain(filas.map(f => f.t)).range([m.t, H - m.b]).padding(.25);
+  const y1 = d3.scaleBand().domain(["a", "b"]).range([0, y0.bandwidth()]).padding(.08);
+  const x = d3.scaleLinear().domain([0, d3.max(filas, f => Math.max(f.a, f.b)) * 1.05 || 1]).range([m.l, W - m.r]);
+  const g = svg.selectAll("g.p").data(filas, f => f.t).join(e => { const g = e.append("g").attr("class", "p"); g.append("text").attr("class", "e"); return g; })
+    .attr("transform", f => `translate(0,${y0(f.t)})`);
+  g.select("text.e").attr("x", m.l - 8).attr("y", y0.bandwidth() / 2).attr("dy", ".35em").attr("text-anchor", "end").attr("font-size", 13).attr("fill", C.tinta2).text(f => f.t);
+  const b = g.selectAll("rect").data(f => [{ k: "a", v: f.a, f }, { k: "b", v: f.b, f }]).join("rect").attr("x", m.l).attr("rx", 2)
+    .attr("y", d => y1(d.k)).attr("height", y1.bandwidth()).attr("fill", d => d.k === "a" ? C.acento : C.barra)
+    .on("mousemove", (e, d) => verTip(e, `<b>${d.f.t}</b><br>${d.f.la}: ${Math.round(d.f.a)}${sufijo}<br>${d.f.lb}: ${Math.round(d.f.b)}${sufijo}`)).on("mouseleave", ocultarTip);
+  b.transition().duration(500).attr("width", d => Math.max(0, x(d.v) - m.l));
+  g.selectAll("text.n").data(f => [{ k: "a", v: f.a }, { k: "b", v: f.b }]).join("text").attr("class", "n").attr("y", d => y1(d.k) + y1.bandwidth() / 2).attr("dy", ".35em")
+    .attr("font-size", 12).attr("fill", C.tinta).text(d => Math.round(d.v) + sufijo).attr("x", function () { return this.getAttribute("x") || m.l; }).transition().duration(500).attr("x", d => x(d.v) + 5);
+}
+
+function perfil(f) {
+  const a = f.filter(s => s.pn >= 0), b = f.filter(s => s.pn < 0);
+  const p = (g, fn) => g.length ? 100 * g.filter(fn).length / g.length : 0;
+  const filas = [
+    { t: "Atropellos", fn: s => s.clase === "Atropello" },
+    { t: "En zona urbana", fn: s => s.zona === "URBANA" },
+    { t: "En vía expresa o carretera dentro de la ciudad", fn: s => s.expresa_urbana },
+    { t: "De noche", fn: s => s.noche === 1, base: s => s.noche >= 0 },
+  ].map(r => ({ t: r.t, a: p(a.filter(r.base || (() => true)), r.fn), b: p(b.filter(r.base || (() => true)), r.fn), la: "En puntos negros", lb: "Resto" }));
+  $("s-perfil").textContent = `% de los siniestros fatales en puntos negros frente al resto, ${zona()} (${filtroTxt()}).`;
+  pares(d3.select("#perfil"), filas, { izq: 205 });
+  d3.select("#perfil").selectAll("g.p text.e").call(t => t.each(function (d) { // dos líneas para la etiqueta larga
+    if (d.t.length < 30) return; const el = d3.select(this).text(null);
+    el.append("tspan").attr("x", 197).attr("dy", "-.25em").text("En vía expresa o carretera");
+    el.append("tspan").attr("x", 197).attr("dy", "1.2em").text("dentro de la ciudad"); }));
+}
+
+function dibujarEntorno() {
+  const e = D.entorno;
+  const filas = [["paradero", "Paradero de bus"], ["mercado", "Mercado o supermercado"], ["colegio", "Colegio o universidad"]]
+    .map(([k, t]) => ({ t, a: 100 * e[k].pn, b: 100 * e[k].azar, la: "Puntos negros", lb: "Otro lugar de la misma vía" }));
+  pares(d3.select("#entorno"), filas, { izq: 170 });
+  d3.select("#entorno").selectAll("text.pob").data([0]).join("text").attr("class", "pob").attr("x", 280).attr("y", 296).attr("text-anchor", "middle")
+    .attr("font-size", 12).attr("fill", C.tinta3)
+    .text(`Viven ${fmt(e.poblacion.pn)} personas por km² alrededor de los puntos negros y ${fmt(e.poblacion.azar)} en otros lugares de la misma vía.`);
+}
+
+function hora(f) {
+  const cuenta = g => { const c = d3.range(24).map(() => 0); g.forEach(s => { if (s.hora >= 0) c[s.hora]++; }); const t = d3.sum(c) || 1; return c.map(v => 100 * v / t); };
+  const a = cuenta(f.filter(s => s.pn >= 0)), b = cuenta(f.filter(s => s.pn < 0));
+  $("s-hora").textContent = `% de los siniestros fatales en cada hora, ${zona()} (${filtroTxt()}).`;
+  const svg = d3.select("#hora"), W = 560, H = 260, m = { t: 10, r: 10, b: 28, l: 34 };
+  const x = d3.scaleBand().domain(d3.range(24)).range([m.l, W - m.r]).padding(.18);
+  const x1 = d3.scaleBand().domain([0, 1]).range([0, x.bandwidth()]);
+  const y = d3.scaleLinear().domain([0, d3.max([...a, ...b]) * 1.1 || 1]).range([H - m.b, m.t]);
+  if (svg.select(".eje").empty()) { svg.append("g").attr("class", "eje"); svg.append("g").attr("class", "bs"); svg.append("g").attr("class", "ex"); }
+  svg.select(".eje").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickSize(-(W - m.l - m.r)).tickFormat(d => d + "%"))
+    .call(g => g.select(".domain").remove()).call(g => g.selectAll("line").attr("stroke", "#ececea")).call(g => g.selectAll("text").attr("fill", C.tinta3).attr("font-size", 11));
+  svg.select(".ex").selectAll("text").data([0, 6, 12, 18, 23]).join("text").attr("x", h => x(h) + x.bandwidth() / 2).attr("y", H - 8)
+    .attr("text-anchor", "middle").attr("font-size", 11.5).attr("fill", C.tinta3).text(h => `${h} h`);
+  const datos = d3.range(24).flatMap(h => [{ h, k: 0, v: a[h] }, { h, k: 1, v: b[h] }]);
+  svg.select(".bs").selectAll("rect").data(datos).join("rect").attr("x", d => x(d.h) + x1(d.k)).attr("width", x1.bandwidth()).attr("fill", d => d.k ? C.barra : C.acento)
+    .on("mousemove", (e, d) => verTip(e, `<b>De ${d.h} a ${d.h + 1} h</b><br>Puntos negros: ${a[d.h].toFixed(1)}%<br>Resto: ${b[d.h].toFixed(1)}%`)).on("mouseleave", ocultarTip)
+    .transition().duration(500).attr("y", d => y(d.v)).attr("height", d => y(0) - y(d.v));
+}
+
+function repeticion(lugares) {
+  const c = [1, 2, 3, 4, 5].map(k => ({ k, n: lugares.filter(l => l.anios === k).length }));
+  const tres = d3.sum(c.filter(d => d.k >= 3), d => d.n);
+  $("s-rep").textContent = `Puntos negros según en cuántos años distintos hubo muertes, ${zona()} (${filtroTxt()}). ${fmt(tres)} se repiten en 3 años o más.`;
+  const svg = d3.select("#rep"), W = 560, H = 260, m = { t: 26, r: 10, b: 30, l: 10 };
+  const x = d3.scaleBand().domain(c.map(d => d.k)).range([m.l, W - m.r]).padding(.3);
+  const y = d3.scaleLinear().domain([0, d3.max(c, d => d.n) * 1.12 || 1]).range([H - m.b, m.t]);
+  svg.selectAll("rect").data(c).join("rect").attr("x", d => x(d.k)).attr("width", x.bandwidth()).attr("rx", 3).attr("fill", d => d.k >= 3 ? C.acento : C.barra)
+    .on("mousemove", (e, d) => verTip(e, `<b>${d.n}</b> puntos negros con muertes en ${d.k} ${d.k === 1 ? "año" : "años distintos"}`)).on("mouseleave", ocultarTip)
+    .transition().duration(500).attr("y", d => y(d.n)).attr("height", d => y(0) - y(d.n));
+  svg.selectAll("text.v").data(c).join("text").attr("class", "v").attr("x", d => x(d.k) + x.bandwidth() / 2).attr("text-anchor", "middle")
+    .attr("font-size", 14).attr("font-weight", 700).attr("fill", C.tinta).text(d => d.n).attr("y", function () { return this.getAttribute("y") || y(0); }).transition().duration(500).attr("y", d => y(d.n) - 7);
+  svg.selectAll("text.e").data(c).join("text").attr("class", "e").attr("x", d => x(d.k) + x.bandwidth() / 2).attr("y", H - 8).attr("text-anchor", "middle")
+    .attr("font-size", 12.5).attr("fill", C.tinta2).text(d => d.k === 1 ? "1 año" : `${d.k} años`);
+}
+</script>
+</body>
+</html>

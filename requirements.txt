@@ -1,0 +1,9 @@
+pandas
+numpy
+openpyxl
+scipy
+scikit-learn
+shapely>=2
+pyshp
+tifffile
+imagecodecs
