@@ -49,6 +49,14 @@ python scripts/analizar.py   # escribe docs/datos.json
 
 El dashboard es `docs/index.html` (D3, MapLibre y deck.gl) y lee `docs/datos.json`.
 
+## Trabajos relacionados
+
+- ONSV y MTC, [Documento de trabajo 001. DBSCAN, explorando la densidad espacial de siniestros fatales](https://cdn.www.gob.pe/uploads/document/file/4505475/Documento%20de%20Trabajo%20001%20DBSCAN%20Explorando%20la%20densidad%20espacial%20de%20siniestros%20fatales%20para%20la%20identificaci%C3%B3n%20y%20priorizaci%C3%B3n%20de%20intervenciones%20en%20la%20Red%20Vial%20Nacional.pdf). Usa el mismo método para priorizar intervenciones en la Red Vial Nacional.
+- ONSV, informes regionales de víctimas fatales y puntos de alta siniestralidad 2021-2025, por ejemplo [Ayacucho](https://www.onsv.gob.pe/post/informe-de-victimas-fatales-en-siniestros-de-transito-e-identificacion-de-puntos-de-alta-siniestralidad-en-la-region-ayacucho-2021-2025/).
+- [carloxmd/siniestralidad_vial](https://github.com/carloxmd/siniestralidad_vial), patrones espaciales en Lima y Callao 2021-2024.
+
+Este proyecto suma tres cosas a esos trabajos. Cubre todas las vías del país, no solo la red nacional. Compara cada punto negro con otros tramos de la misma vía para descartar que sea solo tráfico. Y revisa con imágenes satelitales qué hay alrededor.
+
 ## Limitaciones
 
 - Solo hay siniestros con muertos. Los que dejan heridos no tienen ubicación pública.
