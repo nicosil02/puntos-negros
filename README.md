@@ -16,7 +16,8 @@ En el Perú hay 286 lugares donde los siniestros fatales se repiten una y otra v
 4. **Hay un paradero cerca.** 44% de los siniestros en puntos negros ocurrió a menos de 200 metros de un paradero de bus. En otros lugares de la misma vía, 26%. También hay más mercados (18% frente a 12%) y colegios (47% frente a 36%) cerca.
 5. **De noche.** 60% de los siniestros en puntos negros ocurre de noche, frente a 51% del resto.
 6. **Se podía predecir.** De los 149 puntos negros de 2021-2023, 38% volvió a tener un siniestro fatal a menos de 200 metros en 2024-2025. En un lugar con un solo siniestro en 2021-2023 pasó en 5% de los casos.
-7. **Desde el satélite.** En 28 pares de punto negro y un lugar de la misma vía a 1.5 km, revisados a ciegas, el punto negro tenía comercio pegado a la vía en 13 casos y el control en 1. También tenía más paraderos (14 frente a 7) y más puentes peatonales (13 frente a 7). La vía es la misma, cambia lo que hay al costado.
+7. **El Estado ya los había identificado.** De los 83 tramos que el ONSV publicó en 2022, 61 volvieron a tener siniestros fatales después, con 203 fallecidos.
+8. **Desde el satélite.** En 28 pares de punto negro y un lugar de la misma vía a 1.5 km, revisados a ciegas, el punto negro tenía comercio pegado a la vía en 13 casos y el control en 1. También tenía más paraderos (14 frente a 7) y más puentes peatonales (13 frente a 7). La vía es la misma, cambia lo que hay al costado.
 
 ## Datos
 
@@ -54,6 +55,8 @@ El dashboard es `docs/index.html` (D3, MapLibre y deck.gl) y lee `docs/datos.jso
 - ONSV y MTC, [Documento de trabajo 001. DBSCAN, explorando la densidad espacial de siniestros fatales](https://cdn.www.gob.pe/uploads/document/file/4505475/Documento%20de%20Trabajo%20001%20DBSCAN%20Explorando%20la%20densidad%20espacial%20de%20siniestros%20fatales%20para%20la%20identificaci%C3%B3n%20y%20priorizaci%C3%B3n%20de%20intervenciones%20en%20la%20Red%20Vial%20Nacional.pdf). Usa el mismo método para priorizar intervenciones en la Red Vial Nacional.
 - ONSV, informes regionales de víctimas fatales y puntos de alta siniestralidad 2021-2025, por ejemplo [Ayacucho](https://www.onsv.gob.pe/post/informe-de-victimas-fatales-en-siniestros-de-transito-e-identificacion-de-puntos-de-alta-siniestralidad-en-la-region-ayacucho-2021-2025/).
 - [carloxmd/siniestralidad_vial](https://github.com/carloxmd/siniestralidad_vial), patrones espaciales en Lima y Callao 2021-2024.
+
+**Comparación con el documento del ONSV** (`scripts/comparar_onsv.py`). Ese estudio usó DBSCAN con 500 metros y 3 siniestros sobre la Red Vial Nacional, de enero de 2021 a junio de 2022, y encontró 83 tramos. Con los mismos parámetros sobre nuestra base salen 70. De sus 83 tramos, 45 coinciden con nuestros puntos negros, y en 61 volvió a haber siniestros fatales después de junio de 2022 (183 siniestros y 203 fallecidos, a menos de 250 metros). Los puntos de sus tramos vienen de su [mapa publicado](https://patriciaig.github.io/SeguridadVialPeru/mapa_tramos_alta_densidad_fatalidades.html) y están en `datos/crudos/onsv_dt001_tramos.csv`.
 
 Este proyecto suma tres cosas a esos trabajos. Cubre todas las vías del país, no solo la red nacional. Compara cada punto negro con otros tramos de la misma vía para descartar que sea solo tráfico. Y revisa con imágenes satelitales qué hay alrededor.
 

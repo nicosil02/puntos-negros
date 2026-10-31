@@ -113,6 +113,7 @@
   .duelo b.acento { color: var(--acento-osc); }
   .duelo span { display: block; margin-top: 10px; font-size: 15.5px; line-height: 1.45; color: var(--tinta-3); }
   .duelo strong { color: var(--tinta); font-weight: 600; }
+  .panel .sub a { color: var(--acento-osc); }
   .titulo-sec { font-size: 24px; margin: 40px 0 14px; letter-spacing: -0.01em; }
   .hall { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .hall .n { font-size: 40px; font-weight: 800; line-height: 1.1; }
@@ -278,6 +279,18 @@
       </section>
     </div>
 
+    <div class="fila">
+      <section class="panel">
+        <h2>El Estado ya los había identificado</h2>
+        <p class="sub">En 2022 el Observatorio Nacional de Seguridad Vial publicó 83 tramos con siniestros fatales repetidos en la Red Vial Nacional, con datos de enero de 2021 a junio de 2022 (<a href="https://cdn.www.gob.pe/uploads/document/file/4505475/Documento%20de%20Trabajo%20001%20DBSCAN%20Explorando%20la%20densidad%20espacial%20de%20siniestros%20fatales%20para%20la%20identificaci%C3%B3n%20y%20priorizaci%C3%B3n%20de%20intervenciones%20en%20la%20Red%20Vial%20Nacional.pdf">documento de trabajo 001</a>). Revisamos qué pasó después en esos mismos tramos.</p>
+        <div class="duelo">
+          <div><b class="acento" id="on-volv"></b><span>de los <strong id="on-tot"></strong> tramos volvieron a tener <strong>siniestros fatales después de junio de 2022</strong></span></div>
+          <div><b id="on-fall"></b><span><strong>fallecidos</strong> en esos tramos desde entonces, en <em id="on-sin" style="font-style:normal"></em> siniestros</span></div>
+        </div>
+        <p class="sub" id="n-onsv" style="margin:16px 0 0"></p>
+      </section>
+    </div>
+
     <div class="seccion"><span>04</span><b>Por qué ahí</b></div>
     <div class="fila f-2">
       <section class="panel">
@@ -380,7 +393,7 @@
         <li><a href="https://download.geofabrik.de/south-america/peru.html">OpenStreetMap</a> (Geofabrik), vías, paraderos, mercados y colegios.</li>
         <li><a href="https://hub.worldpop.org/geodata/summary?id=31824">WorldPop</a>, población 2020 en celdas de 1 km.</li>
         <li>Mapa base de <a href="https://openfreemap.org/">OpenFreeMap</a> (OpenMapTiles y OpenStreetMap) y vista satelital de <a href="https://www.esri.com/">Esri</a>.</li>
-        <li>Trabajo previo. El ONSV ya aplicó DBSCAN a la Red Vial Nacional (<a href="https://cdn.www.gob.pe/uploads/document/file/4505475/Documento%20de%20Trabajo%20001%20DBSCAN%20Explorando%20la%20densidad%20espacial%20de%20siniestros%20fatales%20para%20la%20identificaci%C3%B3n%20y%20priorizaci%C3%B3n%20de%20intervenciones%20en%20la%20Red%20Vial%20Nacional.pdf">documento de trabajo 001</a>). Aquí se extiende a todas las vías y se compara con otros tramos de la misma vía.</li>
+        <li>Trabajo previo. El ONSV ya aplicó DBSCAN a la Red Vial Nacional (<a href="https://cdn.www.gob.pe/uploads/document/file/4505475/Documento%20de%20Trabajo%20001%20DBSCAN%20Explorando%20la%20densidad%20espacial%20de%20siniestros%20fatales%20para%20la%20identificaci%C3%B3n%20y%20priorizaci%C3%B3n%20de%20intervenciones%20en%20la%20Red%20Vial%20Nacional.pdf">documento de trabajo 001</a>). Con el mismo método sobre nuestra base (Red Vial Nacional, 2021 a junio de 2022) salen 70 tramos frente a sus 83; la diferencia viene de la versión de los datos. Aquí se extiende a todas las vías, con un radio de 200 metros, y se compara con otros tramos de la misma vía.</li>
         <li>Detalle de archivos y código en el <a href="https://github.com/nicosil02/puntos-negros">repositorio</a>.</li>
       </ul></div>
       <div><h2>Limitaciones</h2><ul>
@@ -411,7 +424,7 @@ const titulo = s => s.toLowerCase().replace(/(^|[\s(])\S/g, c => c.toUpperCase()
 const estado = { dep: "", anio: 0, clase: "" };
 let D, S, LUG, mapa, capaM, elegido = null;
 
-d3.json("datos.json?v=2").then(d => {
+d3.json("datos.json?v=3").then(d => {
   D = d;
   S = d.siniestros.map(r => Object.fromEntries(d.campos.map((k, i) => [k, r[i]])));
   LUG = new Map(d.lugares.map(l => [l.pn, l]));
@@ -424,7 +437,7 @@ d3.json("datos.json?v=2").then(d => {
     $("f-anio").querySelectorAll("button").forEach((x, i) => x.classList.toggle("on", i === 0)); elegido = null; dibujar(true); };
   $("f-anio").onclick = e => { const b = e.target.closest("button"); if (!b) return;
     estado.anio = +b.dataset.a; $("f-anio").querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b)); dibujar(); };
-  iniciarMapa(); dibujarAzar(); dibujarEntorno(); dibujarPrediccion(); galeria();
+  iniciarMapa(); dibujarAzar(); dibujarEntorno(); dibujarPrediccion(); dibujarOnsv(); galeria();
   const top = [...d.lugares].sort((a, b) => b.muertos - a.muertos)[0];
   elegido = top; dibujar(true);  // abre con la ficha del lugar más letal
   revelar(); pintarHero();
@@ -688,6 +701,13 @@ function galeria() {
     return `<div class="fotos"><img src="img/aud/${d.pn}_pn.jpg" alt="Punto negro en ${titulo(d.dist)}" loading="lazy"><img src="img/aud/${d.pn}_ctrl.jpg" alt="Misma vía a 1.5 km" loading="lazy"></div>
       <figcaption><b>${titulo(d.dist)}, ${titulo(d.dep)}.</b> ${d.m} fallecidos.${marcas.length ? ` Solo el punto negro tiene ${marcas.length > 1 ? marcas.slice(0, -1).join(", ") + " y " + marcas.at(-1) : marcas[0]}.` : ""}</figcaption>`;
   });
+}
+
+function dibujarOnsv() {
+  const o = D.onsv;
+  $("on-volv").textContent = o.volvieron; $("on-tot").textContent = o.tramos;
+  $("on-fall").textContent = fmt(o.fallecidos_despues); $("on-sin").textContent = fmt(o.siniestros_despues);
+  $("n-onsv").textContent = `Siniestros a menos de ${250} metros de los que formaban cada tramo. Es un mínimo, porque el registro de 2024 y 2025 está incompleto, y no sabemos qué intervenciones se hicieron. ${o.coinciden} de los ${o.tramos} tramos coinciden con nuestros puntos negros. Además, ${o.fuera_rvn} de nuestros puntos negros están fuera de la Red Vial Nacional, sobre todo en vías urbanas, y suman ${fmt(o.fuera_rvn_fallecidos)} fallecidos.`;
 }
 
 function dibujarAzar() {
