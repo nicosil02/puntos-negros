@@ -1,0 +1,10 @@
+Protocolo (fijado antes de ver las fotos). Todo dentro del círculo amarillo de 200 m, sobre la vía principal que pasa por la cruz.
+carriles: carriles totales de la vía principal (ambos sentidos, sin vías auxiliares), aproximado
+separador: 1 si hay separador central físico
+auxiliares: 1 si hay vías auxiliares o de servicio paralelas
+puente: 1 si se ve un puente peatonal sobre la vía principal
+cruce: 1 si hay un cruce a nivel marcado (cebra) o una intersección con semáforo sobre la vía principal
+interseccion: 1 si otra calle cruza o entra a la vía principal
+paradero: 1 si se ve un paradero, bahía de bus o buses/combis detenidos al borde
+comercio: 1 si hay comercio, mercado o actividad comercial pegada a la vía
+urbano: 0 nada construido, 1 un lado construido, 2 ambos lados construidos
