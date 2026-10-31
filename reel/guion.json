@@ -13,8 +13,8 @@
       "dato": "docs/datos.json: lugar más letal, 17 fallecidos en 15 siniestros, 2021-2024"
     },
     {
-      "frase": "Así que ubiqué en el mapa los nueve mil ciento cinco siniestros con fallecidos que registró el Observatorio Nacional de Seguridad Vial desde dos mil veintiuno.",
-      "subtitulo": "Así que ubiqué en el mapa los 9,105 siniestros con fallecidos que registró el Observatorio Nacional de Seguridad Vial desde 2021.",
+      "frase": "Así que ubiqué en el mapa los nueve mil ciento cinco siniestros con fallecidos registrados en el Perú desde dos mil veintiuno.",
+      "subtitulo": "Así que ubiqué en el mapa los 9,105 siniestros con fallecidos registrados en el Perú desde 2021.",
       "cifra": "9,105",
       "etiqueta": "siniestros fatales con ubicación, enero 2021 a agosto 2025",
       "imagen": "Mapa del Perú con un punto por siniestro",
@@ -45,8 +45,8 @@
       "dato": "docs/datos.json prediccion: 149 puntos negros, 38.3%; lugares con 1 siniestro, 5.2%"
     },
     {
-      "frase": "La mitad son atropellos. Y en las fotos satelitales muchos se parecen, una carretera rápida que cruza un barrio, con paraderos y comercio al costado.",
-      "subtitulo": "La mitad son atropellos. Y en las fotos satelitales muchos se parecen, una carretera rápida que cruza un barrio, con paraderos y comercio al costado.",
+      "frase": "La mitad son atropellos. Y desde el satélite muchos se parecen, una carretera rápida que cruza un barrio, con paraderos y comercio al costado.",
+      "subtitulo": "La mitad son atropellos. Y desde el satélite muchos se parecen, una carretera rápida que cruza un barrio, con paraderos y comercio al costado.",
       "cifra": "50%",
       "etiqueta": "son atropellos (28% en el resto de siniestros)",
       "imagen": "Par satelital de Lurín: punto negro frente a la misma vía a 1.5 km",
