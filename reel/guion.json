@@ -37,12 +37,12 @@
       "dato": "docs/datos.json azar: real 55; promedio de 20 repeticiones 31.35; máximo 40"
     },
     {
-      "frase": "Además, se podían prever. Casi cuatro de cada diez puntos negros de dos mil veintiuno a dos mil veintitrés volvieron a tener un siniestro fatal después.",
-      "subtitulo": "Además, se podían prever. Casi 4 de cada 10 puntos negros de 2021 a 2023 volvieron a tener un siniestro fatal después.",
-      "cifra": "4 de cada 10",
-      "etiqueta": "volvió a tener un siniestro fatal en 2024-2025 (5% en lugares con un solo siniestro)",
-      "imagen": "Gráfico de barras 38% / 13% / 5%",
-      "dato": "docs/datos.json prediccion: 149 puntos negros, 38.3%; lugares con 1 siniestro, 5.2%"
+      "frase": "Además, en dos mil veintidós, el Ministerio de Transportes ya había señalado ochenta y tres tramos peligrosos. Desde entonces, en la mayoría siguieron ocurriendo siniestros fatales, con doscientas tres personas fallecidas.",
+      "subtitulo": "Además, en 2022, el Ministerio de Transportes ya había señalado 83 tramos peligrosos. Desde entonces, en la mayoría siguieron ocurriendo siniestros fatales, con 203 personas fallecidas.",
+      "cifra": "203",
+      "etiqueta": "fallecidos desde 2022 en tramos que el MTC ya había señalado (61 de 83 tramos)",
+      "imagen": "Panel 'El Estado ya los había identificado' del dashboard",
+      "dato": "scripts/comparar_onsv.py: 61 de 83 tramos del documento de trabajo 001 (ONSV-MTC, 2022) con siniestros fatales después de jun-2022; 183 siniestros, 203 fallecidos"
     },
     {
       "frase": "¿Qué tienen en común? La mitad son atropellos. Son carreteras rápidas que atraviesan barrios, con paraderos y comercio a pocos metros. Peatones y tráfico rápido en el mismo espacio.",
