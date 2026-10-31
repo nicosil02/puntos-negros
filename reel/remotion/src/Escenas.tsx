@@ -113,7 +113,7 @@ export const Peru: React.FC<P> = ({ dur }) => {
   );
 };
 
-// 4. No es solo el tráfico: lugares con 5 o más siniestros, en la realidad y al azar
+// 4. No es casualidad: lugares con 5 o más siniestros, en la realidad y al azar
 export const Azar: React.FC<P> = ({ dur }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();

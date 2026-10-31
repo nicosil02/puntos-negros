@@ -11,7 +11,7 @@ En el Perú hay 286 lugares donde los siniestros fatales se repiten una y otra v
 ## Hallazgos
 
 1. **1 de cada 9 fallecidos se registra en un punto negro.** Son 286 lugares de 200 metros con 3 o más siniestros fatales entre 2021 y 2025. 146 se repiten en 3 años distintos o más.
-2. **El lugar importa, no solo el tráfico.** Hay 55 lugares con 5 o más siniestros fatales. Si los mismos siniestros se repartieran al azar sobre la misma vía y el mismo tramo, habría 31 en promedio y nunca más de 40 en 20 repeticiones.
+2. **No es casualidad, el lugar importa.** Hay 55 lugares con 5 o más siniestros fatales. Si los mismos siniestros se repartieran al azar sobre la misma vía y el mismo tramo, habría 31 en promedio y nunca más de 40 en 20 repeticiones.
 3. **Son carreteras que cruzan la ciudad.** En los puntos negros, 50% de los siniestros son atropellos (28% en el resto) y 41% ocurre en una vía expresa o carretera dentro de la ciudad (13% en el resto).
 4. **Hay un paradero cerca.** 44% de los siniestros en puntos negros ocurrió a menos de 200 metros de un paradero de bus. En el resto de la misma carretera, 26%. También hay más mercados (18% frente a 12%) y colegios (47% frente a 36%) cerca.
 5. **Temprano en la mañana y de noche.** Hay dos picos, a las 5 de la mañana y a las 7 de la noche, cuando la gente va y vuelve del trabajo. En los puntos negros el de la mañana es el más alto (7.4% de los siniestros a las 5 h, frente a 5.5% en el resto). 60% ocurre de noche, frente a 51% del resto.
@@ -54,7 +54,7 @@ Para verlo en local, `python -m http.server -d docs` y abrir http://localhost:80
 
 ### Reel
 
-El reel (75 s, 1080×1920) se arma con código. Necesita GPU para la voz.
+El reel (74 s, 1080×1920) se arma con código. Necesita GPU para la voz.
 
 1. `reel/guion.json` tiene el texto de cada escena.
 2. `python reel/voz.py` narra el guion con una voz clonada de una nota de voz mía (Qwen3-TTS 0.6B) y saca el tiempo de cada palabra con Whisper. Usa `reel.py` de la sesión 15 del curso ([d2cml-ai/Data-Science-Python](https://github.com/d2cml-ai/Data-Science-Python), `sessions/15-texto-a-reel`), que debe estar clonado al lado de este repo.
