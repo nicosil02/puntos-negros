@@ -54,7 +54,7 @@ Para verlo en local, `python -m http.server -d docs` y abrir http://localhost:80
 
 ### Reel
 
-El reel (64 s, 1080×1920) se arma con código. Necesita GPU para la voz.
+El reel (73 s, 1080×1920) se arma con código. Necesita GPU para la voz.
 
 1. `reel/guion.json` tiene el texto de cada escena.
 2. `python reel/voz.py` narra el guion con una voz clonada de una nota de voz mía (Qwen3-TTS 0.6B) y saca el tiempo de cada palabra con Whisper. Usa `reel.py` de la sesión 15 del curso ([d2cml-ai/Data-Science-Python](https://github.com/d2cml-ai/Data-Science-Python), `sessions/15-texto-a-reel`), que debe estar clonado al lado de este repo.

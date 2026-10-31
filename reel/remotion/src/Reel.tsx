@@ -26,8 +26,8 @@ export const Reel: React.FC = () => {
       <Sequence name="Comas" from={k[1]} durationInFrames={dur(1)}><Escena><Comas dur={dur(1)} /></Escena></Sequence>
       <Sequence name="Perú" from={k[2]} durationInFrames={dur(2)}><Escena><Peru dur={dur(2)} /></Escena></Sequence>
       <Sequence name="No es azar" from={k[3]} durationInFrames={dur(3)}><Escena><Azar dur={dur(3)} /></Escena></Sequence>
-      <Sequence name="Ministerio" from={k[4]} durationInFrames={dur(4)}><Escena><Ministerio dur={dur(4)} /></Escena></Sequence>
-      <Sequence name="Satélite" from={k[5]} durationInFrames={dur(5)}><Escena><Satelite dur={dur(5)} /></Escena></Sequence>
+      <Sequence name="Satélite" from={k[4]} durationInFrames={dur(4)}><Escena><Satelite dur={dur(4)} /></Escena></Sequence>
+      <Sequence name="Gobierno" from={k[5]} durationInFrames={dur(5)}><Escena><Ministerio dur={dur(5)} /></Escena></Sequence>
       <Sequence name="Cierre" from={k[6]} durationInFrames={dur(6)}><Escena><Cierre dur={dur(6)} /></Escena></Sequence>
       <Sequence name="Créditos" from={habla}><Escena><Creditos /></Escena></Sequence>
       <Sequence name="Marco" durationInFrames={habla}><Marco /></Sequence>

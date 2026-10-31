@@ -13,45 +13,45 @@
    "dato": "ONSV vía PerúCheck/Caretas, 8 abr 2026: 3,002 en 2024 y 2,890 en 2025 (https://caretas.pe/?p=801787)"
   },
   {
-   "frase": "Y no ocurren en cualquier parte. En un tramo de doscientos metros de la Panamericana Norte, en Comas, fallecieron diecisiete personas.",
-   "subtitulo": "Y no ocurren en cualquier parte. En un tramo de 200 metros de la Panamericana Norte, en Comas, fallecieron 17 personas.",
+   "frase": "Y no ocurren en cualquier parte. Por ejemplo, entre dos mil veintiuno y dos mil veinticinco, en este tramo de la Panamericana Norte, en Comas, fallecieron diecisiete personas.",
+   "subtitulo": "Y no ocurren en cualquier parte. Por ejemplo, entre 2021 y 2025, en este tramo de la Panamericana Norte, en Comas, fallecieron 17 personas.",
    "cifra": "17",
    "etiqueta": "fallecidos en 200 metros, Panamericana Norte (Comas), 2021-2024",
    "imagen": "Vuelo 3D del dashboard hasta Comas",
    "dato": "docs/datos.json: 17 fallecidos en 15 siniestros"
   },
   {
-   "frase": "Son puntos negros, tramos de doscientos metros con tres o más siniestros fatales. En todo el Perú encontré doscientos ochenta y seis, con uno de cada nueve fallecidos. Casi la mitad está sobre la Panamericana.",
-   "subtitulo": "Son puntos negros, tramos de 200 metros con 3 o más siniestros fatales. En todo el Perú encontré 286, con 1 de cada 9 fallecidos. Casi la mitad está sobre la Panamericana.",
+   "frase": "A estos lugares se les conoce como puntos negros. Son tramos de doscientos metros donde hubo tres o más siniestros fatales. En todo el Perú encontré doscientos ochenta y seis, y ahí se registró uno de cada nueve fallecidos. Casi la mitad está sobre la Panamericana.",
+   "subtitulo": "A estos lugares se les conoce como puntos negros. Son tramos de 200 metros donde hubo 3 o más siniestros fatales. En todo el Perú encontré 286, y ahí se registró 1 de cada 9 fallecidos. Casi la mitad está sobre la Panamericana.",
    "cifra": "286",
    "etiqueta": "puntos negros, 3 o más siniestros fatales a menos de 200 metros",
    "imagen": "Mapa del Perú con las 286 columnas",
    "dato": "docs/datos.json: 286 lugares; 1,202 de 10,858 fallecidos (11%); 125 de 286 sobre PE-1N/PE-1S (44%), con 584 de 1,202 fallecidos"
   },
   {
-   "frase": "Y no es solo por el tráfico. En una misma carretera, con los mismos autos, hay tramos que acumulan muchos más siniestros que otros.",
-   "subtitulo": "Y no es solo por el tráfico. En una misma carretera, con los mismos autos, hay tramos que acumulan muchos más siniestros que otros.",
+   "frase": "Y no es solo por el tráfico. En una misma carretera, hay tramos con muchos más siniestros que otros.",
+   "subtitulo": "Y no es solo por el tráfico. En una misma carretera, hay tramos con muchos más siniestros que otros.",
    "cifra": "55 frente a 31",
    "etiqueta": "lugares con 5 o más siniestros fatales, frente a otros tramos de la misma vía",
    "imagen": "Panel 'No es azar' del dashboard",
    "dato": "docs/datos.json azar: real 55; promedio de 20 repeticiones 31.35; máximo 40"
   },
   {
-   "frase": "En dos mil veintidós, el Gobierno identificó ochenta y tres tramos peligrosos. Desde entonces, en sesenta y uno volvieron a ocurrir siniestros fatales, con doscientos tres fallecidos.",
-   "subtitulo": "En 2022, el Gobierno identificó 83 tramos peligrosos. Desde entonces, en 61 volvieron a ocurrir siniestros fatales, con 203 fallecidos.",
-   "cifra": "203",
-   "etiqueta": "fallecidos desde 2022 en tramos que el MTC ya había señalado (61 de 83 tramos)",
-   "imagen": "Panel 'El Estado ya los había identificado' del dashboard",
-   "dato": "scripts/comparar_onsv.py: 61 de 83 tramos del documento de trabajo 001 (ONSV-MTC, 2022) con siniestros fatales después de jun-2022; 183 siniestros, 203 fallecidos"
-  },
-  {
-   "frase": "¿Qué tienen en común? La carretera atraviesa un pueblo o una ciudad, con paraderos y comercio al lado. La mitad son atropellos, y muchos ocurren cuando vamos a trabajar y cuando volvemos a casa.",
-   "subtitulo": "¿Qué tienen en común? La carretera atraviesa un pueblo o una ciudad, con paraderos y comercio al lado. La mitad son atropellos, y muchos ocurren cuando vamos a trabajar y cuando volvemos a casa.",
+   "frase": "¿Por qué ahí? Son tramos donde una carretera rápida atraviesa un barrio, con paraderos y comercio al lado. La gente cruza la pista de madrugada o de noche, camino al trabajo o de regreso a casa. Por eso la mitad son atropellos.",
+   "subtitulo": "¿Por qué ahí? Son tramos donde una carretera rápida atraviesa un barrio, con paraderos y comercio al lado. La gente cruza la pista de madrugada o de noche, camino al trabajo o de regreso a casa. Por eso la mitad son atropellos.",
    "cifra": "1 de cada 2",
    "etiqueta": "son atropellos. Paraderos y comercio a menos de 200 metros",
    "imagen": "Par satelital de Lurín: punto negro frente a la misma vía a 1.5 km",
    "dato": "perfil: atropellos 50% frente a 28%; entorno: paradero 44% frente a 26%; auditoria.csv: comercio 13 de 28 frente a 1",
    "credito": "Imagen: Esri World Imagery"
+  },
+  {
+   "frase": "Y no es un problema nuevo. En dos mil veintidós, el Gobierno ya había identificado ochenta y tres tramos peligrosos. Desde entonces, en sesenta y uno siguieron los siniestros fatales, con doscientos tres fallecidos.",
+   "subtitulo": "Y no es un problema nuevo. En 2022, el Gobierno ya había identificado 83 tramos peligrosos. Desde entonces, en 61 siguieron los siniestros fatales, con 203 fallecidos.",
+   "cifra": "203",
+   "etiqueta": "fallecidos desde 2022 en tramos que el MTC ya había señalado (61 de 83 tramos)",
+   "imagen": "Panel 'El Estado ya los había identificado' del dashboard",
+   "dato": "scripts/comparar_onsv.py: 61 de 83 tramos del documento de trabajo 001 (ONSV-MTC, 2022) con siniestros fatales después de jun-2022; 183 siniestros, 203 fallecidos"
   },
   {
    "frase": "¿Hay uno en tu ruta diaria? Revisa el dashboard.",
