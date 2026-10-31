@@ -135,7 +135,7 @@ export const Azar: React.FC<P> = ({ dur }) => {
 export const Ministerio: React.FC<P> = ({ dur }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const lado = 74, gap = 14, cols = 10;
+  const lado = 62, gap = 12, cols = 10;
   const x0 = (1080 - cols * (lado + gap) + gap) / 2;
   const pinta = tramo(f, dur * 0.42, dur * 0.66);
   const fin = resorte(f, fps, Math.round(dur * 0.8));
@@ -156,7 +156,7 @@ export const Ministerio: React.FC<P> = ({ dur }) => {
         const a = resorte(f, fps, 6 + k * 0.9, 20);
         const naranja = k < n61;
         return (
-          <div key={k} style={{ position: "absolute", left: x0 + (k % cols) * (lado + gap), top: 440 + Math.floor(k / cols) * (lado + gap),
+          <div key={k} style={{ position: "absolute", left: x0 + (k % cols) * (lado + gap), top: 420 + Math.floor(k / cols) * (lado + gap),
             width: lado, height: lado, borderRadius: 14, background: naranja ? C.acento : C.gris, scale: String(a),
             boxShadow: naranja ? "0 0 24px rgba(234,88,12,.45)" : "none" }} />
         );
@@ -199,7 +199,7 @@ export const Satelite: React.FC<P> = ({ dur }) => {
       {foto(`sat/sat_${p.n}_pn.jpg`, M, C.acento, 0)}
       {foto(`sat/sat_${p.n}_ctrl.jpg`, M + lado + 24, "transparent", 5)}
       <div style={{ position: "absolute", left: M, top: 420 + lado + 18, fontSize: 36, fontWeight: 800, color: C.acento, opacity: a }}>Punto negro</div>
-      <div style={{ position: "absolute", left: M + lado + 24, top: 420 + lado + 18, fontSize: 32, color: C.suave, opacity: a }}>Misma vía, 1.5 km después</div>
+      <div style={{ position: "absolute", left: M + lado + 24, top: 420 + lado + 18, fontSize: 32, color: C.suave, opacity: a }}>1.5 km después, sin siniestros</div>
       <Cifra texto="1 de cada 2" etiqueta="son atropellos, con paraderos y comercio a pocos metros" desde={Math.round(dur * 0.45)} />
     </AbsoluteFill>
   );

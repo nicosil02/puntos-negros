@@ -7,7 +7,7 @@ datos/crudos/auditoria/
 # audio de referencia y entorno del reel
 reel/mi_voz.*
 .venv-reel/
-reel/salidas/narracion.*
+reel/salidas/narracion*
 reel/recursos/clips/
 reel/recursos/musica/
 reel/recursos/fuentes/

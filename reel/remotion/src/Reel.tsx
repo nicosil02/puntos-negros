@@ -6,7 +6,7 @@ import { Marco, Subtitulos } from "./Comunes";
 import { Azar, Cierre, Comas, Creditos, Ministerio, Peru, Satelite, Titulares } from "./Escenas";
 import { C } from "./estilo";
 
-export const CREDITOS = 3; // segundos
+export const CREDITOS = 2.5; // segundos
 const CRUCE = 8; // cuadros de fundido entre escenas
 
 // Cada escena entra con un fundido corto sobre la anterior
