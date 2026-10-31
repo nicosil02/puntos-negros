@@ -13,8 +13,8 @@
    "dato": "ONSV vía PerúCheck/Caretas, 8 abr 2026: 3,002 en 2024 y 2,890 en 2025 (https://caretas.pe/?p=801787)"
   },
   {
-   "frase": "Y no ocurren en cualquier parte. Por ejemplo, entre dos mil veintiuno y dos mil veinticinco, en este tramo de la Panamericana Norte, en Comas, fallecieron diecisiete personas.",
-   "subtitulo": "Y no ocurren en cualquier parte. Por ejemplo, entre 2021 y 2025, en este tramo de la Panamericana Norte, en Comas, fallecieron 17 personas.",
+   "frase": "Muchos de estos siniestros se repiten en el mismo lugar. Por ejemplo, entre dos mil veintiuno y dos mil veinticinco, en este tramo de la Panamericana Norte, en Comas, fallecieron diecisiete personas.",
+   "subtitulo": "Muchos de estos siniestros se repiten en el mismo lugar. Por ejemplo, entre 2021 y 2025, en este tramo de la Panamericana Norte, en Comas, fallecieron 17 personas.",
    "cifra": "17",
    "etiqueta": "fallecidos en 200 metros, Panamericana Norte (Comas), 2021-2024",
    "imagen": "Vuelo 3D del dashboard hasta Comas",
@@ -37,8 +37,8 @@
    "dato": "docs/datos.json azar: real 55; promedio de 20 repeticiones 31.35; máximo 40"
   },
   {
-   "frase": "¿Por qué ahí? Son tramos donde una carretera rápida atraviesa un barrio, con paraderos y comercio al lado. La gente cruza la pista de madrugada o de noche, camino al trabajo o de regreso a casa. Por eso la mitad son atropellos.",
-   "subtitulo": "¿Por qué ahí? Son tramos donde una carretera rápida atraviesa un barrio, con paraderos y comercio al lado. La gente cruza la pista de madrugada o de noche, camino al trabajo o de regreso a casa. Por eso la mitad son atropellos.",
+   "frase": "¿Y por qué ocurren justo ahí? Son tramos donde una carretera rápida atraviesa un barrio, con paraderos y comercio al lado. La gente cruza la pista de madrugada o de noche, camino al trabajo o de regreso a casa. Por eso la mitad son atropellos.",
+   "subtitulo": "¿Y por qué ocurren justo ahí? Son tramos donde una carretera rápida atraviesa un barrio, con paraderos y comercio al lado. La gente cruza la pista de madrugada o de noche, camino al trabajo o de regreso a casa. Por eso la mitad son atropellos.",
    "cifra": "1 de cada 2",
    "etiqueta": "son atropellos. Paraderos y comercio a menos de 200 metros",
    "imagen": "Par satelital de Lurín: punto negro frente a la misma vía a 1.5 km",

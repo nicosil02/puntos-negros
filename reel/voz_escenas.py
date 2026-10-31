@@ -27,7 +27,7 @@ def sube(w, sr):
     """Cuánto sube el tono en el último medio segundo con voz frente a toda la frase."""
     f0, voz, _ = librosa.pyin(w, fmin=70, fmax=400, sr=sr)
     f0 = f0[voz]
-    return float(np.nanmedian(f0[-12:]) / np.nanmedian(f0)) if len(f0) > 24 else 0.0
+    return float(np.nanmedian(f0[-6:]) / np.nanmedian(f0)) if len(f0) > 10 else 0.0
 
 
 if __name__ == "__main__":
