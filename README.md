@@ -6,7 +6,7 @@ En el Perú hay 286 lugares donde los siniestros fatales se repiten una y otra v
 
 - Dashboard: https://nicosil02.github.io/puntos-negros/
 - Reel: [`reel/salidas/reel_remotion.mp4`](reel/salidas/reel_remotion.mp4), también en la publicación de LinkedIn
-- Publicación en LinkedIn: (enlace pendiente)
+- Publicación en LinkedIn: https://www.linkedin.com/posts/nicolas-silva0522a_seguridadvial-cienciadedatos-polaedticaspaeqblicas-ugcPost-7522435075381022720-kr2F
 
 ## Hallazgos
 
