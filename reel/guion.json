@@ -5,24 +5,24 @@
   "aviso": "Voz generada con IA a partir de la voz del autor",
   "escenas": [
     {
-      "frase": "Sales de casa, te despides y das por hecho que vas a volver. Desde dos mil veintiuno, más de diez mil personas en el Perú no volvieron por un siniestro de tránsito.",
-      "subtitulo": "Sales de casa, te despides y das por hecho que vas a volver. Desde 2021, más de 10,000 personas en el Perú no volvieron por un siniestro de tránsito.",
+      "frase": "En el Perú, muchas familias se despiden con temor cuando alguien sale de casa. Una de las razones es la inseguridad vial. Desde dos mil veintiuno, más de diez mil personas fallecieron en siniestros de tránsito.",
+      "subtitulo": "En el Perú, muchas familias se despiden con temor cuando alguien sale de casa. Una de las razones es la inseguridad vial. Desde 2021, más de 10,000 personas fallecieron en siniestros de tránsito.",
       "cifra": "10,858",
       "etiqueta": "fallecidos en siniestros de tránsito registrados, 2021 a agosto de 2025",
       "imagen": "Mapa del Perú con un punto por siniestro",
       "dato": "datos/procesados/siniestros.csv: suma de fallecidos 10,858"
     },
     {
-      "frase": "Y muchos fallecen en los mismos lugares. En un tramo de doscientos metros de la Panamericana Norte, en Comas, murieron diecisiete personas.",
-      "subtitulo": "Y muchos fallecen en los mismos lugares. En un tramo de 200 metros de la Panamericana Norte, en Comas, murieron 17 personas.",
+      "frase": "Y muchos siniestros se repiten en el mismo lugar. En un tramo de doscientos metros de la Panamericana Norte, en Comas, fallecieron diecisiete personas.",
+      "subtitulo": "Y muchos siniestros se repiten en el mismo lugar. En un tramo de 200 metros de la Panamericana Norte, en Comas, fallecieron 17 personas.",
       "cifra": "17",
       "etiqueta": "fallecidos en 200 metros, Panamericana Norte (Comas), 2021-2024",
       "imagen": "Vuelo 3D del dashboard hasta Comas",
       "dato": "docs/datos.json: 17 fallecidos en 15 siniestros"
     },
     {
-      "frase": "Ubiqué en el mapa cada siniestro y encontré doscientos ochenta y seis puntos negros, lugares donde se repiten. Ahí se registró uno de cada nueve fallecidos.",
-      "subtitulo": "Ubiqué en el mapa cada siniestro y encontré 286 puntos negros, lugares donde se repiten. Ahí se registró 1 de cada 9 fallecidos.",
+      "frase": "Al ubicar cada siniestro en el mapa encontré doscientos ochenta y seis puntos negros, lugares donde se repiten. Ahí se registró uno de cada nueve fallecidos.",
+      "subtitulo": "Al ubicar cada siniestro en el mapa encontré 286 puntos negros, lugares donde se repiten. Ahí se registró 1 de cada 9 fallecidos.",
       "cifra": "286",
       "etiqueta": "puntos negros, 3 o más siniestros fatales a menos de 200 metros",
       "imagen": "Mapa del Perú con las 286 columnas",
@@ -45,8 +45,8 @@
       "dato": "docs/datos.json prediccion: 149 puntos negros, 38.3%; lugares con 1 siniestro, 5.2%"
     },
     {
-      "frase": "¿Por qué ahí? La mitad son atropellos, y casi la mitad tenía un paradero cerca. Desde el satélite muchos se parecen, una carretera rápida que cruza un barrio, con comercio al costado.",
-      "subtitulo": "¿Por qué ahí? La mitad son atropellos, y casi la mitad tenía un paradero cerca. Desde el satélite muchos se parecen, una carretera rápida que cruza un barrio, con comercio al costado.",
+      "frase": "¿Por qué ahí? La mitad son atropellos y casi la mitad tenía un paradero cerca. Desde el satélite se repite la imagen de una carretera rápida que cruza un barrio, con comercio al costado.",
+      "subtitulo": "¿Por qué ahí? La mitad son atropellos y casi la mitad tenía un paradero cerca. Desde el satélite se repite la imagen de una carretera rápida que cruza un barrio, con comercio al costado.",
       "cifra": "50%",
       "etiqueta": "son atropellos (28% en el resto). 44% con paradero a menos de 200 m (26% en la misma vía)",
       "imagen": "Par satelital de Lurín: punto negro frente a la misma vía a 1.5 km",
@@ -54,8 +54,8 @@
       "credito": "Imagen: Esri World Imagery"
     },
     {
-      "frase": "Puedes ver cada punto negro de tu región en mi dashboard. El enlace está en la publicación.",
-      "subtitulo": "Puedes ver cada punto negro de tu región en mi dashboard. El enlace está en la publicación.",
+      "frase": "Puedes explorar los puntos negros de tu región en el dashboard. El enlace está en la publicación.",
+      "subtitulo": "Puedes explorar los puntos negros de tu región en el dashboard. El enlace está en la publicación.",
       "cifra": "Puntos negros",
       "etiqueta": "Dashboard interactivo, enlace en la publicación",
       "imagen": "Recorrido del dashboard: filtros, mapa y ficha",
