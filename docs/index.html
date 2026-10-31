@@ -86,6 +86,17 @@
   .seccion span { font-size: 13px; font-weight: 700; letter-spacing: .08em; color: var(--acento-osc); font-variant-numeric: tabular-nums; }
   .seccion b { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-2); }
   .seccion + .fila { margin-top: 16px; }
+  .aud { max-width: 760px; margin-bottom: 26px; }
+  .t-aud td { padding: 10px 8px; }
+  .pares { display: grid; gap: 22px; }
+  .par { margin: 0; display: grid; grid-template-columns: minmax(0, 800px) minmax(220px, 1fr); gap: 24px; align-items: center; }
+  .par .fotos { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .par .fotos div { position: relative; }
+  .par img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; }
+  .par .et { position: absolute; left: 8px; top: 8px; font-size: 12.5px; font-weight: 600; padding: 3px 8px; border-radius: 5px; background: rgba(14,16,19,.82); color: var(--tinta); }
+  .par .et.pn { background: var(--acento); color: #fff; }
+  .par figcaption { font-size: 17px; line-height: 1.5; color: var(--tinta-2); }
+  .par figcaption b { color: var(--tinta); }
   .titulo-sec { font-size: 24px; margin: 40px 0 14px; letter-spacing: -0.01em; }
   .hall { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .hall .n { font-size: 40px; font-weight: 800; line-height: 1.1; }
@@ -138,7 +149,7 @@
   @media (max-width: 1100px) {
     .filtros { position: static; } .filtros select { min-width: 0; width: 100%; } .filtros .f { flex: 1 1 100%; min-width: 0; } .seg { max-width: 100%; overflow-x: auto; }
     .kpis { grid-template-columns: 1fr 1fr; } .kpi:nth-child(3) { border-left: 0; }
-    .f-mapa, .f-2, .texto, .hall { grid-template-columns: 1fr; }
+    .f-mapa, .f-2, .texto, .hall, .pares, .par { grid-template-columns: 1fr; }
     #mapa { height: 440px; }
   }
   @media (max-width: 600px) { .kpis { grid-template-columns: 1fr; } .kpi { border-left: 0; border-top: 1px solid var(--linea); } .kpi:first-child { border-top: 0; } .kpi .v { font-size: 40px; } main { padding: 16px 14px 40px; } .filtros { padding: 14px; } }
@@ -249,7 +260,44 @@
       </section>
     </div>
 
-    <div class="seccion"><span>04</span><b>Cuándo</b></div>
+    <div class="seccion"><span>04</span><b>Desde el satélite</b></div>
+    <div class="fila">
+      <section class="panel">
+        <h2>Junto a los puntos negros hay comercio. 1.5 km después, en la misma vía, casi nunca</h2>
+        <p class="sub">Los 30 puntos negros más letales frente a un lugar de la misma vía a unos 1.5 km, sin siniestros fatales. Fotos satelitales revisadas a ciegas, sin saber cuál era cuál. 28 pares con control. Círculo de 200 metros.</p>
+        <div class="aud">
+          <table class="t-aud"><thead><tr><th>Dentro del círculo de 200 m</th><th class="num">Punto negro</th><th class="num">Misma vía</th></tr></thead><tbody>
+            <tr><td>Comercio o mercado pegado a la vía</td><td class="num"><b class="acento">13 de 28</b></td><td class="num">1 de 28</td></tr>
+            <tr><td>Construido a ambos lados</td><td class="num"><b class="acento">20 de 28</b></td><td class="num">14 de 28</td></tr>
+            <tr><td>Paradero o buses detenidos</td><td class="num"><b class="acento">14 de 28</b></td><td class="num">7 de 28</td></tr>
+            <tr><td>Puente peatonal visible</td><td class="num"><b class="acento">13 de 28</b></td><td class="num">7 de 28</td></tr>
+            <tr><td>6 carriles o más</td><td class="num">18 de 28</td><td class="num">14 de 28</td></tr>
+            <tr><td>Separador central</td><td class="num">20 de 28</td><td class="num">18 de 28</td></tr>
+          </tbody></table>
+          <p class="sub" style="margin:12px 0 0">La vía es la misma. Lo que cambia es lo que hay al costado. Y el puente peatonal no basta: hay más puentes en los puntos negros que en el resto de la vía. En 12 pares solo el punto negro tiene comercio y en ninguno pasa al revés.</p>
+        </div>
+        <div class="pares">
+        <figure class="par">
+          <div class="fotos"><div><img src="img/sat_59_pn.jpg" alt="Panamericana Sur en Lurín, con vías auxiliares, puente y vehículos detenidos" loading="lazy"><span class="et pn">Punto negro</span></div>
+            <div><img src="img/sat_59_ctrl.jpg" alt="Trébol vial de la Panamericana Sur" loading="lazy"><span class="et">Misma vía, a 1.5 km</span></div></div>
+          <figcaption><b>Lurín, Panamericana Sur.</b> 10 muertes en 4 años distintos. Vías auxiliares, buses detenidos y barrio a ambos lados.</figcaption>
+        </figure>
+        <figure class="par">
+          <div class="fotos"><div><img src="img/sat_191_pn.jpg" alt="Carretera de entrada al centro de Yungay" loading="lazy"><span class="et pn">Punto negro</span></div>
+            <div><img src="img/sat_191_ctrl.jpg" alt="La misma carretera en un caserío rural" loading="lazy"><span class="et">Misma vía, a 1.5 km</span></div></div>
+          <figcaption><b>Yungay, carretera a Huaraz.</b> 7 muertes en 6 siniestros y 3 años distintos, donde la vía entra al centro del pueblo. A 1.5 km, la misma carretera pasa entre chacras.</figcaption>
+        </figure>
+        <figure class="par">
+          <div class="fotos"><div><img src="img/sat_170_pn.jpg" alt="Panamericana Norte cruzando Guadalupe, con feria junto a la vía" loading="lazy"><span class="et pn">Punto negro</span></div>
+            <div><img src="img/sat_170_ctrl.jpg" alt="Panamericana Norte en el desierto" loading="lazy"><span class="et">Misma vía, a 1.5 km</span></div></div>
+          <figcaption><b>Guadalupe, Panamericana Norte.</b> La carretera atraviesa el pueblo junto a una feria. 7 muertes. Más allá, la misma vía cruza el desierto.</figcaption>
+        </figure>
+        </div>
+        <p class="sub" style="margin:14px 0 0">Imágenes de Esri World Imagery. Muestra pequeña y un solo codificador: es exploratorio. Datos y protocolo en el repositorio.</p>
+      </section>
+    </div>
+
+    <div class="seccion"><span>05</span><b>Cuándo</b></div>
     <div class="fila f-2">
       <section class="panel">
         <h2>A qué hora ocurren</h2>
@@ -265,7 +313,7 @@
       </section>
     </div>
 
-    <div class="seccion"><span>05</span><b>Detalle</b></div>
+    <div class="seccion"><span>06</span><b>Detalle</b></div>
     <div class="fila">
       <section class="panel">
         <h2>Todos los puntos negros</h2>
@@ -289,6 +337,7 @@
         <li>Prueba del azar. Cada siniestro se movió a un lugar al azar de la misma vía, en el mismo tramo y la misma provincia. Así el tráfico es parecido. Se repitió 20 veces.</li>
         <li>Paraderos, mercados y colegios vienen de OpenStreetMap. La población es la de WorldPop 2020 en celdas de 1 km.</li>
         <li>Noche es antes de la salida o después de la puesta del sol en ese día y lugar.</li>
+        <li>Auditoría satelital. Para los 30 puntos negros más letales se buscó un lugar de la misma vía a unos 1.5 km sin siniestros fatales. Las fotos se revisaron con un código al azar, sin saber cuál era punto negro, con una lista fijada antes.</li>
       </ul></div>
       <div><h2>Fuentes</h2><ul>
         <li><a href="https://www.onsv.gob.pe/datosabiertos">ONSV (MTC)</a>, siniestros de tránsito fatales 2021-2025.</li>
@@ -302,6 +351,7 @@
         <li>El registro de 2024 y 2025 es más incompleto (2025 llega hasta agosto).</li>
         <li>No hay conteos públicos de autos ni peatones por calle. La prueba del azar sobre la misma vía es la mejor aproximación.</li>
         <li>OpenStreetMap no tiene todos los paraderos, sobre todo los informales.</li>
+        <li>La auditoría satelital tiene 28 pares y un solo codificador. Es exploratoria.</li>
         <li>Muestra asociación, no causalidad.</li>
       </ul></div>
     </div>
