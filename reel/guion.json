@@ -29,26 +29,26 @@
       "dato": "docs/datos.json: 286 lugares; 1,202 de 10,858 fallecidos (11%)"
     },
     {
-      "frase": "Y no es solo por el tráfico. Frente a otros tramos de las mismas carreteras, hay casi el doble de lugares donde se repiten.",
-      "subtitulo": "Y no es solo por el tráfico. Frente a otros tramos de las mismas carreteras, hay casi el doble de lugares donde se repiten.",
+      "frase": "Y no es casualidad. En otros tramos de las mismas carreteras, con el mismo tráfico, los siniestros no se repiten así.",
+      "subtitulo": "Y no es casualidad. En otros tramos de las mismas carreteras, con el mismo tráfico, los siniestros no se repiten así.",
       "cifra": "55 frente a 31",
-      "etiqueta": "lugares con 5 o más siniestros fatales, realidad frente a otros tramos de la misma vía",
+      "etiqueta": "lugares con 5 o más siniestros fatales, frente a otros tramos de la misma vía",
       "imagen": "Panel 'No es azar' del dashboard",
       "dato": "docs/datos.json azar: real 55; promedio de 20 repeticiones 31.35; máximo 40"
     },
     {
-      "frase": "Además, se podían anticipar. El treinta y ocho por ciento de los puntos negros de dos mil veintiuno a dos mil veintitrés volvió a tener un siniestro fatal después.",
-      "subtitulo": "Además, se podían anticipar. El 38% de los puntos negros de 2021 a 2023 volvió a tener un siniestro fatal después.",
-      "cifra": "38%",
+      "frase": "Además, se podían prever. Casi cuatro de cada diez puntos negros de dos mil veintiuno a dos mil veintitrés volvieron a tener un siniestro fatal después.",
+      "subtitulo": "Además, se podían prever. Casi 4 de cada 10 puntos negros de 2021 a 2023 volvieron a tener un siniestro fatal después.",
+      "cifra": "4 de cada 10",
       "etiqueta": "volvió a tener un siniestro fatal en 2024-2025 (5% en lugares con un solo siniestro)",
       "imagen": "Gráfico de barras 38% / 13% / 5%",
       "dato": "docs/datos.json prediccion: 149 puntos negros, 38.3%; lugares con 1 siniestro, 5.2%"
     },
     {
-      "frase": "¿Por qué ahí? La mitad son atropellos y casi la mitad tenía un paradero cerca. Desde el satélite se repite lo mismo, una carretera rápida que cruza un barrio, con comercio al costado.",
-      "subtitulo": "¿Por qué ahí? La mitad son atropellos y casi la mitad tenía un paradero cerca. Desde el satélite se repite lo mismo, una carretera rápida que cruza un barrio, con comercio al costado.",
-      "cifra": "50%",
-      "etiqueta": "son atropellos (28% en el resto). 44% con paradero a menos de 200 m (26% en la misma vía)",
+      "frase": "¿Qué tienen en común? La mitad son atropellos. Son carreteras rápidas que atraviesan barrios, con paraderos y comercio a pocos metros. Peatones y tráfico rápido en el mismo espacio.",
+      "subtitulo": "¿Qué tienen en común? La mitad son atropellos. Son carreteras rápidas que atraviesan barrios, con paraderos y comercio a pocos metros. Peatones y tráfico rápido en el mismo espacio.",
+      "cifra": "1 de cada 2",
+      "etiqueta": "son atropellos. Paraderos y comercio a menos de 200 metros",
       "imagen": "Par satelital de Lurín: punto negro frente a la misma vía a 1.5 km",
       "dato": "perfil: atropellos 50% frente a 28%; entorno: paradero 44% frente a 26%; auditoria.csv: comercio 13 de 28 frente a 1",
       "credito": "Imagen: Esri World Imagery"
