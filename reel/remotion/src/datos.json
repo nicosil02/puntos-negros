@@ -1,0 +1,1008 @@
+{
+ "habla": 69.83,
+ "cortes": [
+  0,
+  12.55,
+  24.313,
+  34.813,
+  43.165,
+  56.626,
+  65.424,
+  69.83
+ ],
+ "escenas": [
+  [
+   0.3,
+   12.374666666666668
+  ],
+  [
+   12.724666666666668,
+   24.138
+  ],
+  [
+   24.488,
+   34.638041666666666
+  ],
+  [
+   34.98804166666667,
+   42.99
+  ],
+  [
+   43.34,
+   56.45100000000001
+  ],
+  [
+   56.801,
+   65.249
+  ],
+  [
+   65.599,
+   69.23025
+  ]
+ ],
+ "subtitulos": [
+  {
+   "ini": 0.0,
+   "fin": 1.9,
+   "palabras": [
+    {
+     "t": "Muchas",
+     "ini": 0.0
+    },
+    {
+     "t": "familias",
+     "ini": 0.475
+    },
+    {
+     "t": "se",
+     "ini": 1.108
+    },
+    {
+     "t": "despiden",
+     "ini": 1.267
+    }
+   ]
+  },
+  {
+   "ini": 1.9,
+   "fin": 2.9,
+   "palabras": [
+    {
+     "t": "con",
+     "ini": 1.9
+    },
+    {
+     "t": "temor",
+     "ini": 2.043
+    },
+    {
+     "t": "cuando",
+     "ini": 2.281
+    },
+    {
+     "t": "alguien",
+     "ini": 2.567
+    }
+   ]
+  },
+  {
+   "ini": 2.9,
+   "fin": 3.54,
+   "palabras": [
+    {
+     "t": "sale",
+     "ini": 2.9
+    },
+    {
+     "t": "de",
+     "ini": 3.133
+    },
+    {
+     "t": "casa,",
+     "ini": 3.249
+    }
+   ]
+  },
+  {
+   "ini": 3.54,
+   "fin": 4.74,
+   "palabras": [
+    {
+     "t": "y",
+     "ini": 3.54
+    },
+    {
+     "t": "la",
+     "ini": 3.607
+    },
+    {
+     "t": "inseguridad",
+     "ini": 3.74
+    },
+    {
+     "t": "vial",
+     "ini": 4.473
+    }
+   ]
+  },
+  {
+   "ini": 4.74,
+   "fin": 5.56,
+   "palabras": [
+    {
+     "t": "es",
+     "ini": 4.74
+    },
+    {
+     "t": "parte",
+     "ini": 4.877
+    },
+    {
+     "t": "de",
+     "ini": 5.218
+    },
+    {
+     "t": "ese",
+     "ini": 5.355
+    }
+   ]
+  },
+  {
+   "ini": 5.56,
+   "fin": 6.72,
+   "palabras": [
+    {
+     "t": "miedo.",
+     "ini": 5.56
+    }
+   ]
+  },
+  {
+   "ini": 6.72,
+   "fin": 8.4,
+   "palabras": [
+    {
+     "t": "Solo",
+     "ini": 6.72
+    },
+    {
+     "t": "en",
+     "ini": 6.978
+    },
+    {
+     "t": "2025,",
+     "ini": 7.108
+    }
+   ]
+  },
+  {
+   "ini": 8.4,
+   "fin": 10.66,
+   "palabras": [
+    {
+     "t": "2,890",
+     "ini": 8.4
+    },
+    {
+     "t": "personas",
+     "ini": 9.727
+    },
+    {
+     "t": "fallecieron",
+     "ini": 10.12
+    }
+   ]
+  },
+  {
+   "ini": 10.66,
+   "fin": 11.36,
+   "palabras": [
+    {
+     "t": "en",
+     "ini": 10.66
+    },
+    {
+     "t": "las",
+     "ini": 10.777
+    },
+    {
+     "t": "vías",
+     "ini": 10.952
+    },
+    {
+     "t": "del",
+     "ini": 11.185
+    }
+   ]
+  },
+  {
+   "ini": 11.36,
+   "fin": 11.64,
+   "palabras": [
+    {
+     "t": "Perú.",
+     "ini": 11.36
+    }
+   ]
+  },
+  {
+   "ini": 12.94,
+   "fin": 14.16,
+   "palabras": [
+    {
+     "t": "Muchos",
+     "ini": 12.94
+    },
+    {
+     "t": "de",
+     "ini": 13.258
+    },
+    {
+     "t": "estos",
+     "ini": 13.364
+    },
+    {
+     "t": "siniestros",
+     "ini": 13.63
+    }
+   ]
+  },
+  {
+   "ini": 14.16,
+   "fin": 15.04,
+   "palabras": [
+    {
+     "t": "se",
+     "ini": 14.16
+    },
+    {
+     "t": "repiten",
+     "ini": 14.295
+    },
+    {
+     "t": "en",
+     "ini": 14.769
+    },
+    {
+     "t": "el",
+     "ini": 14.905
+    }
+   ]
+  },
+  {
+   "ini": 15.04,
+   "fin": 16.26,
+   "palabras": [
+    {
+     "t": "mismo",
+     "ini": 15.04
+    },
+    {
+     "t": "lugar.",
+     "ini": 15.595
+    }
+   ]
+  },
+  {
+   "ini": 16.26,
+   "fin": 17.2,
+   "palabras": [
+    {
+     "t": "En",
+     "ini": 16.26
+    },
+    {
+     "t": "un",
+     "ini": 16.431
+    },
+    {
+     "t": "tramo",
+     "ini": 16.602
+    },
+    {
+     "t": "de",
+     "ini": 17.029
+    }
+   ]
+  },
+  {
+   "ini": 17.2,
+   "fin": 18.08,
+   "palabras": [
+    {
+     "t": "200",
+     "ini": 17.2
+    },
+    {
+     "t": "metros",
+     "ini": 17.64
+    },
+    {
+     "t": "de",
+     "ini": 17.904
+    },
+    {
+     "t": "la",
+     "ini": 17.992
+    }
+   ]
+  },
+  {
+   "ini": 18.08,
+   "fin": 19.2,
+   "palabras": [
+    {
+     "t": "Panamericana",
+     "ini": 18.08
+    },
+    {
+     "t": "Norte,",
+     "ini": 18.827
+    }
+   ]
+  },
+  {
+   "ini": 19.2,
+   "fin": 19.86,
+   "palabras": [
+    {
+     "t": "en",
+     "ini": 19.2
+    },
+    {
+     "t": "Comas,",
+     "ini": 19.365
+    }
+   ]
+  },
+  {
+   "ini": 19.86,
+   "fin": 21.54,
+   "palabras": [
+    {
+     "t": "fallecieron",
+     "ini": 19.86
+    },
+    {
+     "t": "17",
+     "ini": 20.404
+    },
+    {
+     "t": "personas",
+     "ini": 20.898
+    },
+    {
+     "t": "entre",
+     "ini": 21.293
+    }
+   ]
+  },
+  {
+   "ini": 21.54,
+   "fin": 23.48,
+   "palabras": [
+    {
+     "t": "2021",
+     "ini": 21.54
+    },
+    {
+     "t": "y",
+     "ini": 22.386
+    },
+    {
+     "t": "2024.",
+     "ini": 22.435
+    }
+   ]
+  },
+  {
+   "ini": 24.74,
+   "fin": 25.78,
+   "palabras": [
+    {
+     "t": "Al",
+     "ini": 24.74
+    },
+    {
+     "t": "ubicar",
+     "ini": 24.913
+    },
+    {
+     "t": "en",
+     "ini": 25.433
+    },
+    {
+     "t": "el",
+     "ini": 25.607
+    }
+   ]
+  },
+  {
+   "ini": 25.78,
+   "fin": 27.0,
+   "palabras": [
+    {
+     "t": "mapa",
+     "ini": 25.78
+    },
+    {
+     "t": "cada",
+     "ini": 26.002
+    },
+    {
+     "t": "siniestro",
+     "ini": 26.224
+    },
+    {
+     "t": "fatal",
+     "ini": 26.723
+    }
+   ]
+  },
+  {
+   "ini": 27.0,
+   "fin": 29.3,
+   "palabras": [
+    {
+     "t": "de",
+     "ini": 27.0
+    },
+    {
+     "t": "2021",
+     "ini": 27.115
+    },
+    {
+     "t": "a",
+     "ini": 28.092
+    },
+    {
+     "t": "2025,",
+     "ini": 28.15
+    }
+   ]
+  },
+  {
+   "ini": 29.3,
+   "fin": 31.98,
+   "palabras": [
+    {
+     "t": "encontré",
+     "ini": 29.3
+    },
+    {
+     "t": "286",
+     "ini": 29.766
+    },
+    {
+     "t": "puntos",
+     "ini": 31.223
+    },
+    {
+     "t": "negros.",
+     "ini": 31.572
+    }
+   ]
+  },
+  {
+   "ini": 31.98,
+   "fin": 33.04,
+   "palabras": [
+    {
+     "t": "Ahí",
+     "ini": 31.98
+    },
+    {
+     "t": "se",
+     "ini": 32.179
+    },
+    {
+     "t": "registró",
+     "ini": 32.311
+    },
+    {
+     "t": "1",
+     "ini": 32.841
+    }
+   ]
+  },
+  {
+   "ini": 33.04,
+   "fin": 34.24,
+   "palabras": [
+    {
+     "t": "de",
+     "ini": 33.04
+    },
+    {
+     "t": "cada",
+     "ini": 33.149
+    },
+    {
+     "t": "9",
+     "ini": 33.367
+    },
+    {
+     "t": "fallecidos.",
+     "ini": 33.64
+    }
+   ]
+  },
+  {
+   "ini": 35.18,
+   "fin": 36.66,
+   "palabras": [
+    {
+     "t": "No",
+     "ini": 35.18
+    },
+    {
+     "t": "es",
+     "ini": 35.377
+    },
+    {
+     "t": "casualidad.",
+     "ini": 35.575
+    }
+   ]
+  },
+  {
+   "ini": 36.66,
+   "fin": 38.16,
+   "palabras": [
+    {
+     "t": "En",
+     "ini": 36.66
+    },
+    {
+     "t": "una",
+     "ini": 36.81
+    },
+    {
+     "t": "misma",
+     "ini": 37.035
+    },
+    {
+     "t": "carretera,",
+     "ini": 37.41
+    }
+   ]
+  },
+  {
+   "ini": 38.16,
+   "fin": 39.3,
+   "palabras": [
+    {
+     "t": "con",
+     "ini": 38.16
+    },
+    {
+     "t": "el",
+     "ini": 38.35
+    },
+    {
+     "t": "mismo",
+     "ini": 38.477
+    },
+    {
+     "t": "tráfico,",
+     "ini": 38.793
+    }
+   ]
+  },
+  {
+   "ini": 39.3,
+   "fin": 40.68,
+   "palabras": [
+    {
+     "t": "los",
+     "ini": 39.3
+    },
+    {
+     "t": "siniestros",
+     "ini": 39.497
+    },
+    {
+     "t": "se",
+     "ini": 40.154
+    },
+    {
+     "t": "juntan",
+     "ini": 40.286
+    }
+   ]
+  },
+  {
+   "ini": 40.68,
+   "fin": 41.72,
+   "palabras": [
+    {
+     "t": "en",
+     "ini": 40.68
+    },
+    {
+     "t": "ciertos",
+     "ini": 40.81
+    },
+    {
+     "t": "puntos",
+     "ini": 41.265
+    },
+    {
+     "t": "y",
+     "ini": 41.655
+    }
+   ]
+  },
+  {
+   "ini": 41.72,
+   "fin": 42.2,
+   "palabras": [
+    {
+     "t": "no",
+     "ini": 41.72
+    },
+    {
+     "t": "en",
+     "ini": 41.816
+    },
+    {
+     "t": "otros.",
+     "ini": 41.912
+    }
+   ]
+  },
+  {
+   "ini": 43.46,
+   "fin": 44.9,
+   "palabras": [
+    {
+     "t": "En",
+     "ini": 43.46
+    },
+    {
+     "t": "2022,",
+     "ini": 43.604
+    }
+   ]
+  },
+  {
+   "ini": 44.9,
+   "fin": 46.18,
+   "palabras": [
+    {
+     "t": "el",
+     "ini": 44.9
+    },
+    {
+     "t": "Ministerio",
+     "ini": 45.002
+    },
+    {
+     "t": "de",
+     "ini": 45.514
+    },
+    {
+     "t": "Transportes",
+     "ini": 45.617
+    }
+   ]
+  },
+  {
+   "ini": 46.18,
+   "fin": 47.86,
+   "palabras": [
+    {
+     "t": "ya",
+     "ini": 46.18
+    },
+    {
+     "t": "había",
+     "ini": 46.296
+    },
+    {
+     "t": "señalado",
+     "ini": 46.586
+    },
+    {
+     "t": "83",
+     "ini": 47.049
+    }
+   ]
+  },
+  {
+   "ini": 47.86,
+   "fin": 48.94,
+   "palabras": [
+    {
+     "t": "tramos",
+     "ini": 47.86
+    },
+    {
+     "t": "peligrosos.",
+     "ini": 48.241
+    }
+   ]
+  },
+  {
+   "ini": 48.94,
+   "fin": 50.84,
+   "palabras": [
+    {
+     "t": "Desde",
+     "ini": 48.94
+    },
+    {
+     "t": "entonces,",
+     "ini": 49.619
+    }
+   ]
+  },
+  {
+   "ini": 50.84,
+   "fin": 51.72,
+   "palabras": [
+    {
+     "t": "en",
+     "ini": 50.84
+    },
+    {
+     "t": "la",
+     "ini": 50.928
+    },
+    {
+     "t": "mayoría",
+     "ini": 51.016
+    },
+    {
+     "t": "siguieron",
+     "ini": 51.324
+    }
+   ]
+  },
+  {
+   "ini": 51.72,
+   "fin": 53.22,
+   "palabras": [
+    {
+     "t": "ocurriendo",
+     "ini": 51.72
+    },
+    {
+     "t": "siniestros",
+     "ini": 52.256
+    },
+    {
+     "t": "fatales,",
+     "ini": 52.791
+    }
+   ]
+  },
+  {
+   "ini": 53.22,
+   "fin": 55.34,
+   "palabras": [
+    {
+     "t": "con",
+     "ini": 53.22
+    },
+    {
+     "t": "203",
+     "ini": 53.392
+    },
+    {
+     "t": "personas",
+     "ini": 54.251
+    },
+    {
+     "t": "fallecidas.",
+     "ini": 54.71
+    }
+   ]
+  },
+  {
+   "ini": 56.58,
+   "fin": 58.16,
+   "palabras": [
+    {
+     "t": "¿Qué",
+     "ini": 56.58
+    },
+    {
+     "t": "tienen",
+     "ini": 56.931
+    },
+    {
+     "t": "en",
+     "ini": 57.458
+    },
+    {
+     "t": "común?",
+     "ini": 57.633
+    }
+   ]
+  },
+  {
+   "ini": 58.16,
+   "fin": 59.86,
+   "palabras": [
+    {
+     "t": "La",
+     "ini": 58.16
+    },
+    {
+     "t": "mitad",
+     "ini": 58.322
+    },
+    {
+     "t": "son",
+     "ini": 58.727
+    },
+    {
+     "t": "atropellos.",
+     "ini": 58.97
+    }
+   ]
+  },
+  {
+   "ini": 59.86,
+   "fin": 61.68,
+   "palabras": [
+    {
+     "t": "Son",
+     "ini": 59.86
+    },
+    {
+     "t": "carreteras",
+     "ini": 60.097
+    },
+    {
+     "t": "rápidas",
+     "ini": 60.889
+    },
+    {
+     "t": "que",
+     "ini": 61.443
+    }
+   ]
+  },
+  {
+   "ini": 61.68,
+   "fin": 62.7,
+   "palabras": [
+    {
+     "t": "atraviesan",
+     "ini": 61.68
+    },
+    {
+     "t": "barrios,",
+     "ini": 62.247
+    }
+   ]
+  },
+  {
+   "ini": 62.7,
+   "fin": 64.08,
+   "palabras": [
+    {
+     "t": "con",
+     "ini": 62.7
+    },
+    {
+     "t": "paraderos",
+     "ini": 62.897
+    },
+    {
+     "t": "y",
+     "ini": 63.489
+    },
+    {
+     "t": "comercio",
+     "ini": 63.554
+    }
+   ]
+  },
+  {
+   "ini": 64.08,
+   "fin": 64.66,
+   "palabras": [
+    {
+     "t": "a",
+     "ini": 64.08
+    },
+    {
+     "t": "pocos",
+     "ini": 64.125
+    },
+    {
+     "t": "metros.",
+     "ini": 64.348
+    }
+   ]
+  },
+  {
+   "ini": 65.66,
+   "fin": 66.62,
+   "palabras": [
+    {
+     "t": "¿Hay",
+     "ini": 65.66
+    },
+    {
+     "t": "uno",
+     "ini": 66.009
+    },
+    {
+     "t": "en",
+     "ini": 66.271
+    },
+    {
+     "t": "tu",
+     "ini": 66.445
+    }
+   ]
+  },
+  {
+   "ini": 66.62,
+   "fin": 67.6,
+   "palabras": [
+    {
+     "t": "ruta",
+     "ini": 66.62
+    },
+    {
+     "t": "diaria?",
+     "ini": 66.976
+    }
+   ]
+  },
+  {
+   "ini": 67.6,
+   "fin": 68.5,
+   "palabras": [
+    {
+     "t": "Búscalo",
+     "ini": 67.6
+    },
+    {
+     "t": "en",
+     "ini": 67.9
+    },
+    {
+     "t": "el",
+     "ini": 67.986
+    },
+    {
+     "t": "dashboard.",
+     "ini": 68.071
+    }
+   ]
+  }
+ ],
+ "fuente": "ONSV (MTC), siniestros fatales 2021-2025; OpenStreetMap; Esri World Imagery",
+ "titulares": [
+  {
+   "img": "gestion.png",
+   "medio": "Gestión",
+   "fecha": "18 dic. 2025",
+   "url": "https://gestion.pe/peru/casi-3-mil-fallecidos-por-accidentes-de-transito-hasta-octubre-2025-cinco-claves-para-prevenirlos-noticia/"
+  },
+  {
+   "img": "elcomercio.png",
+   "medio": "El Comercio",
+   "fecha": "18 oct. 2022",
+   "url": "https://elcomercio.pe/peru/accidentes-de-transito-en-peru-258-personas-mueren-al-mes-a-causa-de-siniestros-viales-afirma-el-mtc-rmmn-noticia/"
+  },
+  {
+   "img": "andina.png",
+   "medio": "Andina",
+   "fecha": "18 nov. 2022",
+   "url": "https://andina.pe/agencia/noticia-alarmante-cerca-270-personas-mueren-al-mes-a-causa-accidentes-transito-918233.aspx"
+  },
+  {
+   "img": "elperuano.png",
+   "medio": "El Peruano",
+   "fecha": "27 jul. 2026",
+   "url": "https://elperuano.pe/noticia/301124-registran-1881-fallecidos-por-accidentes-de-transito"
+  }
+ ]
+}
