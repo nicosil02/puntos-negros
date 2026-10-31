@@ -107,6 +107,12 @@
   .galeria img:first-child { outline: 2px solid var(--acento); outline-offset: -2px; }
   .galeria figcaption { margin-top: 8px; font-size: 14px; line-height: 1.45; color: var(--tinta-2); }
   .galeria figcaption b { color: var(--tinta); }
+  .duelo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .duelo div { border: 1px solid var(--linea); border-radius: 12px; padding: 18px 20px; }
+  .duelo b { display: block; font-size: 64px; line-height: 1; letter-spacing: -0.04em; color: var(--tinta-2); }
+  .duelo b.acento { color: var(--acento-osc); }
+  .duelo span { display: block; margin-top: 10px; font-size: 15.5px; line-height: 1.45; color: var(--tinta-3); }
+  .duelo strong { color: var(--tinta); font-weight: 600; }
   .titulo-sec { font-size: 24px; margin: 40px 0 14px; letter-spacing: -0.01em; }
   .hall { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .hall .n { font-size: 40px; font-weight: 800; line-height: 1.1; }
@@ -186,7 +192,7 @@
     <div class="paso" data-p="4"><div class="tarjeta"><span class="cifra">17 muertes</span>
       en este tramo de la Panamericana Norte, en Comas. 15 siniestros en <b>4 años distintos</b>, todos a menos de 200 metros.</div></div>
     <div class="paso" data-p="5"><div class="tarjeta"><span class="cifra">55 frente a 31</span>
-      ¿Mala suerte? Si esos siniestros cayeran al azar sobre la misma vía, habría 31 lugares con 5 o más. Hay <b>55</b>. El lugar importa.</div></div>
+      ¿Es solo que esas carreteras tienen mucho tráfico? Si repartimos los mismos siniestros por la misma carretera, salen <b>31 lugares</b> con 5 o más. En la realidad hay <b>55</b>. El lugar importa.</div></div>
     <div class="paso" data-p="6"><div class="tarjeta"><span class="cifra">44%</span>
       de los siniestros en puntos negros tenía un <b>paradero a menos de 200 metros</b>. En otro lugar de la misma vía, 26%. Donde la gente baja del bus, cruza la pista. Y la mitad de los muertos ahí son peatones.</div></div>
   </div>
@@ -244,12 +250,13 @@
         <svg id="rank" viewBox="0 0 560 330" role="img" aria-label="Puntos negros con más muertes"></svg>
       </section>
       <section class="panel">
-        <h2>No es mala suerte. Hay 55 lugares donde el azar daría 31</h2>
-        <p class="sub">Cantidad de puntos negros, todo el Perú. Lo real frente a repartir los mismos siniestros al azar sobre la misma vía.</p>
-        <svg id="azar" viewBox="0 0 560 230" role="img" aria-label="Puntos negros reales frente al azar"></svg>
-        <p class="sub" style="margin:10px 0 0">En 20 repeticiones al azar nunca hubo más de 225 lugares con 3 o más, 40 con 5 o más ni 8 con 8 o más.</p>
-        <div class="ley"><span><i class="c" style="background:var(--acento)"></i>Lo real</span>
-          <span><i class="c" style="background:var(--barra)"></i>Al azar sobre la misma vía (promedio)</span></div>
+        <h2>¿Es solo porque son carreteras con mucho tráfico? No</h2>
+        <p class="sub">Para saberlo hicimos una prueba. Movimos cada choque o atropello fatal a otro punto de la misma carretera, cerca de donde ocurrió, donde el tráfico es parecido. Si el lugar no importara, deberían salir tantos puntos negros como en la realidad.</p>
+        <div class="duelo">
+          <div><b class="acento" id="az-real"></b><span>lugares con 5 siniestros fatales o más <strong>en la realidad</strong></span></div>
+          <div><b id="az-azar"></b><span>lugares así <strong>si los mismos siniestros se repartieran por la carretera</strong></span></div>
+        </div>
+        <p class="sub" id="n-azar" style="margin:16px 0 0"></p>
       </section>
     </div>
 
@@ -349,7 +356,7 @@
     <h2 class="titulo-sec">Hallazgos</h2>
     <div class="hall">
       <div class="panel"><div class="n acento">1 de cada 9</div><p>muertes en las pistas entre 2021 y 2025 ocurrió en uno de los 286 puntos negros, lugares de 200 metros con 3 siniestros fatales o más.</p></div>
-      <div class="panel"><div class="n">55 frente a 31</div><p>lugares con 5 o más siniestros fatales. 55 es lo real. 31 es lo que daría el azar con los mismos siniestros sobre las mismas vías. No es mala suerte.</p></div>
+      <div class="panel"><div class="n">55 frente a 31</div><p>lugares con 5 o más siniestros fatales. En la realidad hay 55. Si los mismos siniestros cayeran en lugares al azar de las mismas carreteras, habría 31. No es mala suerte.</p></div>
       <div class="panel"><div class="n acento">38% frente a 5%</div><p>de los puntos negros de 2021-2023 volvió a tener muertes en 2024-2025. En un lugar con un solo siniestro, 5%. Se podía saber dónde.</p></div>
       <div class="panel"><div class="n">50% frente a 28%</div><p>de los siniestros en puntos negros son atropellos. Casi todos están donde una carretera rápida atraviesa la ciudad.</p></div>
       <div class="panel"><div class="n acento">44% frente a 26%</div><p>de los siniestros en puntos negros tenía un paradero a menos de 200 metros. En otro lugar de la misma vía, 26%. Donde la gente baja del bus, cruza la pista.</p></div>
@@ -681,9 +688,9 @@ function galeria() {
 
 function dibujarAzar() {
   const a = D.azar;
-  const filas = [["pn", "3 o más siniestros"], ["pn5", "5 o más"], ["pn8", "8 o más"]]
-    .map(([k, t]) => ({ t, a: a.real[k], b: a.media[k], la: "Real", lb: `Al azar, promedio (máximo ${a.max[k]})` }));
-  pares(d3.select("#azar"), filas, { izq: 150, sufijo: "" });
+  $("az-real").textContent = a.real.pn5;
+  $("az-azar").textContent = Math.round(a.media.pn5);
+  $("n-azar").textContent = `Hay casi el doble de lo esperado. Repetimos la prueba 20 veces y nunca pasó de ${a.max.pn5}. Las muertes se juntan en ciertos lugares: el problema es el lugar, no la mala suerte.`;
 }
 
 function pares(svg, filas, { izq = 200, sufijo = "%" } = {}) {
