@@ -29,8 +29,8 @@
       "dato": "docs/datos.json: 286 lugares; 1,202 de 10,858 fallecidos (11%)"
     },
     {
-      "frase": "Y no es casualidad. En otros tramos de las mismas carreteras, con el mismo tráfico, los siniestros no se repiten así.",
-      "subtitulo": "Y no es casualidad. En otros tramos de las mismas carreteras, con el mismo tráfico, los siniestros no se repiten así.",
+      "frase": "Y no es casualidad. En una misma carretera, con el mismo tráfico, los siniestros se juntan en ciertos puntos y no en otros.",
+      "subtitulo": "Y no es casualidad. En una misma carretera, con el mismo tráfico, los siniestros se juntan en ciertos puntos y no en otros.",
       "cifra": "55 frente a 31",
       "etiqueta": "lugares con 5 o más siniestros fatales, frente a otros tramos de la misma vía",
       "imagen": "Panel 'No es azar' del dashboard",
