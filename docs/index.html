@@ -7,14 +7,15 @@
 <meta name="description" content="En el Perú hay 286 lugares donde la gente muere una y otra vez en la pista. Con el mismo tráfico, el azar daría casi la mitad de lugares tan letales.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.6.0/dist/maplibre-gl.css">
+<script src="https://unpkg.com/maplibre-gl@5.6.0/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/deck.gl@9.1.14/dist.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
 <style>
   :root {
     --fondo: #f5f5f3; --papel: #ffffff; --linea: #e3e3df;
     --tinta: #1f2328; --tinta-2: #4b5157; --tinta-3: #7d838a;
-    --acento: #c2410c; --barra: #b4b8bd;
+    --acento: #c2410c; --acento-osc: #f26b1d; --barra: #b4b8bd;
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--fondo); color: var(--tinta);
@@ -48,7 +49,8 @@
   .panel h2 { margin: 0; font-size: 17px; line-height: 1.3; }
   .panel .sub { margin: 3px 0 10px; font-size: 13px; color: var(--tinta-3); }
   #mapa { height: 560px; border-radius: 6px; background: #eef0f2; }
-  .leaflet-container { font: inherit; }
+  .maplibregl-map { font: inherit; }
+  .deck-tooltip { font: 13.5px/1.4 "IBM Plex Sans", system-ui, sans-serif !important; }
   svg { display: block; width: 100%; height: auto; overflow: visible; }
   .ley { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--tinta-2); margin-top: 8px; }
   .ley i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; vertical-align: -1px; margin-right: 6px; }
@@ -76,6 +78,41 @@
   .tip { position: fixed; z-index: 1000; pointer-events: none; display: none; max-width: 280px; background: var(--papel);
          border: 1px solid #c9ccd0; border-radius: 8px; padding: 10px 12px; font-size: 13.5px; line-height: 1.4; box-shadow: 0 6px 18px rgba(31,35,40,.14); }
   .tip b { font-size: 15px; }
+
+  /* Relato inicial: mapa oscuro fijo y tarjetas que pasan al hacer scroll */
+  .hero { position: relative; background: #0e1013; color: #e9e9e6; }
+  .hero-mapa { position: sticky; top: 0; height: 100vh; z-index: 0; }
+  #hmapa { position: absolute; inset: 0; background: #0e1013; }
+  #hmapa .maplibregl-ctrl-attrib { background: rgba(14,16,19,.7); color: #8a9096; }
+  #hmapa .maplibregl-ctrl-attrib a { color: #b4b8bd; }
+  #hmapa .maplibregl-ctrl-attrib-button { filter: invert(1); }
+  .hero-anio { position: absolute; right: 36px; bottom: 34px; z-index: 500; font-size: 72px; font-weight: 700; letter-spacing: -.03em;
+               color: #fff; opacity: 0; transition: opacity .4s; pointer-events: none; }
+  .hero-anio small { display: block; font-size: 15px; font-weight: 500; letter-spacing: 0; color: #b4b8bd; text-align: right; }
+  .pasos { position: relative; z-index: 2; margin-top: -100vh; pointer-events: none; }
+  .paso { min-height: 100vh; display: flex; align-items: center; padding: 0 6vw; }
+  .paso:first-child { min-height: 100vh; }
+  .tarjeta { pointer-events: auto; max-width: 430px; background: rgba(14,16,19,.88); backdrop-filter: blur(6px);
+             border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 22px 26px; font-size: 18px; line-height: 1.55;
+             opacity: .2; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+  .paso.on .tarjeta { opacity: 1; transform: none; }
+  .tarjeta b { color: #fff; }
+  .tarjeta .cifra { display: block; font-size: 52px; font-weight: 800; line-height: 1; letter-spacing: -.02em; color: var(--acento-osc); margin-bottom: 8px; }
+  .tarjeta.portada { max-width: 620px; background: none; border: 0; backdrop-filter: none; padding: 0; }
+  .portada .antetitulo { font-size: 14px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--acento-osc); }
+  .portada h1 { font-size: clamp(48px, 8vw, 96px); line-height: .95; letter-spacing: -.035em; margin: 10px 0 18px; color: #fff; }
+  .portada p { font-size: 21px; color: #c9ccd0; margin: 0; }
+  .portada .baja { margin-top: 28px; font-size: 14px; color: #8a9096; animation: baja 1.8s ease-in-out infinite; }
+  @keyframes baja { 50% { transform: translateY(6px); } }
+  .pulso { width: 22px; height: 22px; border-radius: 50%; background: var(--acento-osc); box-shadow: 0 0 0 0 rgba(234,88,12,.7); animation: pulso 1.6s infinite; }
+  @keyframes pulso { 70% { box-shadow: 0 0 0 26px rgba(234,88,12,0); } 100% { box-shadow: 0 0 0 0 rgba(234,88,12,0); } }
+  .explora { background: var(--papel); border-bottom: 1px solid var(--linea); padding: 34px 28px 26px; }
+  .explora h2 { margin: 0; font-size: 28px; letter-spacing: -.01em; }
+  .explora p { margin: 6px 0 0; font-size: 17px; color: var(--tinta-2); max-width: 860px; }
+  .revela { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .revela.visto { opacity: 1; transform: none; }
+  @media (max-width: 700px) { .paso { padding: 0 16px; } .tarjeta { font-size: 16px; } .hero-anio { font-size: 48px; right: 18px; } }
+  @media (prefers-reduced-motion: reduce) { .tarjeta, .revela { transition: none; opacity: 1; transform: none; } .portada .baja, .pulso { animation: none; } }
   @media (max-width: 1100px) {
     .app { grid-template-columns: 1fr; } aside { position: static; min-height: 0; border-right: 0; border-bottom: 1px solid var(--linea); }
     .kpis { grid-template-columns: 1fr 1fr; } .kpi:nth-child(3) { border-left: 0; }
@@ -86,12 +123,34 @@
 </style>
 </head>
 <body>
-<header>
-  <h1>Puntos negros</h1>
-  <p>En el Perú hay <b>286 lugares donde la gente muere una y otra vez en la pista</b>. No es solo tráfico. Con los mismos
-    siniestros repartidos al azar sobre las mismas vías, habría casi la mitad de lugares así de letales. La mayoría está donde
-    la Panamericana atraviesa la ciudad, y ahí <b>mueren sobre todo peatones</b>.</p>
-</header>
+<section class="hero">
+  <div class="hero-mapa"><div id="hmapa" aria-hidden="true"></div><div class="hero-anio" id="hanio"></div></div>
+  <div class="pasos">
+    <div class="paso" data-p="0"><div class="tarjeta portada">
+      <div class="antetitulo">Siniestros de tránsito en el Perú, 2021-2025</div>
+      <h1>Puntos negros</h1>
+      <p>Hay lugares donde la gente muere una y otra vez en la pista. No es mala suerte.</p>
+      <div class="baja">Baja para ver ↓</div></div></div>
+    <div class="paso" data-p="1"><div class="tarjeta"><span class="cifra">10,858</span>
+      personas murieron en <b>9,105 siniestros</b> registrados con su ubicación exacta entre 2021 y 2025. Cada punto es uno.</div></div>
+    <div class="paso" data-p="2"><div class="tarjeta"><span class="cifra">286</span>
+      lugares se repiten. En cada uno hubo <b>3 o más siniestros fatales a menos de 200 metros</b>. Ahí ocurrió 1 de cada 9 muertes.</div></div>
+    <div class="paso" data-p="3"><div class="tarjeta"><span class="cifra">Lima</span>
+      tiene la mitad. Casi todos están sobre la <b>Panamericana</b>, donde la carretera atraviesa la ciudad.</div></div>
+    <div class="paso" data-p="4"><div class="tarjeta"><span class="cifra">17 muertes</span>
+      en este tramo de la Panamericana Norte, en Comas. 15 siniestros en <b>4 años distintos</b>, todos a menos de 200 metros.</div></div>
+    <div class="paso" data-p="5"><div class="tarjeta"><span class="cifra">55 frente a 31</span>
+      ¿Mala suerte? Si esos siniestros cayeran al azar sobre la misma vía, habría 31 lugares con 5 o más. Hay <b>55</b>. El lugar importa.</div></div>
+    <div class="paso" data-p="6"><div class="tarjeta"><span class="cifra">44%</span>
+      de los siniestros en puntos negros tenía un <b>paradero a menos de 200 metros</b>. En otro lugar de la misma vía, 26%. Donde la gente baja del bus, cruza la pista. Y la mitad de los muertos ahí son peatones.</div></div>
+  </div>
+</section>
+
+<section class="explora">
+  <h2>Explora los datos</h2>
+  <p>Elige un departamento, un año o un tipo de siniestro. Haz clic en un punto negro para ver el lugar en Street View.</p>
+</section>
+
 
 <div class="app">
   <aside>
@@ -121,10 +180,10 @@
     <div class="fila f-mapa">
       <section class="panel">
         <h2>Dónde se repiten las muertes</h2>
-        <p class="sub">Cada punto gris es un siniestro fatal. Los círculos naranjas son puntos negros, más grandes cuantas más muertes. Haz clic en uno para verlo.</p>
+        <p class="sub">Cada punto gris es un siniestro fatal. Las columnas son puntos negros, más altas cuantas más muertes. Haz clic en una para verla. Arrastra con clic derecho para girar el mapa.</p>
         <div id="mapa" role="img" aria-label="Mapa de siniestros fatales y puntos negros del Perú"></div>
         <div class="ley"><span><i style="background:#8a9096"></i>Siniestro fatal</span>
-          <span><i style="background:var(--acento)"></i>Punto negro</span></div>
+          <span><i class="c" style="background:var(--acento)"></i>Punto negro (alto según las muertes)</span></div>
       </section>
       <section class="panel ficha" id="ficha"></section>
     </div>
@@ -210,6 +269,7 @@
 
 <script>
 const $ = id => document.getElementById(id);
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";  // el relato siempre empieza arriba
 const fmt = d3.format(",.0f"), pc = v => Math.round(100 * v) + "%";
 const C = { acento: "#c2410c", barra: "#b4b8bd", tinta: "#1f2328", tinta2: "#4b5157", tinta3: "#7d838a", gris: "#8a9096" };
 const ANIOS = [2021, 2022, 2023, 2024, 2025];
@@ -220,7 +280,7 @@ const verTip = (e, h) => { tip.innerHTML = h; tip.style.display = "block";
 const ocultarTip = () => tip.style.display = "none";
 const titulo = s => s.toLowerCase().replace(/(^|[\s(])\S/g, c => c.toUpperCase());
 const estado = { dep: "", anio: 0, clase: "" };
-let D, S, LUG, mapa, capaS, capaL, elegido = null;
+let D, S, LUG, mapa, capaM, elegido = null;
 
 d3.json("datos.json").then(d => {
   D = d;
@@ -236,7 +296,121 @@ d3.json("datos.json").then(d => {
   iniciarMapa(); dibujarAzar(); dibujarEntorno();
   const top = [...d.lugares].sort((a, b) => b.muertos - a.muertos)[0];
   elegido = top; dibujar(true);  // abre con la ficha del lugar más letal
+  iniciarHero(); revelar();
 });
+
+// ---------- Mapas en 3D (MapLibre y deck.gl) ----------
+const SAT = { type: "raster", tileSize: 256, maxzoom: 19, attribution: "Esri, Maxar",
+  tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"] };
+// Un solo tono naranja: más muertes, más intenso (claro sobre fondo oscuro, oscuro sobre fondo claro)
+const rgb = c => { const x = d3.rgb(c); return [x.r, x.g, x.b]; };
+const tonoOsc = d3.scaleSequential(d3.interpolateRgb("#b4400f", "#ffd2a8")).domain([3, 17]).clamp(true);
+const tonoCla = d3.scaleSequential(d3.interpolateRgb("#f6a46a", "#7c2d12")).domain([3, 17]).clamp(true);
+let animar = false;  // la altura solo se anima al cambiar de paso, no mientras el mapa vuela
+// metros por píxel: así las columnas se ven del mismo tamaño en pantalla a cualquier zoom
+const mpp = m => 156543 * Math.cos(m.getCenter().lat * Math.PI / 180) / 2 ** m.getZoom();
+
+function base(m, edificios) {
+  // satélite que aparece al acercarse, y edificios en 3D
+  const capas = m.getStyle().layers, etiq = capas.find(c => c.type === "symbol")?.id;
+  // nombres en castellano
+  capas.filter(c => c.type === "symbol" && c.layout?.["text-field"]).forEach(c =>
+    m.setLayoutProperty(c.id, "text-field", ["coalesce", ["get", "name:es"], ["get", "name"]]));
+  // de cerca solo queda la foto satelital
+  capas.filter(c => c.type !== "background").forEach(c => m.setLayerZoomRange(c.id, c.minzoom || 0, 15.6));
+  m.addSource("sat", SAT);
+  m.addLayer({ id: "sat", type: "raster", source: "sat", minzoom: 14,
+    paint: { "raster-opacity": ["interpolate", ["linear"], ["zoom"], 14.5, 0, 15.5, 1] } }, etiq);
+  if (edificios) m.addLayer({ id: "edif3d", type: "fill-extrusion", source: "openmaptiles", "source-layer": "building", minzoom: 13,
+    paint: { "fill-extrusion-color": edificios, "fill-extrusion-height": ["coalesce", ["get", "render_height"], 6],
+             "fill-extrusion-base": ["coalesce", ["get", "render_min_height"], 0],
+             "fill-extrusion-opacity": ["interpolate", ["linear"], ["zoom"], 13, 0, 14, .7, 15.5, 0] } }, etiq);
+}
+
+function columnas(id, datos, m, { alto, color, escala = 1, clic, hover, filtro = () => true }) {
+  const u = mpp(m);
+  return new deck.ColumnLayer({ id, data: datos, diskResolution: 24, radius: u * 3, extruded: true, pickable: !!clic,
+    getPosition: d => [d.lon, d.lat], getElevation: d => Math.sqrt(alto(d)) * u * 18 * escala,
+    getFillColor: d => filtro(d) ? color(d) : [...color(d).slice(0, 3), 60],
+    material: { ambient: .55, diffuse: .6, shininess: 24 }, onClick: clic ? i => clic(i.object) : null, onHover: hover,
+    transitions: animar && !quieto ? { getElevation: { duration: 900, easing: d3.easeCubicOut } } : {},
+    updateTriggers: { getElevation: [u, escala], getFillColor: [filtro, elegido && elegido.pn] } });
+}
+
+// ---------- Relato inicial ----------
+let H, hOver, hPaso = -1, hPulso;
+const hEst = { anio: 0, gris: 0, escala: 0, filtro: () => true };
+const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const PERU = { center: [-75.2, -9.6], zoom: 4.7, pitch: 0, bearing: 0 };
+const PASOS = [
+  () => { volar(PERU); Object.assign(hEst, { anio: 0, escala: 0 }); },
+  () => { volar(PERU); hEst.escala = 0; revelarAnios(); },
+  () => { volar({ ...PERU, pitch: 50, bearing: -12, zoom: 4.9 }); Object.assign(hEst, { anio: 9999, gris: 70, escala: 1 }); },
+  () => { volar({ center: [-77.0, -12.03], zoom: 10.2, pitch: 58, bearing: -20 }); Object.assign(hEst, { anio: 9999, gris: 110, escala: 1 }); },
+  () => { const t = masLetal(); volar({ center: [t.lon, t.lat], zoom: 16.6, pitch: 62, bearing: 25 }); Object.assign(hEst, { anio: 9999, gris: 200, escala: 1 }); pulso(t); },
+  () => { volar({ ...PERU, pitch: 45, bearing: 10, zoom: 4.9 }); Object.assign(hEst, { anio: 9999, gris: 40, escala: 1, filtro: l => l.n >= 5 }); },
+  () => { const t = D.lugares.find(l => l.dist === "SAN JUAN DE MIRAFLORES" && l.n >= 10) || masLetal();
+          volar({ center: [t.lon, t.lat], zoom: 16.4, pitch: 60, bearing: -30 }); Object.assign(hEst, { anio: 9999, gris: 200, escala: 1 }); pulso(t); },
+];
+const masLetal = () => [...D.lugares].sort((a, b) => b.muertos - a.muertos)[0];
+
+function iniciarHero() {
+  H = new maplibregl.Map({ container: "hmapa", style: "https://tiles.openfreemap.org/styles/dark", ...PERU, interactive: false,
+                           attributionControl: { compact: true }, fadeDuration: 0 });
+  hOver = new deck.MapboxOverlay({ interleaved: true, layers: [] });
+  H.addControl(hOver);
+  H.on("load", () => { base(H, "#23272e"); pintarHero(); });
+  H.on("move", pintarHero);
+  const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) activar(+e.target.dataset.p); }), { threshold: 0.55 });
+  document.querySelectorAll(".paso").forEach(p => obs.observe(p));
+}
+
+function pintarHero() {
+  if (!H.isStyleLoaded()) return;
+  if (hEst.cache?.anio !== hEst.anio) hEst.cache = { anio: hEst.anio, vis: S.filter(s => s.anio <= hEst.anio) };  // misma lista mientras no cambie el año
+  const vis = hEst.cache.vis;
+  hOver.setProps({ layers: [
+    new deck.ScatterplotLayer({ id: "h-sin", data: vis, getPosition: d => [d.lon, d.lat], radiusUnits: "pixels", getRadius: 1.8,
+      getFillColor: [215, 218, 222, hEst.gris || 170], updateTriggers: { getFillColor: hEst.gris },
+      parameters: { depthTest: false } }),
+    columnas("h-pn", D.lugares, H, { alto: d => d.muertos, color: d => rgb(tonoOsc(d.muertos)), escala: hEst.escala, filtro: hEst.filtro }),
+  ] });
+}
+
+function activar(i) {
+  if (i === hPaso) return; hPaso = i;
+  document.querySelectorAll(".paso").forEach(p => p.classList.toggle("on", +p.dataset.p === i));
+  if (hPulso) { hPulso.remove(); hPulso = null; }
+  $("hanio").style.opacity = i === 1 ? 1 : 0;
+  hEst.filtro = () => true; hEst.gris = 0;
+  animar = true; PASOS[i](); pintarHero(); setTimeout(() => animar = false, 950);
+}
+
+function volar(v) { quieto ? H.jumpTo(v) : H.flyTo({ ...v, duration: 2600, curve: 1.5, essential: true }); }
+
+function revelarAnios() {
+  hEst.anio = 0; const el = $("hanio");
+  ANIOS.forEach((a, k) => setTimeout(() => {
+    if (hPaso !== 1) return;
+    hEst.anio = a; pintarHero();
+    el.innerHTML = `${a}<small>${fmt(S.filter(s => s.anio <= a).length)} siniestros</small>`;
+  }, quieto ? 0 : 300 + k * 650));
+}
+
+function pulso(l) {
+  const el = document.createElement("div"); el.className = "pulso";
+  hPulso = new maplibregl.Marker({ element: el }).setLngLat([l.lon, l.lat]).addTo(H);
+}
+
+// Cifras que suben y paneles que aparecen al entrar en pantalla
+function contar(el, v, f) {
+  const de = +(el.dataset.v || 0); el.dataset.v = v;
+  d3.select(el).transition().duration(quieto ? 0 : 700).tween("text", () => { const i = d3.interpolateNumber(de, v); return t => el.textContent = f(i(t)); });
+}
+function revelar() {
+  const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visto"); obs.unobserve(e.target); } }), { threshold: 0.12 });
+  document.querySelectorAll("main .panel, main .kpis, .hall .panel").forEach(el => { el.classList.add("revela"); obs.observe(el); });
+}
 
 function filtrar() {
   return S.filter(s => (!estado.dep || s.dep === estado.dep) && (!estado.anio || s.anio === estado.anio) && (!estado.clase || s.clase === estado.clase));
@@ -250,47 +424,62 @@ function dibujar(encuadrar) {
   const lugares = d3.rollups(enPN, v => ({ n: v.length, m: d3.sum(v, s => s.muertos), anios: new Set(v.map(s => s.anio)).size }), s => s.pn)
     .map(([pn, v]) => ({ ...LUG.get(pn), ...v, pn }));
   const peatones = d3.sum(enPN.filter(s => s.clase === "Atropello"), s => s.muertos);
-  $("k1").textContent = fmt(muertos); $("k1l").textContent = `muertes en siniestros registrados en ${zona()} (${filtroTxt()})`;
-  $("k2").textContent = fmt(lugares.length); $("k2l").textContent = `puntos negros con muertes en esa selección`;
-  $("k3").textContent = muertos ? pc(mPN / muertos) : "s/d"; $("k3l").textContent = `de las muertes ocurrió en un punto negro`;
-  $("k4").textContent = mPN ? pc(peatones / mPN) : "s/d"; $("k4l").textContent = `de las muertes en puntos negros fueron peatones atropellados`;
+  contar($("k1"), muertos, fmt); $("k1l").textContent = `muertes en siniestros registrados en ${zona()} (${filtroTxt()})`;
+  contar($("k2"), lugares.length, fmt); $("k2l").textContent = `puntos negros con muertes en esa selección`;
+  contar($("k3"), muertos ? mPN / muertos : 0, pc); $("k3l").textContent = `de las muertes ocurrió en un punto negro`;
+  contar($("k4"), mPN ? peatones / mPN : 0, pc); $("k4l").textContent = `de las muertes en puntos negros fueron peatones atropellados`;
   pintarMapa(f, lugares, encuadrar);
   ranking(lugares); perfil(f); hora(f); repeticion(lugares);
   ficha(elegido && lugares.find(l => l.pn === elegido.pn) || null);
 }
 
 function iniciarMapa() {
-  mapa = L.map("mapa", { preferCanvas: true, zoomSnap: 0.5, minZoom: 5 }).setView([-9.3, -75], 5);
-  L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
-    { attribution: "Esri, HERE, Garmin, &copy; OpenStreetMap", maxZoom: 16 }).addTo(mapa);
-  L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-    { attribution: "Esri, Maxar", minZoom: 16, maxZoom: 19 }).addTo(mapa);  // de cerca, vista satelital para ver el lugar
-  capaS = L.layerGroup().addTo(mapa); capaL = L.layerGroup().addTo(mapa);
+  mapa = new maplibregl.Map({ container: "mapa", style: "https://tiles.openfreemap.org/styles/positron", center: [-75, -9.3], zoom: 4.6,
+                              pitch: 35, maxPitch: 70, attributionControl: { compact: true }, cooperativeGestures: true,
+    locale: { "CooperativeGesturesHandler.WindowsHelpText": "Usa Ctrl + rueda para acercar el mapa",
+              "CooperativeGesturesHandler.MacHelpText": "Usa ⌘ + rueda para acercar el mapa",
+              "CooperativeGesturesHandler.MobileHelpText": "Usa dos dedos para mover el mapa" } });
+  mapa.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), "top-right");
+  capaM = new deck.MapboxOverlay({ interleaved: true, layers: [],
+    getTooltip: ({ object: l, layer }) => l && layer.id === "m-pn" ? { html: `<b>${l.m} muertes</b> en ${l.n} siniestros<br>${nombreVia(l)}, ${titulo(l.dist)}`,
+      style: { background: "#fff", color: C.tinta, border: "1px solid #c9ccd0", borderRadius: "8px", padding: "8px 10px", boxShadow: "0 6px 18px rgba(31,35,40,.14)" } } : null });
+  mapa.addControl(capaM);
+  mapa.on("load", () => { base(mapa, "#d9dadc"); mapa.cargado = true; if (mapa.pendiente) pintarMapa(...mapa.pendiente); });
+  mapa.on("move", () => mapa.ultimo && pintarCapas(...mapa.ultimo));
+}
+
+function pintarCapas(f, lugares) {
+  capaM.setProps({ layers: [
+    new deck.ScatterplotLayer({ id: "m-sin", data: f, getPosition: d => [d.lon, d.lat], radiusUnits: "pixels", getRadius: 2,
+      getFillColor: [120, 126, 133, 150], parameters: { depthTest: false } }),
+    columnas("m-pn", lugares, mapa, { alto: d => d.m, color: d => elegido && d.pn === elegido.pn ? [242, 107, 29] : rgb(tonoCla(d.m)), clic: elegir }),
+  ] });
 }
 
 function pintarMapa(f, lugares, encuadrar) {
-  capaS.clearLayers(); capaL.clearLayers();
-  f.forEach(s => L.circleMarker([s.lat, s.lon], { radius: 2.2, stroke: false, fillColor: C.gris, fillOpacity: .55, interactive: false }).addTo(capaS));
-  const r = d3.scaleSqrt().domain([0, d3.max(D.lugares, l => l.muertos)]).range([4, 16]);
-  lugares.sort((a, b) => a.m - b.m).forEach(l => L.circleMarker([l.lat, l.lon], { radius: r(l.m), color: "#fff", weight: 1.5, fillColor: C.acento, fillOpacity: .85 })
-    .on("click", () => elegir(l)).bindTooltip(`<b>${l.m} muertes</b> en ${l.n} siniestros<br>${nombreVia(l)}, ${titulo(l.dist)}`, { direction: "top" }).addTo(capaL));
+  if (!mapa.cargado) { mapa.pendiente = [f, lugares, encuadrar]; return; }
+  mapa.ultimo = [f, lugares]; pintarCapas(f, lugares);
   if (encuadrar) {
-    const pts = (estado.dep ? f : []).map(s => [s.lat, s.lon]);
-    pts.length ? mapa.fitBounds(pts, { padding: [20, 20], maxZoom: 13 }) : mapa.setView([-9.3, -75], 5);
+    if (estado.dep && f.length) {
+      const e = d3.extent(f, s => s.lon), n = d3.extent(f, s => s.lat);
+      mapa.fitBounds([[e[0], n[0]], [e[1], n[1]]], { padding: 30, maxZoom: 12, pitch: 40, duration: quieto ? 0 : 1500 });
+    } else mapa.flyTo({ center: [-75, -9.3], zoom: 4.6, pitch: 35, bearing: 0, duration: quieto ? 0 : 1500 });
   }
 }
 
 const nombreVia = l => l.nombre || (l.via && l.via !== "NO CORRESPONDE" ? l.via : "Vía sin nombre");
 
 function elegir(l) {
-  elegido = l; mapa.flyTo([l.lat, l.lon], 17, { duration: 1.2 }); ficha(l);
+  elegido = l; ficha(l);
+  mapa.flyTo({ center: [l.lon, l.lat], zoom: 16.5, pitch: 60, bearing: -20, duration: quieto ? 0 : 2200, essential: true });
+  if (mapa.ultimo) pintarCapas(...mapa.ultimo);
 }
 
 function ficha(l) {
   const el = $("ficha");
   if (!l) {
     const top = [...D.lugares].sort((a, b) => b.muertos - a.muertos)[0];
-    el.innerHTML = `<h2>Elige un punto negro</h2><p class="vacio">Haz clic en un círculo naranja del mapa o en una barra de "Los lugares más letales". Verás qué pasó ahí y podrás mirar el lugar en Street View.</p>
+    el.innerHTML = `<h2>Elige un punto negro</h2><p class="vacio">Haz clic en una columna del mapa o en una barra de "Los lugares más letales". Verás qué pasó ahí y podrás mirar el lugar en Street View.</p>
       <p class="vacio">El más letal del país es la ${nombreVia(top)} en ${titulo(top.dist)}, con ${top.muertos} muertes en ${top.n} siniestros.</p>`;
     return;
   }
