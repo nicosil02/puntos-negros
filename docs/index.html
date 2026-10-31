@@ -213,7 +213,7 @@
 
 <section class="explora">
   <div class="antetitulo">Siniestros de tránsito en el Perú, 2021-2025</div>
-  <h2>Puntos negros. Dónde se repiten los siniestros fatales</h2>
+  <h2>¿Dónde se repiten los siniestros fatales?</h2>
   <p>Elige un departamento, un año o un tipo de siniestro. Haz clic en un punto negro para ver el lugar en Street View.</p>
 </section>
 
@@ -263,11 +263,11 @@
         <svg id="rank" viewBox="0 0 560 330" role="img" aria-label="Puntos negros con más fallecidos"></svg>
       </section>
       <section class="panel">
-        <h2>¿Es solo porque son carreteras con mucho tráfico? No</h2>
-        <p class="sub">Para saberlo hicimos una prueba. Movimos cada choque o atropello fatal a otro punto de la misma carretera, cerca de donde ocurrió, donde el tráfico es parecido. Si el lugar no importara, deberían salir tantos puntos negros como en la realidad.</p>
+        <h2>No es solo el tráfico. El lugar importa</h2>
+        <p class="sub">Hice una prueba. Moví cada siniestro fatal a otro punto cercano de la misma carretera, por donde pasa el mismo tráfico. Si el lugar no importara, saldría la misma cantidad de puntos negros. Salen muchos menos.</p>
         <div class="duelo">
-          <div><b class="acento" id="az-real"></b><span>lugares con 5 siniestros fatales o más <strong>en la realidad</strong></span></div>
-          <div><b id="az-azar"></b><span>lugares así <strong>si los mismos siniestros se repartieran por la carretera</strong></span></div>
+          <div><b class="acento" id="az-real"></b><span>lugares con 5 o más siniestros fatales <strong>en la realidad</strong></span></div>
+          <div><b id="az-azar"></b><span>lugares así <strong>con los siniestros movidos</strong> a otro punto de la misma carretera</span></div>
         </div>
         <p class="sub" id="n-azar" style="margin:16px 0 0"></p>
       </section>
@@ -290,7 +290,7 @@
 
     <div class="fila">
       <section class="panel">
-        <h2>El Ministerio ya los había señalado. Siguieron los siniestros</h2>
+        <h2>El Gobierno ya los había identificado y los siniestros siguieron ocurriendo</h2>
         <p class="sub">En 2022 el Ministerio de Transportes publicó 83 tramos peligrosos de la Red Vial Nacional (<a href="https://cdn.www.gob.pe/uploads/document/file/4505475/Documento%20de%20Trabajo%20001%20DBSCAN%20Explorando%20la%20densidad%20espacial%20de%20siniestros%20fatales%20para%20la%20identificaci%C3%B3n%20y%20priorizaci%C3%B3n%20de%20intervenciones%20en%20la%20Red%20Vial%20Nacional.pdf">documento de trabajo 001</a>). Cada cuadro es uno de esos tramos.</p>
         <div class="onsv">
           <div><div class="cuadros" id="on-cuadros" role="img" aria-label="61 de 83 tramos volvieron a tener siniestros fatales"></div>
@@ -362,7 +362,7 @@
     <div class="seccion"><span>06</span><b>Cuándo</b></div>
     <div class="fila">
       <section class="panel">
-        <h2>No es la hora punta. En los puntos negros pesa más la madrugada</h2>
+        <h2>Dos picos, a las 5 de la mañana y a las 7 de la noche, cuando la gente va y vuelve del trabajo. El de la mañana pesa más en los puntos negros</h2>
         <p class="sub" id="s-hora"></p>
         <svg id="hora" style="max-width:900px" viewBox="0 0 560 260" role="img" aria-label="Siniestros fatales por hora del día"></svg>
         <div class="ley"><span><i class="c" style="background:var(--acento)"></i>En puntos negros</span>
@@ -383,7 +383,7 @@
     <h2 class="titulo-sec">Hallazgos</h2>
     <div class="hall">
       <div class="panel"><div class="n acento">1 de cada 9</div><p>fallecidos en las vías entre 2021 y 2025 se registró en uno de los 286 puntos negros, lugares de 200 metros con 3 siniestros fatales o más.</p></div>
-      <div class="panel"><div class="n">55 frente a 31</div><p>lugares con 5 o más siniestros fatales. En la realidad hay 55. Si los mismos siniestros cayeran en lugares al azar de las mismas carreteras, habría 31. No es casualidad.</p></div>
+      <div class="panel"><div class="n">55 frente a 31</div><p>lugares con 5 o más siniestros fatales en la realidad, frente a 31 si los mismos siniestros ocurrieran en cualquier punto de la misma carretera. El tráfico no lo explica todo.</p></div>
       <div class="panel"><div class="n acento">38% frente a 5%</div><p>de los puntos negros de 2021-2023 volvió a registrar siniestros fatales en 2024-2025. En un lugar con un solo siniestro, 5%. Se podía saber dónde.</p></div>
       <div class="panel"><div class="n">50% frente a 28%</div><p>de los siniestros en puntos negros son atropellos, frente a 28% en el resto de siniestros.</p></div>
       <div class="panel"><div class="n acento">44% frente a 26%</div><p>de los siniestros en puntos negros tenía un paradero a menos de 200 metros. En el resto de la carretera, solo 26%. Donde la gente baja del bus, cruza la pista.</p></div>
@@ -672,7 +672,14 @@ function ficha(l) {
     <div class="lista">${[...todos].sort((a, b) => a.anio - b.anio || a.hora - b.hora).map(s => `<div><b>${s.anio}</b><span>${s.clase === "Despiste" ? "Despiste o volcadura" : s.clase}${s.hora >= 0 ? `, ${s.hora} h` : ""}</span><span>${s.muertos} ${s.muertos === 1 ? "fallecido" : "fallecidos"}</span></div>`).join("")}</div>`;
 }
 
-function barrasH(svg, datos, { valor, etiqueta, color, texto, clic, W = 560, izq = 190, formato = fmt }) {
+// en pantallas angostas el gráfico se dibuja a su ancho real, para que el texto no se achique
+function ancho(svg) {
+  const v = svg.attr("viewBox").split(" "), W = Math.round(Math.max(300, Math.min(560, svg.node().clientWidth || 560)));
+  svg.attr("viewBox", `0 0 ${W} ${v[3]}`); return W;
+}
+
+function barrasH(svg, datos, { valor, etiqueta, color, texto, clic, izq = 190, formato = fmt }) {
+  const W = ancho(svg); izq = Math.min(izq, Math.round(W * .5));
   const H = +svg.attr("viewBox").split(" ")[3], m = { t: 6, r: 50, b: 6, l: izq };
   const y = d3.scaleBand().domain(datos.map((d, i) => i)).range([m.t, H - m.b]).padding(.28);
   const x = d3.scaleLinear().domain([0, d3.max(datos, valor) || 1]).range([m.l, W - m.r]);
@@ -695,7 +702,7 @@ function ranking(lugares) {
   $("t-rank").textContent = top.length ? `El más letal es ${titulo(top[0].dist)}, con ${top[0].m} fallecidos en 200 metros` : "Sin puntos negros en esta selección";
   $("s-rank").textContent = `Fallecidos en cada punto negro, ${zona()} (${filtroTxt()}). Haz clic para ir al lugar.`;
   const svg = d3.select("#rank"); svg.selectAll("g.f").remove();
-  barrasH(svg, top, { valor: d => d.m, etiqueta: d => { const t = `${titulo(d.dist)} · ${nombreVia(d).replace(/^(Carretera|Avenida) /, "")}`; return t.length > 38 ? t.slice(0, 37) + "…" : t; },
+  barrasH(svg, top, { valor: d => d.m, etiqueta: d => { const t = `${titulo(d.dist)} · ${nombreVia(d).replace(/^(Carretera|Avenida) /, "")}`; const n = Math.floor(Math.min(270, $("rank").clientWidth * .5) / 7.4); return t.length > n ? t.slice(0, n - 1) + "…" : t; },
     color: d => elegido && d.pn === elegido.pn ? C.tinta : C.acento, clic: elegir, izq: 270,
     texto: d => `<b>${titulo(d.dist)}</b><br>${nombreVia(d)}<br>${d.m} fallecidos en ${d.n} siniestros, ${d.anios === 1 ? "en 1 año" : `en ${d.anios} años distintos`}` });
 }
@@ -715,9 +722,9 @@ function dibujarPrediccion() {
   const P = D.prediccion, f = P.filas;
   $("t-pred").textContent = `${pc(f[0].p)} de los puntos negros de 2021-2023 volvió a registrar siniestros fatales en 2024-2025`;
   $("s-pred").textContent = "Lugares según cuántos siniestros fatales tuvieron entre 2021 y 2023, y si hubo otro a menos de 200 metros en 2024-2025. Todo el Perú.";
-  barrasH(d3.select("#pred"), f, { valor: d => 100 * d.p, formato: v => Math.round(v) + "%", etiqueta: d => d.t, izq: 240,
+  barrasH(d3.select("#pred"), f, { valor: d => 100 * d.p, formato: v => Math.round(v) + "%", etiqueta: d => d.t.replace(/ \(.*\)/, ""), izq: 240,
     color: (d, i) => i === 0 ? C.acento : C.barra, texto: d => `<b>${d.t}</b><br>${fmt(d.n)} lugares. ${pc(d.p)} volvió a tener un siniestro fatal en 2024-2025.` });
-  $("n-pred").textContent = `Un punto negro tuvo ${Math.round(f[0].p / f[2].p)} veces más probabilidad de volver a registrar un siniestro fatal que un lugar con un solo siniestro. Pero ojo: solo ${pc(P.en_pn / P.despues)} de los siniestros de 2024-2025 ocurrió en esos lugares. La mayoría de los siniestros fatales está dispersa, y el registro de 2024-2025 es más incompleto.`;
+  $("n-pred").textContent = `Un punto negro tuvo ${Math.round(f[0].p / f[2].p)} veces más probabilidad de volver a registrar un siniestro fatal que un lugar con un solo siniestro. Pero solo ${pc(P.en_pn / P.despues)} de los siniestros de 2024-2025 ocurrió en esos lugares. La mayoría de los siniestros fatales está dispersa, y el registro de 2024-2025 es más incompleto.`;
 }
 
 function galeria() {
@@ -740,11 +747,12 @@ function dibujarAzar() {
   const a = D.azar;
   $("az-real").textContent = a.real.pn5;
   $("az-azar").textContent = Math.round(a.media.pn5);
-  $("n-azar").textContent = `Hay casi el doble de lo esperado. Repetimos la prueba 20 veces y nunca pasó de ${a.max.pn5}. Los siniestros fatales se concentran en ciertos lugares: el problema es el lugar, no la casualidad.`;
+  $("n-azar").textContent = `Repetí la prueba 20 veces y nunca salieron más de ${a.max.pn5}.`;
 }
 
 function pares(svg, filas, { izq = 200, sufijo = "%" } = {}) {
-  const W = 560, H = +svg.attr("viewBox").split(" ")[3], m = { t: 4, r: 44, b: 4, l: izq };
+  const W = ancho(svg); izq = Math.min(izq, Math.round(W * .45));
+  const H = +svg.attr("viewBox").split(" ")[3], m = { t: 4, r: 44, b: 4, l: izq };
   const y0 = d3.scaleBand().domain(filas.map(f => f.t)).range([m.t, H - m.b]).padding(.2);
   const alto = Math.min(y0.bandwidth(), 50), y1 = d3.scaleBand().domain(["a", "b"]).range([(y0.bandwidth() - alto) / 2, (y0.bandwidth() + alto) / 2]).padding(.1);
   const x = d3.scaleLinear().domain([0, d3.max(filas, f => Math.max(f.a, f.b)) * 1.05 || 1]).range([m.l, W - m.r]);
@@ -768,7 +776,7 @@ function perfil(f) {
   const filas = [
     { t: "Atropellos", c: "atropellos", fn: s => s.clase === "Atropello" },
     { t: "En zona urbana", c: "en la ciudad", fn: s => s.zona === "URBANA" },
-    { t: "En vía expresa o carretera dentro de la ciudad", c: "en carreteras que cruzan la ciudad", fn: s => s.expresa_urbana },
+    { t: "Carretera en la ciudad", c: "en carreteras que cruzan la ciudad", fn: s => s.expresa_urbana },
     { t: "De noche", c: "de noche", fn: s => s.noche === 1, base: s => s.noche >= 0 },
   ].map(r => ({ t: r.t, c: r.c, a: p(a.filter(r.base || (() => true)), r.fn), b: p(b.filter(r.base || (() => true)), r.fn), la: "En puntos negros", lb: "Resto" }));  // tooltip
   // el título nombra solo los rasgos que de verdad son más frecuentes en los puntos negros de esta selección
@@ -796,7 +804,7 @@ function hora(f) {
   const cuenta = g => { const c = d3.range(24).map(() => 0); g.forEach(s => { if (s.hora >= 0) c[s.hora]++; }); const t = d3.sum(c) || 1; return c.map(v => 100 * v / t); };
   const a = cuenta(f.filter(s => s.pn >= 0)), b = cuenta(f.filter(s => s.pn < 0));
   $("s-hora").textContent = `% de los siniestros fatales en cada hora, ${zona()} (${filtroTxt()}).`;
-  const svg = d3.select("#hora"), W = 560, H = 260, m = { t: 10, r: 10, b: 28, l: 34 };
+  const svg = d3.select("#hora"), W = ancho(d3.select("#hora")), H = 260, m = { t: 10, r: 10, b: 28, l: 34 };
   const x = d3.scaleBand().domain(d3.range(24)).range([m.l, W - m.r]).padding(.18);
   const x1 = d3.scaleBand().domain([0, 1]).range([0, x.bandwidth()]);
   const y = d3.scaleLinear().domain([0, d3.max([...a, ...b]) * 1.1 || 1]).range([H - m.b, m.t]);
@@ -817,7 +825,7 @@ function repeticion(lugares) {
   const tres = d3.sum(c.filter(d => d.k >= 3), d => d.n);
   $("t-rep").textContent = lugares.length ? `${fmt(tres)} de ${fmt(lugares.length)} se repiten en 3 años o más` : "Sin puntos negros en esta selección";
   $("s-rep").textContent = `Puntos negros según en cuántos años distintos hubo fallecidos, ${zona()} (${filtroTxt()}).`;
-  const svg = d3.select("#rep"), W = 560, H = 260, m = { t: 26, r: 10, b: 30, l: 10 };
+  const svg = d3.select("#rep"), W = ancho(d3.select("#rep")), H = 260, m = { t: 26, r: 10, b: 30, l: 10 };
   const x = d3.scaleBand().domain(c.map(d => d.k)).range([m.l, W - m.r]).padding(.3);
   const y = d3.scaleLinear().domain([0, d3.max(c, d => d.n) * 1.12 || 1]).range([H - m.b, m.t]);
   svg.selectAll("line.base").data([0]).join("line").attr("class", "base").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", "#4a515a").attr("stroke-width", 1.5);

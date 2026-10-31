@@ -13,32 +13,32 @@
    "dato": "ONSV vía PerúCheck/Caretas, 8 abr 2026: 3,002 en 2024 y 2,890 en 2025 (https://caretas.pe/?p=801787)"
   },
   {
-   "frase": "Muchos de estos siniestros se repiten en el mismo lugar. El punto más crítico es un tramo de doscientos metros de la Panamericana Norte, en Comas, donde fallecieron diecisiete personas entre dos mil veintiuno y dos mil veinticuatro.",
-   "subtitulo": "Muchos de estos siniestros se repiten en el mismo lugar. El punto más crítico es un tramo de 200 metros de la Panamericana Norte, en Comas, donde fallecieron 17 personas entre 2021 y 2024.",
+   "frase": "Muchos siniestros se repiten en el mismo lugar. En doscientos metros de la Panamericana Norte, en Comas, fallecieron diecisiete personas.",
+   "subtitulo": "Muchos siniestros se repiten en el mismo lugar. En 200 metros de la Panamericana Norte, en Comas, fallecieron 17 personas.",
    "cifra": "17",
    "etiqueta": "fallecidos en 200 metros, Panamericana Norte (Comas), 2021-2024",
    "imagen": "Vuelo 3D del dashboard hasta Comas",
    "dato": "docs/datos.json: 17 fallecidos en 15 siniestros"
   },
   {
-   "frase": "Al ubicar en el mapa cada siniestro fatal de dos mil veintiuno a dos mil veinticinco, encontré doscientos ochenta y seis puntos negros. Ahí se registró uno de cada nueve fallecidos.",
-   "subtitulo": "Al ubicar en el mapa cada siniestro fatal de 2021 a 2025, encontré 286 puntos negros. Ahí se registró 1 de cada 9 fallecidos.",
+   "frase": "Al ubicar en el mapa cada siniestro fatal de dos mil veintiuno a dos mil veinticinco, encontré doscientos ochenta y seis puntos negros. Ahí se registró uno de cada nueve fallecidos. Casi la mitad está sobre la Panamericana, que cruza las ciudades.",
+   "subtitulo": "Al ubicar en el mapa cada siniestro fatal de 2021 a 2025, encontré 286 puntos negros. Ahí se registró 1 de cada 9 fallecidos. Casi la mitad está sobre la Panamericana, que cruza las ciudades.",
    "cifra": "286",
    "etiqueta": "puntos negros, 3 o más siniestros fatales a menos de 200 metros",
    "imagen": "Mapa del Perú con las 286 columnas",
-   "dato": "docs/datos.json: 286 lugares; 1,202 de 10,858 fallecidos (11%)"
+   "dato": "docs/datos.json: 286 lugares; 1,202 de 10,858 fallecidos (11%); 125 de 286 sobre PE-1N/PE-1S (44%), con 584 de 1,202 fallecidos"
   },
   {
-   "frase": "No es casualidad. En una misma carretera, con el mismo tráfico, los siniestros se juntan en ciertos puntos y no en otros.",
-   "subtitulo": "No es casualidad. En una misma carretera, con el mismo tráfico, los siniestros se juntan en ciertos puntos y no en otros.",
+   "frase": "No es casualidad. En una misma carretera, con el mismo tráfico, los siniestros se juntan en ciertos puntos.",
+   "subtitulo": "No es casualidad. En una misma carretera, con el mismo tráfico, los siniestros se juntan en ciertos puntos.",
    "cifra": "55 frente a 31",
    "etiqueta": "lugares con 5 o más siniestros fatales, frente a otros tramos de la misma vía",
    "imagen": "Panel 'No es azar' del dashboard",
    "dato": "docs/datos.json azar: real 55; promedio de 20 repeticiones 31.35; máximo 40"
   },
   {
-   "frase": "En dos mil veintidós, el Ministerio de Transportes ya había señalado ochenta y tres tramos peligrosos. Desde entonces, en la mayoría siguieron ocurriendo siniestros fatales, con doscientas tres personas fallecidas.",
-   "subtitulo": "En 2022, el Ministerio de Transportes ya había señalado 83 tramos peligrosos. Desde entonces, en la mayoría siguieron ocurriendo siniestros fatales, con 203 personas fallecidas.",
+   "frase": "En dos mil veintidós, el Gobierno ya había identificado ochenta y tres tramos peligrosos. En sesenta y uno siguieron ocurriendo siniestros fatales, con doscientos tres fallecidos.",
+   "subtitulo": "En 2022, el Gobierno ya había identificado 83 tramos peligrosos. En 61 siguieron ocurriendo siniestros fatales, con 203 fallecidos.",
    "cifra": "203",
    "etiqueta": "fallecidos desde 2022 en tramos que el MTC ya había señalado (61 de 83 tramos)",
    "imagen": "Panel 'El Estado ya los había identificado' del dashboard",

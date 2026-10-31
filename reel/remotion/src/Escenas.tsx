@@ -1,6 +1,6 @@
 import React from "react";
 import { Video } from "@remotion/media";
-import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Img, interpolate, Sequence, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import datos from "./datos.json";
 import { Cifra, Velo } from "./Comunes";
 import { C, M, fontFamily, resorte, tramo } from "./estilo";
@@ -82,22 +82,33 @@ const Etiqueta: React.FC<{ texto: string; desde: number }> = ({ texto, desde }) 
   );
 };
 
-// 3. El Perú: siniestros año por año y luego las columnas de los puntos negros
+// 3. El Perú: siniestros año por año, las columnas de los puntos negros y, desde "Casi la mitad", Lima con la Panamericana
 export const Peru: React.FC<P> = ({ dur }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const fuente = (f / dur) * 10.93; // segundo del clip
+  const casi = datos.subtitulos.flatMap((b) => b.palabras).find((p) => p.t === "Casi" && p.ini > datos.cortes[2]);
+  const cambio = Math.min(dur - fps, Math.round(((casi?.ini ?? datos.cortes[3]) - datos.cortes[2]) * fps) + 6);
+  const fuente = (f / cambio) * 10.93; // segundo del clip del Perú
   const anio = 2021 + Math.min(4, Math.floor(fuente));
   const a = 1 - tramo(fuente, 4.8, 5.4);
+  const sale = 1 - tramo(f, cambio - 8, cambio + 4);
   return (
     <AbsoluteFill>
-      <Fondo src="clips/peru.mp4" segundos={10.93} dur={dur} />
+      <Sequence durationInFrames={cambio + 10}><Fondo src="clips/peru.mp4" segundos={10.93} dur={cambio} /></Sequence>
+      <Sequence from={cambio - 10}>
+        <AbsoluteFill style={{ opacity: tramo(f, cambio - 10, cambio + 4) }}><Fondo src="clips/lima.mp4" segundos={10.43} dur={dur - cambio + 10} /></AbsoluteFill>
+      </Sequence>
       <Velo />
       <div style={{ position: "absolute", left: M, top: 190, fontFamily, opacity: a * resorte(f, fps, 4) }}>
         <div style={{ fontSize: 120, fontWeight: 800, color: C.tinta, letterSpacing: -3 }}>{anio}</div>
         <div style={{ fontSize: 36, color: C.suave, fontWeight: 500 }}>cada punto es un siniestro fatal</div>
       </div>
-      <Cifra valor={286} etiqueta="puntos negros, lugares con 3 o más siniestros fatales en 200 metros" desde={Math.round(dur * 0.5)} />
+      <AbsoluteFill style={{ opacity: sale }}>
+        <Cifra valor={286} etiqueta="puntos negros, lugares con 3 o más siniestros fatales en 200 metros" desde={Math.round(cambio * 0.5)} />
+      </AbsoluteFill>
+      <Sequence from={cambio}>
+        <Cifra valor={125} etiqueta="de los 286 puntos negros están sobre la Panamericana" desde={4} />
+      </Sequence>
     </AbsoluteFill>
   );
 };
@@ -131,7 +142,7 @@ export const Azar: React.FC<P> = ({ dur }) => {
   );
 };
 
-// 5. El Ministerio ya los había señalado: 83 tramos, 61 volvieron a tener siniestros fatales
+// 5. El Gobierno ya los había identificado: 83 tramos, 61 volvieron a tener siniestros fatales
 export const Ministerio: React.FC<P> = ({ dur }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -149,7 +160,7 @@ export const Ministerio: React.FC<P> = ({ dur }) => {
   return (
     <AbsoluteFill style={{ background: C.fondo, fontFamily }}>
       <div style={{ position: "absolute", left: M, right: M, top: 220, opacity: resorte(f, fps, 0) }}>
-        <div style={{ fontSize: 36, fontWeight: 600, color: C.suave }}>En 2022 el Ministerio de Transportes señaló</div>
+        <div style={{ fontSize: 36, fontWeight: 600, color: C.suave }}>En 2022 el Gobierno identificó</div>
         <div style={{ fontSize: 84, fontWeight: 800, color: C.tinta, letterSpacing: -3, lineHeight: 1.05, marginTop: 8, whiteSpace: "nowrap" }}>83 tramos peligrosos</div>
       </div>
       {Array.from({ length: 83 }, (_, k) => {
