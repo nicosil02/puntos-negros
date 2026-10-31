@@ -1,0 +1,66 @@
+{
+  "titulo": "Puntos negros",
+  "escenas": [
+    {
+      "frase": "Diecisiete personas fallecieron en el mismo tramo de doscientos metros de la Panamericana Norte, en Comas. ¿Casualidad?",
+      "cifra": "17",
+      "etiqueta": "fallecidos en 200 metros. Panamericana Norte, Comas",
+      "visual": "Vuelo 3D del dashboard desde el Perú hasta Comas; la columna más alta se ilumina",
+      "cifra_en_texto": true
+    },
+    {
+      "frase": "No es el único. En el Perú hay doscientos ochenta y seis puntos negros: lugares donde se repiten los siniestros fatales. Ahí se registra uno de cada nueve fallecidos.",
+      "cifra": "286",
+      "etiqueta": "puntos negros en el Perú (2021-2025)",
+      "visual": "Mapa del Perú con las 286 columnas naranjas; acercamiento a Lima",
+      "cifra_en_texto": true
+    },
+    {
+      "frase": "¿Es solo el tráfico? Movimos los mismos siniestros a otros puntos de las mismas carreteras. Al azar salen treinta y un lugares con cinco o más. En la realidad, cincuenta y cinco.",
+      "cifra": "55 frente a 31",
+      "etiqueta": "lugares con 5 o más siniestros fatales: realidad frente a azar",
+      "visual": "Panel 'No es azar' del dashboard: las dos cifras aparecen una tras otra",
+      "cifra_en_texto": true
+    },
+    {
+      "frase": "Y se podía saber. El treinta y ocho por ciento de los puntos negros de dos mil veintiuno a dos mil veintitrés volvió a registrar un siniestro fatal.",
+      "cifra": "38%",
+      "etiqueta": "de los puntos negros de 2021-2023 volvió a tener un siniestro fatal en 2024-2025",
+      "visual": "Gráfico de barras 38% / 13% / 5% creciendo",
+      "cifra_en_texto": true
+    },
+    {
+      "frase": "La mitad son atropellos. Pasan donde una carretera rápida atraviesa barrios, con paraderos y comercio al costado.",
+      "cifra": "50%",
+      "etiqueta": "son atropellos (28% en el resto)",
+      "visual": "Par satelital de Lurín: punto negro frente a la misma vía a 1.5 km",
+      "cifra_en_texto": true
+    },
+    {
+      "frase": "Desde el satélite se nota: trece de veintiocho puntos negros tienen comercio pegado a la vía. Y varios ya tienen puente peatonal.",
+      "cifra": "13 de 28",
+      "etiqueta": "con comercio junto a la vía (1 de 28 en la misma vía a 1.5 km)",
+      "visual": "Galería de pares satelitales; zoom al puente peatonal de Comas",
+      "cifra_en_texto": true
+    },
+    {
+      "frase": "Estos lugares ya están identificados. Busca los de tu ciudad en el mapa. El enlace está en la publicación.",
+      "cifra": "",
+      "etiqueta": "Explora el dashboard: enlace en la publicación",
+      "visual": "Recorrido rápido del dashboard: filtros, mapa y ficha de un lugar",
+      "cifra_en_texto": true
+    }
+  ],
+  "fuente": "ONSV (MTC), siniestros fatales 2021 a agosto de 2025; OpenStreetMap; Esri World Imagery",
+  "aviso": "Voz generada con IA (Qwen3-TTS) a partir de la voz del autor",
+  "hashtags": [
+    "#SeguridadVial",
+    "#DatosAbiertos",
+    "#CienciaDeDatos",
+    "#Perú",
+    "#Python"
+  ],
+  "posts": {
+    "linkedin": ""
+  }
+}
