@@ -236,7 +236,7 @@
       <section class="panel ficha" id="ficha"></section>
     </div>
 
-    <div class="seccion"><span>02</span><b>Los más letales</b></div>
+    <div class="seccion"><span>02</span><b>No es azar</b></div>
     <div class="fila f-2">
       <section class="panel">
         <h2>Los lugares más letales</h2>
@@ -253,7 +253,22 @@
       </section>
     </div>
 
-    <div class="seccion"><span>03</span><b>Por qué ahí</b></div>
+    <div class="seccion"><span>03</span><b>Se repite y se podía saber</b></div>
+    <div class="fila f-2">
+      <section class="panel">
+        <h2 id="t-rep">Año tras año, el mismo lugar</h2>
+        <p class="sub" id="s-rep"></p>
+        <svg id="rep" viewBox="0 0 560 260" role="img" aria-label="Puntos negros según cuántos años distintos tuvieron muertes"></svg>
+      </section>
+      <section class="panel">
+        <h2 id="t-pred"></h2>
+        <p class="sub" id="s-pred"></p>
+        <svg id="pred" viewBox="0 0 560 200" role="img" aria-label="Porcentaje de lugares de 2021-2023 que volvieron a tener un siniestro fatal en 2024-2025"></svg>
+        <p class="sub" id="n-pred" style="margin:12px 0 0"></p>
+      </section>
+    </div>
+
+    <div class="seccion"><span>04</span><b>Por qué ahí</b></div>
     <div class="fila f-2">
       <section class="panel">
         <h2 id="t-perfil">Qué tienen en común</h2>
@@ -272,7 +287,7 @@
       </section>
     </div>
 
-    <div class="seccion"><span>04</span><b>Desde el satélite</b></div>
+    <div class="seccion"><span>05</span><b>Desde el satélite</b></div>
     <div class="fila">
       <section class="panel">
         <h2>Junto a los puntos negros hay comercio. 1.5 km después, en la misma vía, casi nunca</h2>
@@ -310,32 +325,18 @@
       </section>
     </div>
 
-    <div class="seccion"><span>05</span><b>Cuándo</b></div>
-    <div class="fila f-2">
+    <div class="seccion"><span>06</span><b>Cuándo</b></div>
+    <div class="fila">
       <section class="panel">
         <h2>A qué hora ocurren</h2>
         <p class="sub" id="s-hora"></p>
-        <svg id="hora" viewBox="0 0 560 260" role="img" aria-label="Siniestros fatales por hora del día"></svg>
+        <svg id="hora" style="max-width:900px" viewBox="0 0 560 260" role="img" aria-label="Siniestros fatales por hora del día"></svg>
         <div class="ley"><span><i class="c" style="background:var(--acento)"></i>En puntos negros</span>
           <span><i class="c" style="background:var(--barra)"></i>Resto de siniestros</span></div>
       </section>
-      <section class="panel">
-        <h2 id="t-rep">Año tras año, el mismo lugar</h2>
-        <p class="sub" id="s-rep"></p>
-        <svg id="rep" viewBox="0 0 560 260" role="img" aria-label="Puntos negros según cuántos años distintos tuvieron muertes"></svg>
-      </section>
     </div>
 
-    <div class="fila">
-      <section class="panel">
-        <h2 id="t-pred"></h2>
-        <p class="sub" id="s-pred"></p>
-        <svg id="pred" style="max-width:860px" viewBox="0 0 760 170" role="img" aria-label="Porcentaje de lugares de 2021-2023 que volvieron a tener un siniestro fatal en 2024-2025"></svg>
-        <p class="sub" id="n-pred" style="margin:12px 0 0"></p>
-      </section>
-    </div>
-
-    <div class="seccion"><span>06</span><b>Detalle</b></div>
+    <div class="seccion"><span>07</span><b>Detalle</b></div>
     <div class="fila">
       <section class="panel">
         <h2>Todos los puntos negros</h2>
@@ -347,9 +348,12 @@
 
     <h2 class="titulo-sec">Hallazgos</h2>
     <div class="hall">
-      <div class="panel"><div class="n acento">1 de cada 9</div><p>muertes en las pistas entre 2021 y 2025 ocurrió en uno de los 286 puntos negros, lugares de 200 metros donde murió gente 3 veces o más.</p></div>
-      <div class="panel"><div class="n">55 frente a 31</div><p>lugares con 5 o más siniestros fatales. 55 es lo real. 31 es lo que daría el azar con los mismos siniestros sobre las mismas vías. El lugar importa, no solo el tráfico.</p></div>
-      <div class="panel"><div class="n acento">44% frente a 26%</div><p>de los siniestros en puntos negros ocurrió a menos de 200 metros de un paradero. En otros lugares de la misma vía, 26%. Donde la gente sube y baja del bus, cruza la pista.</p></div>
+      <div class="panel"><div class="n acento">1 de cada 9</div><p>muertes en las pistas entre 2021 y 2025 ocurrió en uno de los 286 puntos negros, lugares de 200 metros con 3 siniestros fatales o más.</p></div>
+      <div class="panel"><div class="n">55 frente a 31</div><p>lugares con 5 o más siniestros fatales. 55 es lo real. 31 es lo que daría el azar con los mismos siniestros sobre las mismas vías. No es mala suerte.</p></div>
+      <div class="panel"><div class="n acento">38% frente a 5%</div><p>de los puntos negros de 2021-2023 volvió a tener muertes en 2024-2025. En un lugar con un solo siniestro, 5%. Se podía saber dónde.</p></div>
+      <div class="panel"><div class="n">50% frente a 28%</div><p>de los siniestros en puntos negros son atropellos. Casi todos están donde una carretera rápida atraviesa la ciudad.</p></div>
+      <div class="panel"><div class="n acento">44% frente a 26%</div><p>de los siniestros en puntos negros tenía un paradero a menos de 200 metros. En otro lugar de la misma vía, 26%. Donde la gente baja del bus, cruza la pista.</p></div>
+      <div class="panel"><div class="n">13 de 28 frente a 1</div><p>puntos negros tienen comercio pegado a la vía en la foto satelital. En la misma vía a 1.5 km, 1 de 28. Y hay más puentes peatonales, no menos.</p></div>
     </div>
 
     <div class="texto panel" id="metodo">
@@ -659,9 +663,9 @@ function tabla(lugares, enPN) {
 
 function dibujarPrediccion() {
   const P = D.prediccion, f = P.filas;
-  $("t-pred").textContent = `Se podía saber. ${pc(f[0].p)} de los puntos negros de 2021-2023 volvió a tener muertes en 2024-2025`;
+  $("t-pred").textContent = `${pc(f[0].p)} de los puntos negros de 2021-2023 volvió a matar en 2024-2025`;
   $("s-pred").textContent = "Lugares según cuántos siniestros fatales tuvieron entre 2021 y 2023, y si hubo otro a menos de 200 metros en 2024-2025. Todo el Perú.";
-  barrasH(d3.select("#pred"), f, { valor: d => 100 * d.p, formato: v => Math.round(v) + "%", etiqueta: d => d.t, W: 760, izq: 270,
+  barrasH(d3.select("#pred"), f, { valor: d => 100 * d.p, formato: v => Math.round(v) + "%", etiqueta: d => d.t, izq: 240,
     color: (d, i) => i === 0 ? C.acento : C.barra, texto: d => `<b>${d.t}</b><br>${fmt(d.n)} lugares. ${pc(d.p)} volvió a tener un siniestro fatal en 2024-2025.` });
   $("n-pred").textContent = `Un punto negro tuvo ${Math.round(f[0].p / f[2].p)} veces más probabilidad de volver a matar que un lugar con un solo siniestro. Pero ojo: solo ${pc(P.en_pn / P.despues)} de los siniestros de 2024-2025 ocurrió en esos lugares. La mayoría de las muertes está dispersa, y el registro de 2024-2025 es más incompleto.`;
 }
