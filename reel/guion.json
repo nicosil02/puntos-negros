@@ -45,8 +45,8 @@
       "dato": "docs/datos.json prediccion: 149 puntos negros, 38.3%; lugares con 1 siniestro, 5.2%"
     },
     {
-      "frase": "¿Por qué ahí? La mitad son atropellos y casi la mitad tenía un paradero cerca. Desde el satélite se repite la imagen de una carretera rápida que cruza un barrio, con comercio al costado.",
-      "subtitulo": "¿Por qué ahí? La mitad son atropellos y casi la mitad tenía un paradero cerca. Desde el satélite se repite la imagen de una carretera rápida que cruza un barrio, con comercio al costado.",
+      "frase": "¿Por qué ahí? La mitad son atropellos y casi la mitad tenía un paradero cerca. Desde el satélite se repite lo mismo, una carretera rápida que cruza un barrio, con comercio al costado.",
+      "subtitulo": "¿Por qué ahí? La mitad son atropellos y casi la mitad tenía un paradero cerca. Desde el satélite se repite lo mismo, una carretera rápida que cruza un barrio, con comercio al costado.",
       "cifra": "50%",
       "etiqueta": "son atropellos (28% en el resto). 44% con paradero a menos de 200 m (26% en la misma vía)",
       "imagen": "Par satelital de Lurín: punto negro frente a la misma vía a 1.5 km",
@@ -54,8 +54,8 @@
       "credito": "Imagen: Esri World Imagery"
     },
     {
-      "frase": "Puedes explorar los puntos negros de tu región en el dashboard. El enlace está en la publicación.",
-      "subtitulo": "Puedes explorar los puntos negros de tu región en el dashboard. El enlace está en la publicación.",
+      "frase": "Explora los de tu región en el dashboard. El enlace está en la publicación.",
+      "subtitulo": "Explora los de tu región en el dashboard. El enlace está en la publicación.",
       "cifra": "Puntos negros",
       "etiqueta": "Dashboard interactivo, enlace en la publicación",
       "imagen": "Recorrido del dashboard: filtros, mapa y ficha",
