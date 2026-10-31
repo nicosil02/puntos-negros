@@ -5,48 +5,48 @@
   "aviso": "Voz generada con IA a partir de la voz del autor",
   "escenas": [
     {
-      "frase": "Muchas familias se despiden con temor cuando alguien sale de casa, y la inseguridad vial es parte de ese miedo. Cada año, cerca de tres mil personas fallecen en las vías del Perú.",
-      "subtitulo": "Muchas familias se despiden con temor cuando alguien sale de casa, y la inseguridad vial es parte de ese miedo. Cada año, cerca de 3,000 personas fallecen en las vías del Perú.",
+      "frase": "Muchas familias se despiden con temor cuando alguien sale de casa, y la inseguridad vial es parte de ese miedo. Solo en dos mil veinticinco, dos mil ochocientas noventa personas fallecieron en las vías del Perú.",
+      "subtitulo": "Muchas familias se despiden con temor cuando alguien sale de casa, y la inseguridad vial es parte de ese miedo. Solo en 2025, 2,890 personas fallecieron en las vías del Perú.",
       "cifra": "2,890",
       "etiqueta": "fallecidos en siniestros de tránsito en 2025 (ONSV)",
       "imagen": "Mapa del Perú con un punto por siniestro",
       "dato": "ONSV vía PerúCheck/Caretas, 8 abr 2026: 3,002 en 2024 y 2,890 en 2025 (https://caretas.pe/?p=801787)"
     },
     {
-      "frase": "Y muchos siniestros se repiten en el mismo lugar. En un tramo de doscientos metros de la Panamericana Norte, en Comas, fallecieron diecisiete personas.",
-      "subtitulo": "Y muchos siniestros se repiten en el mismo lugar. En un tramo de 200 metros de la Panamericana Norte, en Comas, fallecieron 17 personas.",
+      "frase": "Muchos de estos siniestros se repiten en el mismo lugar. En un tramo de doscientos metros de la Panamericana Norte, en Comas, fallecieron diecisiete personas entre dos mil veintiuno y dos mil veinticuatro.",
+      "subtitulo": "Muchos de estos siniestros se repiten en el mismo lugar. En un tramo de 200 metros de la Panamericana Norte, en Comas, fallecieron 17 personas entre 2021 y 2024.",
       "cifra": "17",
       "etiqueta": "fallecidos en 200 metros, Panamericana Norte (Comas), 2021-2024",
       "imagen": "Vuelo 3D del dashboard hasta Comas",
       "dato": "docs/datos.json: 17 fallecidos en 15 siniestros"
     },
     {
-      "frase": "Al ubicar cada siniestro en el mapa encontré doscientos ochenta y seis puntos negros, lugares donde se repiten. Ahí se registró uno de cada nueve fallecidos.",
-      "subtitulo": "Al ubicar cada siniestro en el mapa encontré 286 puntos negros, lugares donde se repiten. Ahí se registró 1 de cada 9 fallecidos.",
+      "frase": "Al ubicar en el mapa cada siniestro fatal de dos mil veintiuno a dos mil veinticinco, encontré doscientos ochenta y seis puntos negros. Ahí se registró uno de cada nueve fallecidos.",
+      "subtitulo": "Al ubicar en el mapa cada siniestro fatal de 2021 a 2025, encontré 286 puntos negros. Ahí se registró 1 de cada 9 fallecidos.",
       "cifra": "286",
       "etiqueta": "puntos negros, 3 o más siniestros fatales a menos de 200 metros",
       "imagen": "Mapa del Perú con las 286 columnas",
       "dato": "docs/datos.json: 286 lugares; 1,202 de 10,858 fallecidos (11%)"
     },
     {
-      "frase": "Y no es casualidad. En una misma carretera, con el mismo tráfico, los siniestros se juntan en ciertos puntos y no en otros.",
-      "subtitulo": "Y no es casualidad. En una misma carretera, con el mismo tráfico, los siniestros se juntan en ciertos puntos y no en otros.",
+      "frase": "No es casualidad. En una misma carretera, con el mismo tráfico, los siniestros se juntan en ciertos puntos y no en otros.",
+      "subtitulo": "No es casualidad. En una misma carretera, con el mismo tráfico, los siniestros se juntan en ciertos puntos y no en otros.",
       "cifra": "55 frente a 31",
       "etiqueta": "lugares con 5 o más siniestros fatales, frente a otros tramos de la misma vía",
       "imagen": "Panel 'No es azar' del dashboard",
       "dato": "docs/datos.json azar: real 55; promedio de 20 repeticiones 31.35; máximo 40"
     },
     {
-      "frase": "Además, en dos mil veintidós, el Ministerio de Transportes ya había señalado ochenta y tres tramos peligrosos. Desde entonces, en la mayoría siguieron ocurriendo siniestros fatales, con doscientas tres personas fallecidas.",
-      "subtitulo": "Además, en 2022, el Ministerio de Transportes ya había señalado 83 tramos peligrosos. Desde entonces, en la mayoría siguieron ocurriendo siniestros fatales, con 203 personas fallecidas.",
+      "frase": "En dos mil veintidós, el Ministerio de Transportes ya había señalado ochenta y tres tramos peligrosos. Desde entonces, en la mayoría siguieron ocurriendo siniestros fatales, con doscientas tres personas fallecidas.",
+      "subtitulo": "En 2022, el Ministerio de Transportes ya había señalado 83 tramos peligrosos. Desde entonces, en la mayoría siguieron ocurriendo siniestros fatales, con 203 personas fallecidas.",
       "cifra": "203",
       "etiqueta": "fallecidos desde 2022 en tramos que el MTC ya había señalado (61 de 83 tramos)",
       "imagen": "Panel 'El Estado ya los había identificado' del dashboard",
       "dato": "scripts/comparar_onsv.py: 61 de 83 tramos del documento de trabajo 001 (ONSV-MTC, 2022) con siniestros fatales después de jun-2022; 183 siniestros, 203 fallecidos"
     },
     {
-      "frase": "¿Qué tienen en común? La mitad son atropellos. Son carreteras rápidas que atraviesan barrios, con paraderos y comercio a pocos metros. Peatones y tráfico rápido en el mismo espacio.",
-      "subtitulo": "¿Qué tienen en común? La mitad son atropellos. Son carreteras rápidas que atraviesan barrios, con paraderos y comercio a pocos metros. Peatones y tráfico rápido en el mismo espacio.",
+      "frase": "¿Qué tienen en común? La mitad son atropellos. Son carreteras rápidas que atraviesan barrios, con paraderos y comercio a pocos metros.",
+      "subtitulo": "¿Qué tienen en común? La mitad son atropellos. Son carreteras rápidas que atraviesan barrios, con paraderos y comercio a pocos metros.",
       "cifra": "1 de cada 2",
       "etiqueta": "son atropellos. Paraderos y comercio a menos de 200 metros",
       "imagen": "Par satelital de Lurín: punto negro frente a la misma vía a 1.5 km",
@@ -54,10 +54,10 @@
       "credito": "Imagen: Esri World Imagery"
     },
     {
-      "frase": "¿Hay uno en tu camino de todos los días? Búscalo en el dashboard. El enlace está en la publicación.",
-      "subtitulo": "¿Hay uno en tu camino de todos los días? Búscalo en el dashboard. El enlace está en la publicación.",
+      "frase": "¿Hay uno en tu camino de todos los días? Búscalo en el dashboard.",
+      "subtitulo": "¿Hay uno en tu camino de todos los días? Búscalo en el dashboard.",
       "cifra": "Puntos negros",
-      "etiqueta": "Dashboard interactivo, enlace en la publicación",
+      "etiqueta": "Enlace en la publicación",
       "imagen": "Recorrido del dashboard: filtros, mapa y ficha",
       "dato": "captura del dashboard publicado"
     }
