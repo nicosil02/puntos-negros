@@ -222,8 +222,11 @@
       </section>
       <section class="panel">
         <h2>No es mala suerte. Hay 55 lugares donde el azar daría 31</h2>
-        <p class="sub">Lugares con 5 o más siniestros fatales. Todo el Perú. Lo real frente a repartir los mismos siniestros al azar sobre la misma vía (20 veces).</p>
-        <svg id="azar" viewBox="0 0 560 330" role="img" aria-label="Puntos negros reales frente al azar"></svg>
+        <p class="sub">Cantidad de puntos negros, todo el Perú. Lo real frente a repartir los mismos siniestros al azar sobre la misma vía.</p>
+        <svg id="azar" viewBox="0 0 560 230" role="img" aria-label="Puntos negros reales frente al azar"></svg>
+        <p class="sub" style="margin:10px 0 0">En 20 repeticiones al azar nunca hubo más de 225 lugares con 3 o más, 40 con 5 o más ni 8 con 8 o más.</p>
+        <div class="ley"><span><i class="c" style="background:var(--acento)"></i>Lo real</span>
+          <span><i class="c" style="background:var(--barra)"></i>Al azar sobre la misma vía (promedio)</span></div>
       </section>
     </div>
 
@@ -232,14 +235,14 @@
       <section class="panel">
         <h2 id="t-perfil">Qué tienen en común</h2>
         <p class="sub" id="s-perfil"></p>
-        <svg id="perfil" viewBox="0 0 560 300" role="img" aria-label="Perfil de los siniestros en puntos negros frente al resto"></svg>
+        <svg id="perfil" viewBox="0 0 560 250" role="img" aria-label="Perfil de los siniestros en puntos negros frente al resto"></svg>
         <div class="ley"><span><i class="c" style="background:var(--acento)"></i>En puntos negros</span>
           <span><i class="c" style="background:var(--barra)"></i>Resto de siniestros</span></div>
       </section>
       <section class="panel">
         <h2>Cerca de los puntos negros hay más paraderos</h2>
         <p class="sub">% de siniestros con un paradero, mercado o colegio a menos de 200 metros. Todo el Perú. Los puntos negros frente a otro lugar al azar de la misma vía.</p>
-        <svg id="entorno" viewBox="0 0 560 300" role="img" aria-label="Paraderos, mercados y colegios cerca de los puntos negros"></svg>
+        <svg id="entorno" viewBox="0 0 560 200" role="img" aria-label="Paraderos, mercados y colegios cerca de los puntos negros"></svg>
         <p class="sub" id="nota-pob" style="margin:6px 0 0"></p>
         <div class="ley"><span><i class="c" style="background:var(--acento)"></i>En puntos negros</span>
           <span><i class="c" style="background:var(--barra)"></i>Otro lugar de la misma vía</span></div>
@@ -545,6 +548,7 @@ function barrasH(svg, datos, { valor, etiqueta, color, texto, clic, W = 560, izq
     g.append("rect").attr("x", m.l).attr("rx", 3); g.append("text").attr("class", "e"); g.append("text").attr("class", "n"); return g; });
   g.style("cursor", clic ? "pointer" : null).on("click", clic ? (e, d) => clic(d) : null)
     .on("mousemove", (e, d) => verTip(e, texto(d))).on("mouseleave", ocultarTip);
+  svg.selectAll("line.base").data([0]).join("line").attr("class", "base").attr("x1", m.l).attr("x2", m.l).attr("y1", m.t).attr("y2", H - m.b).attr("stroke", "#4a515a").attr("stroke-width", 1.5);
   const g1 = Math.min(22, y.bandwidth()), dy = (y.bandwidth() - g1) / 2;
   g.select("rect").attr("y", (d, i) => y(i) + dy).attr("height", g1).attr("fill", color)
     .transition().duration(500).attr("width", d => x(valor(d)) - m.l);
@@ -575,33 +579,20 @@ function tabla(lugares, enPN) {
 }
 
 function dibujarAzar() {
-  const a = D.azar, svg = d3.select("#azar"), W = 560, H = 330, m = { t: 30, r: 10, b: 50, l: 10 };
-  const filas = [{ k: "pn", t: "3 o más siniestros" }, { k: "pn5", t: "5 o más" }, { k: "pn8", t: "8 o más" }];
-  const sel = filas[1];
-  const datos = [{ t: "Real", v: a.real[sel.k], c: C.acento }, { t: "Al azar, misma vía", v: a.media[sel.k], c: C.barra, max: a.max[sel.k] }];
-  const x = d3.scaleBand().domain(datos.map(d => d.t)).range([m.l + 130, W - m.r - 130]).padding(.3);
-  const y = d3.scaleLinear().domain([0, d3.max(datos, d => d.max || d.v) * 1.15]).range([H - m.b, m.t]);
-  svg.selectAll("rect").data(datos).join("rect").attr("x", d => x(d.t)).attr("width", x.bandwidth()).attr("rx", 4).attr("fill", d => d.c)
-    .attr("y", d => y(d.v)).attr("height", d => y(0) - y(d.v))
-    .on("mousemove", (e, d) => verTip(e, d.max ? `<b>${Math.round(d.v)}</b> en promedio en 20 repeticiones<br>Nunca más de ${d.max}` : `<b>${d.v}</b> lugares reales`)).on("mouseleave", ocultarTip);
-  svg.selectAll("text.v").data(datos).join("text").attr("class", "v").attr("x", d => x(d.t) + x.bandwidth() / 2).attr("y", d => y(d.v) - 8)
-    .attr("text-anchor", "middle").attr("font-size", 22).attr("font-weight", 700).attr("fill", C.tinta).text(d => Math.round(d.v));
-  svg.selectAll("text.e").data(datos).join("text").attr("class", "e").attr("x", d => x(d.t) + x.bandwidth() / 2).attr("y", H - m.b + 20)
-    .attr("text-anchor", "middle").attr("font-size", 14).attr("fill", C.tinta2).text(d => d.t);
-  const mx = datos[1];
-  svg.selectAll("line.mx").data([mx]).join("line").attr("class", "mx").attr("x1", x(mx.t) - 6).attr("x2", x(mx.t) + x.bandwidth() + 6)
-    .attr("y1", y(mx.max)).attr("y2", y(mx.max)).attr("stroke", C.tinta2).attr("stroke-width", 1.5);
-  svg.selectAll("text.mx").data([mx]).join("text").attr("class", "mx").attr("x", x(mx.t) + x.bandwidth() + 10).attr("y", y(mx.max)).attr("dy", ".35em")
-    .attr("font-size", 14).attr("fill", C.tinta3).text(`máximo ${mx.max}`);
-  svg.selectAll("text.nota").data([0]).join("text").attr("class", "nota").attr("x", W / 2).attr("y", H - 6).attr("text-anchor", "middle")
-    .attr("font-size", 14).attr("fill", C.tinta3).text(`Con 3 o más: ${a.real.pn} reales frente a ${Math.round(a.media.pn)} al azar. Con 8 o más: ${a.real.pn8} frente a ${a.media.pn8.toFixed(1)}.`);
+  const a = D.azar;
+  const filas = [["pn", "3 o más siniestros"], ["pn5", "5 o más"], ["pn8", "8 o más"]]
+    .map(([k, t]) => ({ t, a: a.real[k], b: a.media[k], la: "Real", lb: `Al azar, promedio (máximo ${a.max[k]})` }));
+  pares(d3.select("#azar"), filas, { izq: 150, sufijo: "" });
 }
 
 function pares(svg, filas, { izq = 200, sufijo = "%" } = {}) {
   const W = 560, H = +svg.attr("viewBox").split(" ")[3], m = { t: 4, r: 44, b: 4, l: izq };
-  const y0 = d3.scaleBand().domain(filas.map(f => f.t)).range([m.t, H - m.b]).padding(.25);
-  const alto = Math.min(y0.bandwidth(), 46), y1 = d3.scaleBand().domain(["a", "b"]).range([(y0.bandwidth() - alto) / 2, (y0.bandwidth() + alto) / 2]).padding(.1);
+  const y0 = d3.scaleBand().domain(filas.map(f => f.t)).range([m.t, H - m.b]).padding(.2);
+  const alto = Math.min(y0.bandwidth(), 50), y1 = d3.scaleBand().domain(["a", "b"]).range([(y0.bandwidth() - alto) / 2, (y0.bandwidth() + alto) / 2]).padding(.1);
   const x = d3.scaleLinear().domain([0, d3.max(filas, f => Math.max(f.a, f.b)) * 1.05 || 1]).range([m.l, W - m.r]);
+  svg.selectAll("line.base").data([0]).join("line").attr("class", "base").attr("x1", m.l).attr("x2", m.l).attr("y1", m.t).attr("y2", H - m.b).attr("stroke", "#4a515a").attr("stroke-width", 1.5);
+  svg.selectAll("g.rej").data([0]).join("g").attr("class", "rej").lower().selectAll("line").data(x.ticks(4).filter(t => t > 0)).join("line")
+    .attr("x1", x).attr("x2", x).attr("y1", m.t).attr("y2", H - m.b).attr("stroke", "#22262c");
   const g = svg.selectAll("g.p").data(filas, f => f.t).join(e => { const g = e.append("g").attr("class", "p"); g.append("text").attr("class", "e"); return g; })
     .attr("transform", f => `translate(0,${y0(f.t)})`);
   g.select("text.e").attr("x", m.l - 8).attr("y", y0.bandwidth() / 2).attr("dy", ".35em").attr("text-anchor", "end").attr("font-size", 14).attr("fill", C.tinta2).text(f => f.t);
@@ -610,7 +601,7 @@ function pares(svg, filas, { izq = 200, sufijo = "%" } = {}) {
     .on("mousemove", (e, d) => verTip(e, `<b>${d.f.t}</b><br>${d.f.la}: ${Math.round(d.f.a)}${sufijo}<br>${d.f.lb}: ${Math.round(d.f.b)}${sufijo}`)).on("mouseleave", ocultarTip);
   b.transition().duration(500).attr("width", d => Math.max(0, x(d.v) - m.l));
   g.selectAll("text.n").data(f => [{ k: "a", v: f.a }, { k: "b", v: f.b }]).join("text").attr("class", "n").attr("y", d => y1(d.k) + y1.bandwidth() / 2).attr("dy", ".35em")
-    .attr("font-size", 14).attr("fill", C.tinta).text(d => Math.round(d.v) + sufijo).attr("x", function () { return this.getAttribute("x") || m.l; }).transition().duration(500).attr("x", d => x(d.v) + 5);
+    .attr("font-size", 14).attr("fill", C.tinta).text(d => (d.v < 10 && d.v % 1 ? d.v.toFixed(1) : fmt(d.v)) + sufijo).attr("x", function () { return this.getAttribute("x") || m.l; }).transition().duration(500).attr("x", d => x(d.v) + 5);
 }
 
 function perfil(f) {
@@ -621,7 +612,7 @@ function perfil(f) {
     { t: "En zona urbana", fn: s => s.zona === "URBANA" },
     { t: "En vía expresa o carretera dentro de la ciudad", fn: s => s.expresa_urbana },
     { t: "De noche", fn: s => s.noche === 1, base: s => s.noche >= 0 },
-  ].map(r => ({ t: r.t, a: p(a.filter(r.base || (() => true)), r.fn), b: p(b.filter(r.base || (() => true)), r.fn), la: "En puntos negros", lb: "Resto" }));
+  ].map(r => ({ t: r.t, a: p(a.filter(r.base || (() => true)), r.fn), b: p(b.filter(r.base || (() => true)), r.fn), la: "En puntos negros", lb: "Resto" }));  // tooltip
   const at = filas[0];
   $("t-perfil").textContent = a.length ? `${Math.round(at.a)}% son atropellos (${Math.round(at.b)}% en el resto)` : "Sin puntos negros en esta selección";
   $("s-perfil").textContent = `% de los siniestros fatales en puntos negros frente al resto, ${zona()} (${filtroTxt()}).`;
@@ -651,6 +642,7 @@ function hora(f) {
   if (svg.select(".eje").empty()) { svg.append("g").attr("class", "eje"); svg.append("g").attr("class", "bs"); svg.append("g").attr("class", "ex"); }
   svg.select(".eje").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickSize(-(W - m.l - m.r)).tickFormat(d => d + "%"))
     .call(g => g.select(".domain").remove()).call(g => g.selectAll("line").attr("stroke", "#262b32")).call(g => g.selectAll("text").attr("fill", C.tinta3).attr("font-size", 14));
+  svg.selectAll("line.base").data([0]).join("line").attr("class", "base").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", "#4a515a").attr("stroke-width", 1.5);
   svg.select(".ex").selectAll("text").data([0, 6, 12, 18, 23]).join("text").attr("x", h => x(h) + x.bandwidth() / 2).attr("y", H - 8)
     .attr("text-anchor", "middle").attr("font-size", 14).attr("fill", C.tinta3).text(h => `${h} h`);
   const datos = d3.range(24).flatMap(h => [{ h, k: 0, v: a[h] }, { h, k: 1, v: b[h] }]);
@@ -667,7 +659,8 @@ function repeticion(lugares) {
   const svg = d3.select("#rep"), W = 560, H = 260, m = { t: 26, r: 10, b: 30, l: 10 };
   const x = d3.scaleBand().domain(c.map(d => d.k)).range([m.l, W - m.r]).padding(.3);
   const y = d3.scaleLinear().domain([0, d3.max(c, d => d.n) * 1.12 || 1]).range([H - m.b, m.t]);
-  svg.selectAll("rect").data(c).join("rect").attr("x", d => x(d.k)).attr("width", x.bandwidth()).attr("rx", 3).attr("fill", d => d.k >= 3 ? C.acento : C.barra)
+  svg.selectAll("line.base").data([0]).join("line").attr("class", "base").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", "#4a515a").attr("stroke-width", 1.5);
+  svg.selectAll("rect").data(c).join("rect").attr("x", d => x(d.k)).attr("width", Math.min(x.bandwidth(), 64)).attr("transform", `translate(${(x.bandwidth() - Math.min(x.bandwidth(), 64)) / 2},0)`).attr("rx", 3).attr("fill", d => d.k >= 3 ? C.acento : C.barra)
     .on("mousemove", (e, d) => verTip(e, `<b>${d.n}</b> puntos negros con muertes en ${d.k} ${d.k === 1 ? "año" : "años distintos"}`)).on("mouseleave", ocultarTip)
     .transition().duration(500).attr("y", d => y(d.n)).attr("height", d => y(0) - y(d.n));
   svg.selectAll("text.v").data(c).join("text").attr("class", "v").attr("x", d => x(d.k) + x.bandwidth() / 2).attr("text-anchor", "middle")
