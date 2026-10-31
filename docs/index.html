@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Puntos negros. Dónde se repiten las muertes en las pistas del Perú, 2021-2025</title>
-<meta name="description" content="En el Perú hay 286 lugares donde la gente muere una y otra vez en la pista. Con el mismo tráfico, el azar daría casi la mitad de lugares tan letales.">
+<title>Puntos negros. Dónde se repiten los siniestros fatales en las vías del Perú, 2021-2025</title>
+<meta name="description" content="En el Perú hay 286 lugares donde los siniestros fatales se repiten una y otra vez. Con el mismo tráfico, el azar daría casi la mitad de lugares tan letales.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.6.0/dist/maplibre-gl.css">
@@ -181,20 +181,20 @@
     <div class="paso" data-p="0"><div class="tarjeta portada">
       <div class="antetitulo">Siniestros de tránsito en el Perú, 2021-2025</div>
       <h1>Puntos negros</h1>
-      <p>Hay lugares donde la gente muere una y otra vez en la pista. No es mala suerte.</p>
+      <p>Hay lugares donde los siniestros fatales se repiten una y otra vez. No es casualidad.</p>
       <div class="baja">Baja para ver ↓</div></div></div>
     <div class="paso" data-p="1"><div class="tarjeta"><span class="cifra">10,858</span>
       personas murieron en <b>9,105 siniestros</b> registrados con su ubicación exacta entre 2021 y 2025. Cada punto es uno.</div></div>
     <div class="paso" data-p="2"><div class="tarjeta"><span class="cifra">286</span>
-      lugares se repiten. En cada uno hubo <b>3 o más siniestros fatales a menos de 200 metros</b>. Ahí ocurrió 1 de cada 9 muertes.</div></div>
+      lugares se repiten. En cada uno hubo <b>3 o más siniestros fatales a menos de 200 metros</b>. Ahí se registró 1 de cada 9 fallecidos.</div></div>
     <div class="paso" data-p="3"><div class="tarjeta"><span class="cifra">Lima</span>
       tiene la mitad. Casi todos están sobre la <b>Panamericana</b>, donde la carretera atraviesa la ciudad.</div></div>
-    <div class="paso" data-p="4"><div class="tarjeta"><span class="cifra">17 muertes</span>
+    <div class="paso" data-p="4"><div class="tarjeta"><span class="cifra">17 fallecidos</span>
       en este tramo de la Panamericana Norte, en Comas. 15 siniestros en <b>4 años distintos</b>, todos a menos de 200 metros.</div></div>
     <div class="paso" data-p="5"><div class="tarjeta"><span class="cifra">55 frente a 31</span>
       ¿Es solo que esas carreteras tienen mucho tráfico? Si repartimos los mismos siniestros por la misma carretera, salen <b>31 lugares</b> con 5 o más. En la realidad hay <b>55</b>. El lugar importa.</div></div>
     <div class="paso" data-p="6"><div class="tarjeta"><span class="cifra">44%</span>
-      de los siniestros en puntos negros tenía un <b>paradero a menos de 200 metros</b>. En otro lugar de la misma vía, 26%. Donde la gente baja del bus, cruza la pista. Y la mitad de los muertos ahí son peatones.</div></div>
+      de los siniestros en puntos negros tenía un <b>paradero a menos de 200 metros</b>. En otro lugar de la misma vía, 26%. Donde la gente baja del bus, cruza la pista. Y la mitad de los fallecidos ahí son peatones.</div></div>
   </div>
 </section>
 
@@ -224,7 +224,7 @@
 
   <main>
     <div class="kpis">
-      <div class="kpi"><div class="e">Muertes</div><div class="v" id="k1"></div><div class="l" id="k1l"></div></div>
+      <div class="kpi"><div class="e">Fallecidos</div><div class="v" id="k1"></div><div class="l" id="k1l"></div></div>
       <div class="kpi"><div class="e">Puntos negros</div><div class="v acento" id="k2"></div><div class="l" id="k2l"></div></div>
       <div class="kpi"><div class="e">En puntos negros</div><div class="v" id="k3"></div><div class="l" id="k3l"></div></div>
       <div class="kpi"><div class="e">Peatones</div><div class="v acento" id="k4"></div><div class="l" id="k4l"></div></div>
@@ -233,11 +233,11 @@
     <div class="seccion"><span>01</span><b>Dónde</b></div>
     <div class="fila f-mapa">
       <section class="panel">
-        <h2>Las muertes se repiten en los mismos lugares</h2>
-        <p class="sub">Cada punto gris es un siniestro fatal. Las columnas son puntos negros, más altas cuantas más muertes. Haz clic en una para verla. Arrastra con clic derecho para girar el mapa.</p>
+        <h2>Los siniestros fatales se repiten en los mismos lugares</h2>
+        <p class="sub">Cada punto gris es un siniestro fatal. Las columnas son puntos negros, más altas cuantos más fallecidos. Haz clic en una para verla. Arrastra con clic derecho para girar el mapa.</p>
         <div id="mapa" role="img" aria-label="Mapa de siniestros fatales y puntos negros del Perú"></div>
         <div class="ley"><span><i style="background:#c3c8ce"></i>Siniestro fatal</span>
-          <span><i class="c" style="background:linear-gradient(90deg,#b4400f,#ffd2a8)"></i>Punto negro (más alto y más claro, más muertes)</span></div>
+          <span><i class="c" style="background:linear-gradient(90deg,#b4400f,#ffd2a8)"></i>Punto negro (más alto y más claro, más fallecidos)</span></div>
       </section>
       <section class="panel ficha" id="ficha"></section>
     </div>
@@ -247,7 +247,7 @@
       <section class="panel">
         <h2>Los lugares más letales</h2>
         <p class="sub" id="s-rank"></p>
-        <svg id="rank" viewBox="0 0 560 330" role="img" aria-label="Puntos negros con más muertes"></svg>
+        <svg id="rank" viewBox="0 0 560 330" role="img" aria-label="Puntos negros con más fallecidos"></svg>
       </section>
       <section class="panel">
         <h2>¿Es solo porque son carreteras con mucho tráfico? No</h2>
@@ -265,7 +265,7 @@
       <section class="panel">
         <h2 id="t-rep">Año tras año, el mismo lugar</h2>
         <p class="sub" id="s-rep"></p>
-        <svg id="rep" viewBox="0 0 560 260" role="img" aria-label="Puntos negros según cuántos años distintos tuvieron muertes"></svg>
+        <svg id="rep" viewBox="0 0 560 260" role="img" aria-label="Puntos negros según cuántos años distintos tuvieron fallecidos"></svg>
       </section>
       <section class="panel">
         <h2 id="t-pred"></h2>
@@ -314,17 +314,17 @@
         <figure class="par">
           <div class="fotos"><div><img src="img/sat_59_pn.jpg" alt="Panamericana Sur en Lurín, con vías auxiliares, puente y vehículos detenidos" loading="lazy"><span class="et pn">Punto negro</span></div>
             <div><img src="img/sat_59_ctrl.jpg" alt="Trébol vial de la Panamericana Sur" loading="lazy"><span class="et">Misma vía, a 1.5 km</span></div></div>
-          <figcaption><b>Lurín, Panamericana Sur.</b> 10 muertes en 4 años distintos. Vías auxiliares, buses detenidos y barrio a ambos lados.</figcaption>
+          <figcaption><b>Lurín, Panamericana Sur.</b> 10 fallecidos en 4 años distintos. Vías auxiliares, buses detenidos y barrio a ambos lados.</figcaption>
         </figure>
         <figure class="par">
           <div class="fotos"><div><img src="img/sat_191_pn.jpg" alt="Carretera de entrada al centro de Yungay" loading="lazy"><span class="et pn">Punto negro</span></div>
             <div><img src="img/sat_191_ctrl.jpg" alt="La misma carretera en un caserío rural" loading="lazy"><span class="et">Misma vía, a 1.5 km</span></div></div>
-          <figcaption><b>Yungay, carretera a Huaraz.</b> 7 muertes en 6 siniestros y 3 años distintos, donde la vía entra al centro del pueblo. A 1.5 km, la misma carretera pasa entre chacras.</figcaption>
+          <figcaption><b>Yungay, carretera a Huaraz.</b> 7 fallecidos en 6 siniestros y 3 años distintos, donde la vía entra al centro del pueblo. A 1.5 km, la misma carretera pasa entre chacras.</figcaption>
         </figure>
         <figure class="par">
           <div class="fotos"><div><img src="img/sat_170_pn.jpg" alt="Panamericana Norte cruzando Guadalupe, con feria junto a la vía" loading="lazy"><span class="et pn">Punto negro</span></div>
             <div><img src="img/sat_170_ctrl.jpg" alt="Panamericana Norte en el desierto" loading="lazy"><span class="et">Misma vía, a 1.5 km</span></div></div>
-          <figcaption><b>Guadalupe, Panamericana Norte.</b> La carretera atraviesa el pueblo junto a una feria. 7 muertes. Más allá, la misma vía cruza el desierto.</figcaption>
+          <figcaption><b>Guadalupe, Panamericana Norte.</b> La carretera atraviesa el pueblo junto a una feria. 7 fallecidos. Más allá, la misma vía cruza el desierto.</figcaption>
         </figure>
         </div>
         <details class="galeria-box"><summary>Ver los 28 pares</summary><div class="galeria" id="galeria"></div></details>
@@ -349,15 +349,15 @@
         <h2>Todos los puntos negros</h2>
         <p class="sub" id="s-tabla"></p>
         <div style="overflow-x:auto"><table id="tabla"><thead><tr><th>Vía</th><th>Distrito</th><th>Departamento</th>
-          <th class="num">Muertes</th><th class="num">Siniestros</th><th class="num">Años con muertes</th><th class="num">Atropellos</th><th>Lugar</th></tr></thead><tbody></tbody></table></div>
+          <th class="num">Fallecidos</th><th class="num">Siniestros</th><th class="num">Años con fallecidos</th><th class="num">Atropellos</th><th>Lugar</th></tr></thead><tbody></tbody></table></div>
       </section>
     </div>
 
     <h2 class="titulo-sec">Hallazgos</h2>
     <div class="hall">
-      <div class="panel"><div class="n acento">1 de cada 9</div><p>muertes en las pistas entre 2021 y 2025 ocurrió en uno de los 286 puntos negros, lugares de 200 metros con 3 siniestros fatales o más.</p></div>
-      <div class="panel"><div class="n">55 frente a 31</div><p>lugares con 5 o más siniestros fatales. En la realidad hay 55. Si los mismos siniestros cayeran en lugares al azar de las mismas carreteras, habría 31. No es mala suerte.</p></div>
-      <div class="panel"><div class="n acento">38% frente a 5%</div><p>de los puntos negros de 2021-2023 volvió a tener muertes en 2024-2025. En un lugar con un solo siniestro, 5%. Se podía saber dónde.</p></div>
+      <div class="panel"><div class="n acento">1 de cada 9</div><p>fallecidos en las vías entre 2021 y 2025 se registró en uno de los 286 puntos negros, lugares de 200 metros con 3 siniestros fatales o más.</p></div>
+      <div class="panel"><div class="n">55 frente a 31</div><p>lugares con 5 o más siniestros fatales. En la realidad hay 55. Si los mismos siniestros cayeran en lugares al azar de las mismas carreteras, habría 31. No es casualidad.</p></div>
+      <div class="panel"><div class="n acento">38% frente a 5%</div><p>de los puntos negros de 2021-2023 volvió a registrar siniestros fatales en 2024-2025. En un lugar con un solo siniestro, 5%. Se podía saber dónde.</p></div>
       <div class="panel"><div class="n">50% frente a 28%</div><p>de los siniestros en puntos negros son atropellos. Casi todos están donde una carretera rápida atraviesa la ciudad.</p></div>
       <div class="panel"><div class="n acento">44% frente a 26%</div><p>de los siniestros en puntos negros tenía un paradero a menos de 200 metros. En otro lugar de la misma vía, 26%. Donde la gente baja del bus, cruza la pista.</p></div>
       <div class="panel"><div class="n">13 de 28 frente a 1</div><p>puntos negros tienen comercio pegado a la vía en la foto satelital. En la misma vía a 1.5 km, 1 de 28. Y hay más puentes peatonales, no menos.</p></div>
@@ -365,7 +365,7 @@
 
     <div class="texto panel" id="metodo">
       <div><h2>Cómo se calculó</h2><ul>
-        <li>Cada siniestro con muertos registrado por el ONSV entre enero de 2021 y agosto de 2025, con su ubicación exacta.</li>
+        <li>Cada siniestro con fallecidos registrado por el ONSV entre enero de 2021 y agosto de 2025, con su ubicación exacta.</li>
         <li>Punto negro es un grupo de 3 o más siniestros a menos de 200 metros uno de otro (DBSCAN).</li>
         <li>Prueba del azar. Cada siniestro se movió a un lugar al azar de la misma vía, en el mismo tramo y la misma provincia. Así el tráfico es parecido. Se repitió 20 veces.</li>
         <li>Paraderos, mercados y colegios vienen de OpenStreetMap. La población es la de WorldPop 2020 en celdas de 1 km.</li>
@@ -380,7 +380,7 @@
         <li>Detalle de archivos y código en el <a href="https://github.com/nicosil02/puntos-negros">repositorio</a>.</li>
       </ul></div>
       <div><h2>Limitaciones</h2><ul>
-        <li>Solo siniestros con muertos. Los que dejan heridos no tienen ubicación pública.</li>
+        <li>Solo siniestros con fallecidos. Los que dejan heridos no tienen ubicación pública.</li>
         <li>El registro de 2024 y 2025 es más incompleto (2025 llega hasta agosto).</li>
         <li>No hay conteos públicos de autos ni peatones por calle. La prueba del azar sobre la misma vía es la mejor aproximación.</li>
         <li>OpenStreetMap no tiene todos los paraderos, sobre todo los informales.</li>
@@ -429,7 +429,7 @@ d3.json("datos.json?v=2").then(d => {
 // ---------- Mapas en 3D (MapLibre y deck.gl) ----------
 const SAT = { type: "raster", tileSize: 256, maxzoom: 19, attribution: "Esri, Maxar",
   tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"] };
-// Un solo tono naranja: más muertes, más intenso (claro sobre fondo oscuro, oscuro sobre fondo claro)
+// Un solo tono naranja: más fallecidos, más intenso (claro sobre fondo oscuro, oscuro sobre fondo claro)
 const rgb = c => { const x = d3.rgb(c); return [x.r, x.g, x.b]; };
 const tonoOsc = d3.scaleSequential(d3.interpolateRgb("#b4400f", "#ffd2a8")).domain([3, 17]).clamp(true);
 let animar = false;  // la altura solo se anima al cambiar de paso, no mientras el mapa vuela
@@ -559,10 +559,10 @@ function dibujar(encuadrar) {
   const lugares = d3.rollups(enPN, v => ({ n: v.length, m: d3.sum(v, s => s.muertos), anios: new Set(v.map(s => s.anio)).size }), s => s.pn)
     .map(([pn, v]) => ({ ...LUG.get(pn), ...v, pn }));
   const peatones = d3.sum(enPN.filter(s => s.clase === "Atropello"), s => s.muertos);
-  contar($("k1"), muertos, fmt); $("k1l").textContent = `muertes en siniestros registrados en ${zona()} (${filtroTxt()})`;
-  contar($("k2"), lugares.length, fmt); $("k2l").textContent = `puntos negros con muertes en esa selección`;
-  contar($("k3"), muertos ? mPN / muertos : 0, pc); $("k3l").textContent = `de las muertes ocurrió en un punto negro`;
-  contar($("k4"), mPN ? peatones / mPN : 0, pc); $("k4l").textContent = `de las muertes en puntos negros fueron peatones atropellados`;
+  contar($("k1"), muertos, fmt); $("k1l").textContent = `fallecidos en siniestros registrados en ${zona()} (${filtroTxt()})`;
+  contar($("k2"), lugares.length, fmt); $("k2l").textContent = `puntos negros con fallecidos en esa selección`;
+  contar($("k3"), muertos ? mPN / muertos : 0, pc); $("k3l").textContent = `de los fallecidos se registró en un punto negro`;
+  contar($("k4"), mPN ? peatones / mPN : 0, pc); $("k4l").textContent = `de los fallecidos en puntos negros fueron peatones atropellados`;
   pintarMapa(f, lugares, encuadrar);
   ranking(lugares); perfil(f); hora(f); repeticion(lugares); tabla(lugares, enPN);
   ficha(elegido && lugares.find(l => l.pn === elegido.pn) || null);
@@ -576,7 +576,7 @@ function iniciarMapa() {
               "CooperativeGesturesHandler.MobileHelpText": "Usa dos dedos para mover el mapa" } });
   mapa.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), "top-right");
   capaM = new deck.MapboxOverlay({ interleaved: true, layers: [],
-    getTooltip: ({ object: l, layer }) => l && layer.id === "m-pn" ? { html: `<b>${l.m} muertes</b> en ${l.n} siniestros<br>${nombreVia(l)}, ${titulo(l.dist)}`,
+    getTooltip: ({ object: l, layer }) => l && layer.id === "m-pn" ? { html: `<b>${l.m} fallecidos</b> en ${l.n} siniestros<br>${nombreVia(l)}, ${titulo(l.dist)}`,
       style: { background: "#16191e", color: C.tinta, border: "1px solid #3a4048", borderRadius: "8px", padding: "8px 10px", fontSize: "14px" } } : null });
   mapa.addControl(capaM);
   mapa.once("style.load", () => { base(mapa, "#23272e"); mapa.cargado = true; if (mapa.pendiente) pintarMapa(...mapa.pendiente); });
@@ -615,19 +615,19 @@ function ficha(l) {
   if (!l) {
     const top = [...D.lugares].sort((a, b) => b.muertos - a.muertos)[0];
     el.innerHTML = `<h2>Elige un punto negro</h2><p class="vacio">Haz clic en una columna del mapa o en una barra de "Los lugares más letales". Verás qué pasó ahí y podrás mirar el lugar en Street View.</p>
-      <p class="vacio">El más letal del país es la ${nombreVia(top)} en ${titulo(top.dist)}, con ${top.muertos} muertes en ${top.n} siniestros.</p>`;
+      <p class="vacio">El más letal del país es la ${nombreVia(top)} en ${titulo(top.dist)}, con ${top.muertos} fallecidos en ${top.n} siniestros.</p>`;
     return;
   }
   const todos = S.filter(s => s.pn === l.pn), anios = new Set(todos.map(s => s.anio));
   const atro = todos.filter(s => s.clase === "Atropello").length, noche = todos.filter(s => s.noche === 1).length;
   el.innerHTML = `<div class="donde">Punto negro en ${titulo(l.dist)}, ${titulo(l.prov)} (${titulo(l.dep)})</div>
     <div class="lugar">${nombreVia(l)}</div>
-    <div class="cifras"><div><b class="acento">${l.muertos}</b><span>muertes</span></div><div><b>${l.n}</b><span>siniestros</span></div><div><b>${l.heridos}</b><span>heridos</span></div></div>
-    <div class="donde">Años con muertes</div>
+    <div class="cifras"><div><b class="acento">${l.muertos}</b><span>fallecidos</span></div><div><b>${l.n}</b><span>siniestros</span></div><div><b>${l.heridos}</b><span>heridos</span></div></div>
+    <div class="donde">Años con fallecidos</div>
     <div class="anios">${ANIOS.map(a => `<div class="${anios.has(a) ? "si" : ""}">${a}</div>`).join("")}</div>
     <a class="sv" target="_blank" rel="noopener" href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${l.lat.toFixed(6)},${l.lon.toFixed(6)}">Ver el lugar en Street View</a>
     <p>${atro} de los ${l.n} siniestros fueron atropellos y ${noche} ocurrieron de noche. Todo en un radio de 200 metros.</p>
-    <div class="lista">${[...todos].sort((a, b) => a.anio - b.anio || a.hora - b.hora).map(s => `<div><b>${s.anio}</b><span>${s.clase === "Despiste" ? "Despiste o volcadura" : s.clase}${s.hora >= 0 ? `, ${s.hora} h` : ""}</span><span>${s.muertos} ${s.muertos === 1 ? "muerte" : "muertes"}</span></div>`).join("")}</div>`;
+    <div class="lista">${[...todos].sort((a, b) => a.anio - b.anio || a.hora - b.hora).map(s => `<div><b>${s.anio}</b><span>${s.clase === "Despiste" ? "Despiste o volcadura" : s.clase}${s.hora >= 0 ? `, ${s.hora} h` : ""}</span><span>${s.muertos} ${s.muertos === 1 ? "fallecido" : "fallecidos"}</span></div>`).join("")}</div>`;
 }
 
 function barrasH(svg, datos, { valor, etiqueta, color, texto, clic, W = 560, izq = 190, formato = fmt }) {
@@ -650,16 +650,16 @@ function barrasH(svg, datos, { valor, etiqueta, color, texto, clic, W = 560, izq
 
 function ranking(lugares) {
   const top = [...lugares].sort((a, b) => b.m - a.m || b.n - a.n).slice(0, 10);
-  $("s-rank").textContent = `Muertes en cada punto negro, ${zona()} (${filtroTxt()}). Haz clic para ir al lugar.`;
+  $("s-rank").textContent = `Fallecidos en cada punto negro, ${zona()} (${filtroTxt()}). Haz clic para ir al lugar.`;
   const svg = d3.select("#rank"); svg.selectAll("g.f").remove();
   barrasH(svg, top, { valor: d => d.m, etiqueta: d => { const t = `${titulo(d.dist)} · ${nombreVia(d).replace(/^(Carretera|Avenida) /, "")}`; return t.length > 38 ? t.slice(0, 37) + "…" : t; },
     color: d => elegido && d.pn === elegido.pn ? C.tinta : C.acento, clic: elegir, izq: 270,
-    texto: d => `<b>${titulo(d.dist)}</b><br>${nombreVia(d)}<br>${d.m} muertes en ${d.n} siniestros, ${d.anios === 1 ? "en 1 año" : `en ${d.anios} años distintos`}` });
+    texto: d => `<b>${titulo(d.dist)}</b><br>${nombreVia(d)}<br>${d.m} fallecidos en ${d.n} siniestros, ${d.anios === 1 ? "en 1 año" : `en ${d.anios} años distintos`}` });
 }
 
 function tabla(lugares, enPN) {
   const filas = [...lugares].sort((a, b) => b.m - a.m || b.n - a.n).slice(0, 15);
-  $("s-tabla").textContent = `Los ${filas.length} con más muertes de ${fmt(lugares.length)}, ${zona()} (${filtroTxt()}). Haz clic en una fila para ir al lugar en el mapa.`;
+  $("s-tabla").textContent = `Los ${filas.length} con más fallecidos de ${fmt(lugares.length)}, ${zona()} (${filtroTxt()}). Haz clic en una fila para ir al lugar en el mapa.`;
   const atro = d3.rollup(enPN.filter(s => s.clase === "Atropello"), v => v.length, s => s.pn);
   d3.select("#tabla tbody").selectAll("tr").data(filas, d => d.pn).join("tr")
     .html(d => `<td>${nombreVia(d)}</td><td>${titulo(d.dist)}</td><td>${titulo(d.dep)}</td><td class="num"><b>${d.m}</b></td><td class="num">${d.n}</td>
@@ -670,11 +670,11 @@ function tabla(lugares, enPN) {
 
 function dibujarPrediccion() {
   const P = D.prediccion, f = P.filas;
-  $("t-pred").textContent = `${pc(f[0].p)} de los puntos negros de 2021-2023 volvió a matar en 2024-2025`;
+  $("t-pred").textContent = `${pc(f[0].p)} de los puntos negros de 2021-2023 volvió a registrar siniestros fatales en 2024-2025`;
   $("s-pred").textContent = "Lugares según cuántos siniestros fatales tuvieron entre 2021 y 2023, y si hubo otro a menos de 200 metros en 2024-2025. Todo el Perú.";
   barrasH(d3.select("#pred"), f, { valor: d => 100 * d.p, formato: v => Math.round(v) + "%", etiqueta: d => d.t, izq: 240,
     color: (d, i) => i === 0 ? C.acento : C.barra, texto: d => `<b>${d.t}</b><br>${fmt(d.n)} lugares. ${pc(d.p)} volvió a tener un siniestro fatal en 2024-2025.` });
-  $("n-pred").textContent = `Un punto negro tuvo ${Math.round(f[0].p / f[2].p)} veces más probabilidad de volver a matar que un lugar con un solo siniestro. Pero ojo: solo ${pc(P.en_pn / P.despues)} de los siniestros de 2024-2025 ocurrió en esos lugares. La mayoría de las muertes está dispersa, y el registro de 2024-2025 es más incompleto.`;
+  $("n-pred").textContent = `Un punto negro tuvo ${Math.round(f[0].p / f[2].p)} veces más probabilidad de volver a registrar un siniestro fatal que un lugar con un solo siniestro. Pero ojo: solo ${pc(P.en_pn / P.despues)} de los siniestros de 2024-2025 ocurrió en esos lugares. La mayoría de los siniestros fatales está dispersa, y el registro de 2024-2025 es más incompleto.`;
 }
 
 function galeria() {
@@ -682,7 +682,7 @@ function galeria() {
   d3.select("#galeria").selectAll("figure").data(D.auditoria).join("figure").html(d => {
     const marcas = [si(d.comercio, "comercio"), si(d.paradero, "paradero"), si(d.puente, "puente peatonal")].filter(Boolean);
     return `<div class="fotos"><img src="img/aud/${d.pn}_pn.jpg" alt="Punto negro en ${titulo(d.dist)}" loading="lazy"><img src="img/aud/${d.pn}_ctrl.jpg" alt="Misma vía a 1.5 km" loading="lazy"></div>
-      <figcaption><b>${titulo(d.dist)}, ${titulo(d.dep)}.</b> ${d.m} muertes.${marcas.length ? ` Solo el punto negro tiene ${marcas.length > 1 ? marcas.slice(0, -1).join(", ") + " y " + marcas.at(-1) : marcas[0]}.` : ""}</figcaption>`;
+      <figcaption><b>${titulo(d.dist)}, ${titulo(d.dep)}.</b> ${d.m} fallecidos.${marcas.length ? ` Solo el punto negro tiene ${marcas.length > 1 ? marcas.slice(0, -1).join(", ") + " y " + marcas.at(-1) : marcas[0]}.` : ""}</figcaption>`;
   });
 }
 
@@ -690,7 +690,7 @@ function dibujarAzar() {
   const a = D.azar;
   $("az-real").textContent = a.real.pn5;
   $("az-azar").textContent = Math.round(a.media.pn5);
-  $("n-azar").textContent = `Hay casi el doble de lo esperado. Repetimos la prueba 20 veces y nunca pasó de ${a.max.pn5}. Las muertes se juntan en ciertos lugares: el problema es el lugar, no la mala suerte.`;
+  $("n-azar").textContent = `Hay casi el doble de lo esperado. Repetimos la prueba 20 veces y nunca pasó de ${a.max.pn5}. Los siniestros fatales se concentran en ciertos lugares: el problema es el lugar, no la casualidad.`;
 }
 
 function pares(svg, filas, { izq = 200, sufijo = "%" } = {}) {
@@ -763,13 +763,13 @@ function repeticion(lugares) {
   const c = [1, 2, 3, 4, 5].map(k => ({ k, n: lugares.filter(l => l.anios === k).length }));
   const tres = d3.sum(c.filter(d => d.k >= 3), d => d.n);
   $("t-rep").textContent = lugares.length ? `${fmt(tres)} de ${fmt(lugares.length)} se repiten en 3 años o más` : "Sin puntos negros en esta selección";
-  $("s-rep").textContent = `Puntos negros según en cuántos años distintos hubo muertes, ${zona()} (${filtroTxt()}).`;
+  $("s-rep").textContent = `Puntos negros según en cuántos años distintos hubo fallecidos, ${zona()} (${filtroTxt()}).`;
   const svg = d3.select("#rep"), W = 560, H = 260, m = { t: 26, r: 10, b: 30, l: 10 };
   const x = d3.scaleBand().domain(c.map(d => d.k)).range([m.l, W - m.r]).padding(.3);
   const y = d3.scaleLinear().domain([0, d3.max(c, d => d.n) * 1.12 || 1]).range([H - m.b, m.t]);
   svg.selectAll("line.base").data([0]).join("line").attr("class", "base").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", "#4a515a").attr("stroke-width", 1.5);
   svg.selectAll("rect").data(c).join("rect").attr("x", d => x(d.k)).attr("width", Math.min(x.bandwidth(), 64)).attr("transform", `translate(${(x.bandwidth() - Math.min(x.bandwidth(), 64)) / 2},0)`).attr("rx", 3).attr("fill", d => d.k >= 3 ? C.acento : C.barra)
-    .on("mousemove", (e, d) => verTip(e, `<b>${d.n}</b> puntos negros con muertes en ${d.k} ${d.k === 1 ? "año" : "años distintos"}`)).on("mouseleave", ocultarTip)
+    .on("mousemove", (e, d) => verTip(e, `<b>${d.n}</b> puntos negros con fallecidos en ${d.k} ${d.k === 1 ? "año" : "años distintos"}`)).on("mouseleave", ocultarTip)
     .transition().duration(500).attr("y", d => y(d.n)).attr("height", d => y(0) - y(d.n));
   svg.selectAll("text.v").data(c).join("text").attr("class", "v").attr("x", d => x(d.k) + x.bandwidth() / 2).attr("text-anchor", "middle")
     .attr("font-size", 14).attr("font-weight", 700).attr("fill", C.tinta).text(d => d.n).attr("y", function () { return this.getAttribute("y") || y(0); }).transition().duration(500).attr("y", d => y(d.n) - 7);

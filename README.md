@@ -1,8 +1,8 @@
 # Puntos negros
 
-**¿Las muertes en las pistas del Perú se repiten en los mismos lugares? ¿Es mala suerte, es el tráfico o es el lugar?**
+**¿Los siniestros fatales en las vías del Perú se repiten en los mismos lugares? ¿Es casualidad, es el tráfico o es el lugar?**
 
-En el Perú hay 286 lugares donde la gente muere una y otra vez en la pista. Ahí ocurrió 1 de cada 9 muertes en siniestros entre 2021 y 2025. No es solo tráfico. Con los mismos siniestros repartidos al azar sobre las mismas vías, habría casi la mitad de lugares así de letales. La mayoría está donde la Panamericana atraviesa la ciudad, y ahí mueren sobre todo peatones.
+En el Perú hay 286 lugares donde los siniestros fatales se repiten una y otra vez. Ahí se registró 1 de cada 9 fallecidos en siniestros entre 2021 y 2025. No es solo tráfico. Con los mismos siniestros repartidos al azar sobre las mismas vías, habría casi la mitad de lugares así de letales. La mayoría está donde la Panamericana atraviesa la ciudad, y ahí mueren sobre todo peatones.
 
 - Dashboard: https://nicosil02.github.io/puntos-negros/
 - Reel: (enlace pendiente)
@@ -10,7 +10,7 @@ En el Perú hay 286 lugares donde la gente muere una y otra vez en la pista. Ah�
 
 ## Hallazgos
 
-1. **1 de cada 9 muertes ocurre en un punto negro.** Son 286 lugares de 200 metros con 3 o más siniestros fatales entre 2021 y 2025. 146 se repiten en 3 años distintos o más.
+1. **1 de cada 9 fallecidos se registra en un punto negro.** Son 286 lugares de 200 metros con 3 o más siniestros fatales entre 2021 y 2025. 146 se repiten en 3 años distintos o más.
 2. **El lugar importa, no solo el tráfico.** Hay 55 lugares con 5 o más siniestros fatales. Si los mismos siniestros se repartieran al azar sobre la misma vía y el mismo tramo, habría 31 en promedio y nunca más de 40 en 20 repeticiones.
 3. **Son carreteras que cruzan la ciudad.** En los puntos negros, 50% de los siniestros son atropellos (28% en el resto) y 41% ocurre en una vía expresa o carretera dentro de la ciudad (13% en el resto).
 4. **Hay un paradero cerca.** 44% de los siniestros en puntos negros ocurrió a menos de 200 metros de un paradero de bus. En otros lugares de la misma vía, 26%. También hay más mercados (18% frente a 12%) y colegios (47% frente a 36%) cerca.
