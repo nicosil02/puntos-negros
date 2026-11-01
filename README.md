@@ -1,6 +1,6 @@
 # Puntos negros
 
-**¿Los siniestros fatales en las vías del Perú se repiten en los mismos lugares? ¿Es casualidad, es el tráfico o es el lugar?**
+**Entre 2021 y 2025, ¿dónde se repiten los siniestros fatales en las vías del Perú y qué tienen en común esos lugares?**
 
 En el Perú hay 286 lugares donde los siniestros fatales se repiten una y otra vez. Ahí se registró 1 de cada 9 fallecidos en siniestros entre 2021 y 2025. No es casualidad. Si los mismos siniestros cayeran al azar sobre las mismas vías, habría bastantes menos lugares así de letales (31 en vez de 55). La mitad de los siniestros en puntos negros son atropellos, y en Lima la mitad de los puntos negros está sobre la Panamericana.
 
